@@ -8,36 +8,27 @@ import {
 
 import { useHistory } from "react-router-dom";
 
-
-// import React, { setState } from 'react';
-
-// import { strateegiaUserMe } from '../api/StrateegiaUserMe'
-
-// function HomeButton() {
-//     const history = useHistory();
-
-
+import UserSession from '../components/UserSession';
 
 export function Profile() {
 
     const history = useHistory();
 
+    let token = UserSession.getToken()
+
     function handleClick() {
+        
+        UserSession.removeToken()
+        
         history.push("/login");
     }
-
-    // const myInfo = await strateegiaUserMe({ token: props.location.state.token })
-
-    // const myInfo = await strateegiaUserMe({ token: this.props.location.state.token })
-
-    // console.log(myInfo)
 
     return (
         <ChakraProvider>
             <Flex flexDirection="column" justifyContent="space-between">
                 <Text fontSize="2xl" paddingTop="0.4em" color="black">
                     Profile
-                    {/* {myInfo} */}
+                    {token}
                 </Text>
                 <Box textAlign="center">
                     {/* <Text>{props.email} logged in!</Text> */}

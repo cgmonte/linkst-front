@@ -14,12 +14,13 @@ import {
     InputRightElement,
 } from '@chakra-ui/react';
 
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 
-import { strateegiaLogin } from '../api/StrateegiaLogin'
+import { strateegiaLogin } from '../api/StrateegiaLogin';
 // import { strateegiaUserMe } from '../api/StrateegiaUserMe'
-import { ErrorMessage } from '../components/ErrorMessage'
+import UserSession from '../components/UserSession';
+import { ErrorMessage } from '../components/ErrorMessage';
 
 export class LoginForm extends React.Component {
     constructor() {
@@ -29,7 +30,7 @@ export class LoginForm extends React.Component {
             password: '',
             error: '',
             isLoading: false,
-            isLoggedIn: false,
+            // isLoggedIn: false,
             showPassword: false
         };
 
@@ -56,11 +57,9 @@ export class LoginForm extends React.Component {
 
         try {
             const response = await strateegiaLogin({ email_var, password_var });
-            console.log(response)
-
-            this.setState({ isLoading: false });
             this.setState({ showPassword: false });
-            this.setState({ isLoggedIn: true });
+            UserSession.setToken(response.access_token);
+            this.setState({ isLoading: false });
 
         } catch (error) {
             this.setState({ error: 'Invalid username or password' });
@@ -78,12 +77,11 @@ export class LoginForm extends React.Component {
         return (
 
             <ChakraProvider>
-                {this.state.isLoggedIn ? (
+                {UserSession.getToken() ? (
 
                     <Redirect
                         to={{
                             pathname: "/profile",
-                            // state: { token: this.response.access_token }
                         }}
                     />
 
