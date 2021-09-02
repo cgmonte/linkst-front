@@ -21,6 +21,7 @@ import { strateegiaLogin } from '../api/StrateegiaLogin';
 // import { strateegiaUserMe } from '../api/StrateegiaUserMe'
 import UserSession from '../components/UserSession';
 import { ErrorMessage } from '../components/ErrorMessage';
+// import { strateegiaUserMe } from '../api/StrateegiaUserMe';
 
 export class LoginForm extends React.Component {
     constructor() {
@@ -47,6 +48,12 @@ export class LoginForm extends React.Component {
         this.setState({ password: event.target.value });
     }
 
+    parseJwt(token) {
+        var base64Payload = token.split('.')[1];
+        var payload = Buffer.from(base64Payload, 'base64');
+        return JSON.parse(payload.toString());
+    }
+
     async handleSubmit(event) {
 
         const email_var = this.state.email;
@@ -56,9 +63,16 @@ export class LoginForm extends React.Component {
         this.setState({ isLoading: true });
 
         try {
-            const response = await strateegiaLogin({ email_var, password_var });
+            const tokens = await strateegiaLogin({ email_var, password_var });
+            // const user_data = await strateegiaUserMe({ token: tokens.access_token });
+            const refresh_token = this.parseJwt(tokens.refresh_token)
+
             this.setState({ showPassword: false });
-            UserSession.setToken(response.access_token);
+
+            UserSession.setToken(tokens.access_token);
+            UserSession.setId(refresh_token.uid);
+            UserSession.setName(refresh_token.sub);
+
             this.setState({ isLoading: false });
 
         } catch (error) {

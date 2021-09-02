@@ -19,6 +19,8 @@ export function Profile() {
     function handleClick() {
         
         UserSession.removeToken()
+        UserSession.removeId()
+        UserSession.removeName()
         
         history.push("/login");
     }
