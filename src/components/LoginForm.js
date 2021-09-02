@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 import {
     ChakraProvider,
@@ -8,7 +9,7 @@ import {
     Input,
     Button,
     CircularProgress,
-    Text,
+    // Text,
     InputGroup,
     InputRightElement,
 } from '@chakra-ui/react';
@@ -17,6 +18,7 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 
 
 import { strateegiaLogin } from '../api/StrateegiaLogin'
+// import { strateegiaUserMe } from '../api/StrateegiaUserMe'
 import { ErrorMessage } from '../components/ErrorMessage'
 
 export class LoginForm extends React.Component {
@@ -55,9 +57,11 @@ export class LoginForm extends React.Component {
         try {
             const response = await strateegiaLogin({ email_var, password_var });
             console.log(response)
-            this.setState({ isLoggedIn: true });
+
             this.setState({ isLoading: false });
             this.setState({ showPassword: false });
+            this.setState({ isLoggedIn: true });
+
         } catch (error) {
             this.setState({ error: 'Invalid username or password' });
             this.setState({ isLoading: false });
@@ -75,17 +79,16 @@ export class LoginForm extends React.Component {
 
             <ChakraProvider>
                 {this.state.isLoggedIn ? (
-                    <Box textAlign="center">
-                        <Text>{this.email} logged in!</Text>
-                        <Button
-                            width="full"
-                            mt={4}
-                            onClick={() => this.setState({ isLoggedIn: false, error: '' })}
-                        >
-                            Sign out
-                        </Button>
-                    </Box>
+
+                    <Redirect
+                        to={{
+                            pathname: "/profile",
+                            // state: { token: this.response.access_token }
+                        }}
+                    />
+
                 ) : (
+
                     <>
                         <Box flexShrink="0" my={4} textAlign="left" paddingLeft="10">
                             <form onSubmit={this.handleSubmit}>
@@ -128,10 +131,9 @@ export class LoginForm extends React.Component {
                                     )}
                                 </Button>
                             </form>
-
-
                         </Box>
                     </>
+
                 )}
             </ChakraProvider>
         );
