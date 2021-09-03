@@ -1,6 +1,4 @@
-import React from "react";
-
-import { withRouter } from 'react-router-dom';
+import React, {useState} from "react";
 
 import {
     ChakraProvider,
@@ -9,6 +7,8 @@ import {
     Box,
     Button
 } from '@chakra-ui/react';
+
+import { useHistory } from "react-router-dom";
 
 import UserSession from '../components/UserSession';
 
@@ -19,73 +19,69 @@ import {
     // strateegiaConvergencePoints,
     // strateegiaCheckPoints,
     // strateegiaComments
-} from '../api/StrateegiaData';
+} from '../api/StrateegiaData'
 
-class Profile extends React.PureComponent {
-    constructor() {
-        super()
-        this.state = {
-            stData: []
-        };
-        this.full_name = UserSession.getName()
+export function Profile() {
 
-        this.handleClick = this.handleClick.bind(this)
+    const [stData, setStData] = useState(0);
 
-        this.getStData = this.getStData.bind(this)
+    const history = useHistory();
 
-        this.getStData(UserSession.getToken())
-    }
+    let full_name = UserSession.getName()
+    let access_token = UserSession.getToken()
 
-    async getStData(access_token) {
+    const getStData = async access_token => {
         try {
             const projects = await strateegiaProjects({ token: access_token });
-            this.state.stData = projects;
-            console.log(this.state.stData)
+            return projects;
         } catch (e) {
             return e;
         }
     };
 
-    handleClick() {
+    var cu;
+    getStData(access_token).then(function (result) {
+        setStData(result);
+    });
+    console.log(stData);
+
+
+
+    function handleClick() {
 
         UserSession.removeToken()
         UserSession.removeId()
         UserSession.removeName()
 
-        this.props.history.push("/login");
-    };
+        history.push("/login");
+    }
 
-    render() {
+    return (
+        <ChakraProvider>
+            {!UserSession.getToken() ? (
 
-        return (
-            <ChakraProvider>
-                {!UserSession.getToken() ? (
+                history.push("/login")
 
-                    this.props.history.push("/login")
-
-                ) : (
+            ) : (
                 <Flex width="full" height="100vh" alignContent="center" alignItems="center" justifyContent="center">
 
                     <Flex flexDirection="column" justifyContent="space-between">
                         <Text fontSize="2xl" paddingTop="0.4em" color="black">
-                            Olá, {this.full_name}.
+                            Olá, {full_name}.
                         </Text>
                         <Box textAlign="center">
                             {/* <Text>{props.email} logged in!</Text> */}
                             <Button
                                 width="full"
                                 mt={4}
-                                onClick={this.handleClick}>
+                                onClick={handleClick}>
                                 Sign out
                             </Button>
                         </Box>
 
                     </Flex>
                 </Flex>
-                )}
-            </ChakraProvider>
-        );
-    }
+            )}
+        </ChakraProvider>
+    );
 }
-
-export default withRouter(Profile);

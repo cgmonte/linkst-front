@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Login } from './components/Login';
-import { Profile } from './components/Profile';
+import Profile from './components/Profile';
 
 function App() {
   return (
