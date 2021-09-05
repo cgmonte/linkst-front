@@ -1,9 +1,27 @@
 export const getStraeegiaData = async ({ token }) => {
+  let strateegiaData = []
   try {
     const projects = await strateegiaProjects({ token: token });
+    
     let soma_projetos = 0;
-    projects.forEach(lab => soma_projetos += lab.projects.length);
-    return soma_projetos;
+
+    
+
+    projects.forEach(function (lab) {
+
+
+
+      soma_projetos += lab.projects.length;
+
+      
+    })
+
+    strateegiaData.push(soma_projetos)
+
+    
+
+    return strateegiaData;
+
   } catch (e) {
     return e;
   }

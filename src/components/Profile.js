@@ -30,8 +30,8 @@ class Profile extends React.Component {
     }
 
     async getStData(access_token) {
-        const projects = await getStraeegiaData({ token: access_token });
-        this.setState({ soma_projetos: projects });
+        const strateegiaData = await getStraeegiaData({ token: access_token });
+        this.setState({ soma_projetos: strateegiaData[0] });
 
         setTimeout(function() {
             this.setState({ fetching: false });
