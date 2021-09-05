@@ -1,3 +1,14 @@
+export const getStraeegiaData = async ({ token }) => {
+  try {
+    const projects = await strateegiaProjects({ token: token });
+    let soma_projetos = 0;
+    projects.forEach(lab => soma_projetos += lab.projects.length);
+    return soma_projetos;
+  } catch (e) {
+    return e;
+  }
+};
+
 export const strateegiaProjects = async ({ token }) => {
   return new Promise((resolve, reject) => {
 

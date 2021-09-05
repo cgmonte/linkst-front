@@ -12,14 +12,7 @@ import {
 
 import UserSession from '../components/UserSession';
 
-import {
-    strateegiaProjects,
-    // strateegiaMissions,
-    // strateegiaContents,
-    // strateegiaConvergencePoints,
-    // strateegiaCheckPoints,
-    // strateegiaComments
-} from '../api/StrateegiaData';
+import { getStraeegiaData } from '../api/StrateegiaData';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -34,24 +27,22 @@ class Profile extends React.Component {
         this.handleClick = this.handleClick.bind(this)
 
         this.getStData = this.getStData.bind(this)
-
-        // this.getStData(UserSession.getToken())
     }
 
     async getStData(access_token) {
-        try {
-            const projects = await strateegiaProjects({ token: access_token });
-            this.state.stData = projects;
-            this.state.stData.forEach(lab => this.state.soma_projetos += lab.projects.length);
-            this.setState({ soma_projetos: this.state.soma_projetos })
-        } catch (e) {
-            return e;
-        }
+        const projects = await getStraeegiaData({ token: access_token });
+        this.setState({ soma_projetos: projects });
+
         setTimeout(function() {
             this.setState({ fetching: false });
           }.bind(this), 3000);
-        
-    };
+    }
+
+    componentDidMount() {
+        this.setState({ fetching: true });
+        this.getStData(UserSession.getToken())
+
+    }
 
     handleClick() {
 
@@ -61,12 +52,6 @@ class Profile extends React.Component {
 
         this.props.history.push("/login");
     };
-
-    componentDidMount() {
-        this.setState({ fetching: true });
-        this.getStData(UserSession.getToken())
-
-    }
 
     render() {
 
