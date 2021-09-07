@@ -19,7 +19,8 @@ class Profile extends React.Component {
         super(props)
         this.state = {
             stData: [],
-            soma_projetos: 0,
+            number_of_projects: 0,
+            number_of_missions: 0,
             fetching: false,
         };
         this.full_name = UserSession.getName()
@@ -31,11 +32,12 @@ class Profile extends React.Component {
 
     async getStData(access_token) {
         const strateegiaData = await getStraeegiaData({ token: access_token });
-        this.setState({ soma_projetos: strateegiaData[0] });
+        this.setState({ number_of_projects: strateegiaData[0].stProjects.length });
+        this.setState({ number_of_missions: strateegiaData[0].stMissions.length });
 
-        setTimeout(function() {
+        setTimeout(function () {
             this.setState({ fetching: false });
-          }.bind(this), 3000);
+        }.bind(this), 3000);
     }
 
     componentDidMount() {
@@ -78,7 +80,11 @@ class Profile extends React.Component {
                                         Olá, {this.full_name}.
                                     </Text>
                                     <Text>
-                                        Você participou de um total de {this.state.soma_projetos} projetos inovadores no Strateegia.
+                                        {this.state.number_of_projects} projetos inovadores.
+
+                                    </Text>
+                                    <Text>
+                                        {this.state.number_of_missions} jornadas de inovação.
                                     </Text>
 
                                     < Box textAlign="center">

@@ -1,24 +1,49 @@
 export const getStraeegiaData = async ({ token }) => {
-  let strateegiaData = []
+  let strateegiaData = [];
+  let stProjects = [];
+  let stMissions = [];
+  let stContents = [];
+
   try {
     const projects = await strateegiaProjects({ token: token });
-    
-    let soma_projetos = 0;
-
-    
 
     projects.forEach(function (lab) {
-
-
-
-      soma_projetos += lab.projects.length;
-
-      
+      lab.projects.forEach(function (project) {
+        stProjects.push(project);
+      })
     })
 
-    strateegiaData.push(soma_projetos)
+    for (const project of stProjects) {
+      let missions = await strateegiaMissions({ token: token, project_id: project.id })
+      missions.missions.forEach(function (mission) {
+        stMissions.push(mission)
+      })
+    }
 
-    
+    for (const mission of stMissions) {
+      let contents = await strateegiaContents({ token: token, mission_id: mission.id })
+      contents.content.forEach(function (content) {
+        // console.log(content)
+        stContents.push(content)
+      })
+    }
+
+    // for (const content of stContents) {
+    //   let comments = await strateegiaComments({ token: token, content_id: content.id })
+    //   // console.log(comments)
+    //   comments.forEach(function (comments) {
+    //     if (comments.comments.length === 0) {
+    //       // console.log('vazio')
+    //     }
+    //     // else {console.log(comments)}
+
+    //     // stContents.push(content)
+    //   })
+    // }
+
+    strateegiaData.push({ stProjects, stMissions, stContents })
+
+    // console.log(strateegiaData)
 
     return strateegiaData;
 
@@ -152,7 +177,7 @@ export const strateegiaComments = async ({ token, content_id }) => {
 
     var myHeaders = new Headers();
 
-    const url = 'https://api.strateegia.digital:443/projects/v1/content/' + content_id + '/report'
+    const url = 'https://api.strateegia.digital:443/projects/v1/content/' + content_id + '/comment/report'
 
     myHeaders.set('Authorization', 'Bearer ' + token);
     myHeaders.append('Content-Type', 'application/json')
