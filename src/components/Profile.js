@@ -107,7 +107,6 @@ class Profile extends React.Component {
                                         {this.state.number_of_conversation_points} pontos de conversação.
                                     </Text>
                                     < Box textAlign="center">
-                                        {/* <Text>{props.email} logged in!</Text> */}
                                         <Button
                                             width="full"
                                             mt={4}
