@@ -2,7 +2,7 @@ import React from "react";
 
 import {
     ChakraProvider,
-    Flex,
+    // Flex,
     Text,
     Box,
     AspectRatio
@@ -15,34 +15,28 @@ class Certificate extends React.Component {
 
     constructor(props) {
         super(props)
-        
-
         this.full_name = UserSession.getName()
-
-        console.log(props.data)
-
-        // this.handleClick = this.handleClick.bind(this)
-
-        // this.getStData = this.getStData.bind(this)
     }
 
     render() {
         return (
             <ChakraProvider>
-                <AspectRatio ratio={16 / 9} minW="70vw" maxW="80vw">
+                <AspectRatio ratio={16 / 9.76} minW="70vw" maxW="80vw">
                     <Box backgroundImage="cert_background.png" backgroundSize="cover" position="relative">
-                        <Box position="absolute">
-                            <Text fontSize="xl" paddingTop="0.4em" color="white" textAlign="right">
+
+                        <Box position="absolute" right="30vw" top="15vw" fontWeight="bold">
+                            <Text fontSize="1.2vw" paddingTop="0.4em" color="white" textAlign="right">
                                 Certificamos que
                             </Text>
-                            <Text fontSize="3xl" paddingTop="0.4em" color="white" textAlign="right">
+                            <Text fontSize="1.8vw" paddingTop="0.4em" color="#52BAA8" textAlign="right" textTransform="uppercase">
                                 {this.full_name}
                             </Text>
-                            <Text fontSize="x1" paddingTop="0.4em" color="white" textAlign="right">
-                                é um inovador strateegia.
+                            <Text fontSize="1.2vw" paddingTop="0.4em" color="white" textAlign="right">
+                                é um <Text as="span" color="#F5B333"> inovador strateegia.</Text>
                             </Text>
                         </Box>
-                        <Box color="white" position="absolute" bottom="150px" right="150px" fontSize="xl">
+
+                        <Box color="white" position="absolute" bottom="0px" right="0px" fontSize="1vw" padding="5vw">
                             <Text>
                                 {this.props.data.number_of_projects} projetos inovadores
                             </Text>
@@ -62,12 +56,12 @@ class Certificate extends React.Component {
                                 {this.props.data.number_of_replies_from_user} respostas para perguntas estratégicas
                             </Text>
                             <Text>
-                                {this.props.data.number_of_comment_replies_from_user} comentários em respostas para perguntas estratégicas
+                                {this.props.data.number_of_comment_replies_from_user} comentários em respostas para perguntas <br/> estratégicas
                             </Text>
                         </Box>
+
                     </Box>
                 </AspectRatio >
-                {/* <Text>Nada de mais</Text> */}
             </ChakraProvider>
         )} 
 }

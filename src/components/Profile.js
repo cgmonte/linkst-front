@@ -9,7 +9,7 @@ import {
     Box,
     Button,
     Progress,
-    AspectRatio
+    // AspectRatio
 } from '@chakra-ui/react';
 
 import UserSession from '../components/UserSession';
