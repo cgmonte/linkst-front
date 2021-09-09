@@ -14,6 +14,7 @@ export const getStraeegiaData = async ({ token }) => {
   let stKitQuestions = []
   let stReplies = [];
   let userStReplies = [];
+  let userCommentReplies = [];
 
   try {
     const projects = await strateegiaProjects({ token: token });
@@ -37,20 +38,16 @@ export const getStraeegiaData = async ({ token }) => {
 
     stMaps.forEach(function (map) {
       map.points.forEach(function (point) {
-        // stPoints.push(point);
-        // console.log(point);
+        stPoints.push(point);
         switch (point.point_type) {
           case 'DIVERGENCE':
             stDivergencePoints.push(point);
-            stPoints.push(point);
             break;
           case 'CONVERGENCE':
             stConvergencePoints.push(point);
-            stPoints.push(point);
             break;
           case 'CONVERSATION':
             stConversationPoints.push(point);
-            stPoints.push(point);
             break;
           default:
             console.log('Tipo de ponto não mapeado')
@@ -68,10 +65,6 @@ export const getStraeegiaData = async ({ token }) => {
     stDivergenceContents.forEach(function (content) {
       content.kit.questions.forEach(function (question) {
         stKitQuestions.push(question);
-        // for (const question of stKitQuestions) {
-        //   let parent_comments = await strateegiaParentComments({ token, content_id: content.id, question_id = question.id })
-        //   stReplies.push(parent_comments)
-        // }
       })
     })
 
@@ -89,8 +82,23 @@ export const getStraeegiaData = async ({ token }) => {
       }
     }
 
+    for (const reply of stReplies) {
+      for (const content of reply.content) {
+        let question_comment_replies = await strateegiaCommentReplies({ token, question_comment_id: content.id });
+        for (const question_comment_reply of question_comment_replies.content) {
+          if (question_comment_reply.author.id === user_id) {
 
-    console.log(userStReplies)
+            userCommentReplies.push(question_comment_reply)
+          }
+        }
+      }
+    }
+
+
+
+    // console.log(
+    //   userCommentReplies
+    // )
 
     strateegiaData.push({
       stProjects,
@@ -100,7 +108,8 @@ export const getStraeegiaData = async ({ token }) => {
       stDivergencePoints,
       stConvergencePoints,
       stConversationPoints,
-      userStReplies
+      userStReplies,
+      userCommentReplies
     })
 
     return strateegiaData;
@@ -164,6 +173,30 @@ export const strateegiaParentComments = async ({ token, content_id, question_id 
     var myHeaders = new Headers();
 
     const url = 'https://api.strateegia.digital:443/projects/v1/content/' + content_id + '/question/' + question_id + '/comment'
+
+    myHeaders.set('Authorization', 'Bearer ' + token);
+    myHeaders.append('Content-Type', 'application/json')
+
+    fetch(url, {
+      method: 'GET',
+      headers: myHeaders,
+    })
+      .then((response) => {
+        if (response.ok) {
+          resolve(response.json());
+        } else {
+          reject();
+        }
+      });
+  });
+};
+
+export const strateegiaCommentReplies = async ({ token, question_comment_id }) => {
+  return new Promise((resolve, reject) => {
+
+    var myHeaders = new Headers();
+
+    const url = 'https://api.strateegia.digital:443/projects/v1/question/comment/' + question_comment_id + '/reply'
 
     myHeaders.set('Authorization', 'Bearer ' + token);
     myHeaders.append('Content-Type', 'application/json')

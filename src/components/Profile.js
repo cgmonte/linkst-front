@@ -7,7 +7,8 @@ import {
     Flex,
     Text,
     Box,
-    Button
+    Button,
+    Progress
 } from '@chakra-ui/react';
 
 import UserSession from '../components/UserSession';
@@ -25,6 +26,7 @@ class Profile extends React.Component {
             number_of_divergence_points: 0,
             number_of_convergence_points: 0,
             number_of_replies_from_user: 0,
+            number_of_comment_replies_from_user: 0,
             fetching: false,
         };
         this.full_name = UserSession.getName()
@@ -43,6 +45,7 @@ class Profile extends React.Component {
         this.setState({ number_of_convergence_points: strateegiaData[0].stConvergencePoints.length });
         this.setState({ number_of_conversation_points: strateegiaData[0].stConversationPoints.length });
         this.setState({ number_of_replies_from_user: strateegiaData[0].userStReplies.length });
+        this.setState({ number_of_comment_replies_from_user: strateegiaData[0].userCommentReplies.length });
         this.setState({ fetching: false });
         //     setTimeout(function () {
         //         this.setState({ fetching: false });
@@ -78,10 +81,33 @@ class Profile extends React.Component {
                         <Flex flexDirection="column" justifyContent="space-between">
 
                             {this.state.fetching ? (
+                                <div>
+                                    <Flex flexDirection="column" alignItems="center">
 
-                                <Text>
-                                    Carregando dados do Strateegia!
-                                </Text>
+                                        <Text fontSize="2xl">
+                                            Carregando dados do Strateegia!
+                                        </Text>
+                                    </Flex>
+                                    <Box
+                                        // maxW="sm"
+                                        borderWidth="1px"
+                                        borderRadius="lg"
+                                        borderColor="#E2E8F0"
+                                        // overflow="hidden"
+                                        marginY="2em"
+                                        padding="1em"
+                                        // display="inline"
+                                    >
+                                        <Progress size="xs" isIndeterminate />
+                                    </Box>
+                                    <Flex flexDirection="column" alignItems="center">
+                                        <Text fontSize="1xl">
+                                            Isso pode levar algum tempo...
+                                        </Text>
+                                    </Flex>
+                                </div>
+
+
 
                             ) : (
                                 <div>
@@ -107,7 +133,9 @@ class Profile extends React.Component {
                                     <Text>
                                         {this.state.number_of_replies_from_user} respostas para perguntas estratégicas
                                     </Text>
-
+                                    <Text>
+                                        {this.state.number_of_comment_replies_from_user} comentários em respostas para perguntas estratégicas
+                                    </Text>
                                     < Box textAlign="center">
                                         <Button
                                             width="full"
