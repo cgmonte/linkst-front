@@ -9,9 +9,10 @@ import {
     Input,
     Button,
     CircularProgress,
-    // Text,
+    Image,
     InputGroup,
     InputRightElement,
+    Text
 } from '@chakra-ui/react';
 
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
@@ -102,7 +103,11 @@ export class LoginForm extends React.Component {
                 ) : (
 
                     <>
-                        <Box flexShrink="0" my={4} textAlign="left" paddingLeft="10">
+                        <Box flexShrink="0" my={4} textAlign="right" width="20em">
+                            <Image src="logotype.png" paddingBottom="4em"/>
+                            <Text fontSize="xs" color="GrayText" paddingBottom="2em" textAlign="left">
+                                Entre abaixo com seu login e senha do <br /> Strateegia para começar.
+                            </Text>
                             <form onSubmit={this.handleSubmit}>
                                 {this.state.error && <ErrorMessage message={this.state.error} />}
                                 <FormControl isRequired>
@@ -136,11 +141,11 @@ export class LoginForm extends React.Component {
                                         </InputRightElement>
                                     </InputGroup>
                                 </FormControl>
-                                <Button width="full" mt={4} type="submit" onClick={this.handleSubmit} size="sm">
+                                <Button width="auto" mt={4} type="submit" onClick={this.handleSubmit} size="sm" colorScheme="teal" marginTop="2vw">
                                     {this.state.isLoading ? (
                                         <CircularProgress isIndeterminate size="24px" color="teal" />
                                     ) : (
-                                        'Sign In'
+                                        'Entrar'
                                     )}
                                 </Button>
                             </form>
