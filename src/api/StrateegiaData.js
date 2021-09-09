@@ -7,7 +7,7 @@ export const getStraeegiaData = async ({ token }) => {
   let stMissions = [];
   let stMaps = [];
   let stDivergenceContents = [];
-  let stPoints = [];
+  // let stPoints = [];
   let stDivergencePoints = [];
   let stConvergencePoints = [];
   let stConversationPoints = [];
@@ -38,7 +38,7 @@ export const getStraeegiaData = async ({ token }) => {
 
     stMaps.forEach(function (map) {
       map.points.forEach(function (point) {
-        stPoints.push(point);
+        // stPoints.push(point);
         switch (point.point_type) {
           case 'DIVERGENCE':
             stDivergencePoints.push(point);
@@ -56,10 +56,11 @@ export const getStraeegiaData = async ({ token }) => {
     })
 
     for (const point of stDivergencePoints) {
-      let divergence_content = await strateegiaContents({ token: token, content_id: point.id });
-      // console.log(point.id)
-      stDivergenceContents.push(divergence_content);
-
+      let has_contributed = await strateegiaHasContribution({ token: token, content_id: point.id });
+      if (has_contributed.has_contributed === true) {
+        let divergence_content = await strateegiaContents({ token: token, content_id: point.id });
+        stDivergenceContents.push(divergence_content);
+      }
     }
 
     stDivergenceContents.forEach(function (content) {
@@ -73,9 +74,7 @@ export const getStraeegiaData = async ({ token }) => {
         let parent_comments = await strateegiaParentComments({ token, content_id: content.id, question_id: question.id });
         stReplies.push(parent_comments);
         for (const reply of parent_comments.content) {
-          // console.log(user_id);
           if (reply.author.id === user_id) {
-            // console.log(reply.text);
             userStReplies.push(reply);
           }
         }
@@ -173,6 +172,30 @@ export const strateegiaParentComments = async ({ token, content_id, question_id 
     var myHeaders = new Headers();
 
     const url = 'https://api.strateegia.digital:443/projects/v1/content/' + content_id + '/question/' + question_id + '/comment'
+
+    myHeaders.set('Authorization', 'Bearer ' + token);
+    myHeaders.append('Content-Type', 'application/json')
+
+    fetch(url, {
+      method: 'GET',
+      headers: myHeaders,
+    })
+      .then((response) => {
+        if (response.ok) {
+          resolve(response.json());
+        } else {
+          reject();
+        }
+      });
+  });
+};
+
+export const strateegiaHasContribution = async ({ token, content_id }) => {
+  return new Promise((resolve, reject) => {
+
+    var myHeaders = new Headers();
+
+    const url = 'https://api.strateegia.digital:443/projects/v1/content/' + content_id + '/comment/contribution'
 
     myHeaders.set('Authorization', 'Bearer ' + token);
     myHeaders.append('Content-Type', 'application/json')
