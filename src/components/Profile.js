@@ -24,7 +24,7 @@ class Profile extends React.Component {
             number_of_maps: 0,
             number_of_divergence_points: 0,
             number_of_convergence_points: 0,
-            number_of_conversation_points: 0,
+            number_of_replies_from_user: 0,
             fetching: false,
         };
         this.full_name = UserSession.getName()
@@ -39,13 +39,14 @@ class Profile extends React.Component {
         this.setState({ number_of_projects: strateegiaData[0].stProjects.length });
         this.setState({ number_of_missions: strateegiaData[0].stMissions.length });
         this.setState({ number_of_maps: strateegiaData[0].stMaps.length });
-        this.setState({ number_of_divergence_points: strateegiaData[0].stDivergencePoints.length})
-        this.setState({ number_of_convergence_points: strateegiaData[0].stConvergencePoints.length})
-        this.setState({ number_of_conversation_points: strateegiaData[0].stConversationPoints.length})
+        this.setState({ number_of_divergence_points: strateegiaData[0].stDivergencePoints.length });
+        this.setState({ number_of_convergence_points: strateegiaData[0].stConvergencePoints.length });
+        this.setState({ number_of_conversation_points: strateegiaData[0].stConversationPoints.length });
+        this.setState({ number_of_replies_from_user: strateegiaData[0].userStReplies.length });
         this.setState({ fetching: false });
-    //     setTimeout(function () {
-    //         this.setState({ fetching: false });
-    //     }.bind(this), 3000);
+        //     setTimeout(function () {
+        //         this.setState({ fetching: false });
+        //     }.bind(this), 3000);
     }
 
     componentDidMount() {
@@ -85,27 +86,28 @@ class Profile extends React.Component {
                             ) : (
                                 <div>
                                     <Text fontSize="2xl" paddingTop="0.4em" color="black">
-                                        Olá, {this.full_name}.
+                                        {this.full_name}
                                     </Text>
                                     <Text>
-                                        Você já participou de:
-                                    </Text>
-                                    <Text>
-                                        {this.state.number_of_projects} projetos inovadores.
+                                        {this.state.number_of_projects} projetos inovadores
 
                                     </Text>
                                     <Text>
-                                        {this.state.number_of_missions} jornadas de inovação.
+                                        {this.state.number_of_missions} jornadas de inovação
                                     </Text>
                                     <Text>
-                                        {this.state.number_of_divergence_points} pontos de divergência.
+                                        {this.state.number_of_divergence_points} pontos de divergência
                                     </Text>
                                     <Text>
-                                        {this.state.number_of_convergence_points} pontos de convergência.
+                                        {this.state.number_of_convergence_points} pontos de convergência
                                     </Text>
                                     <Text>
-                                        {this.state.number_of_conversation_points} pontos de conversação.
+                                        {this.state.number_of_conversation_points} pontos de conversação
                                     </Text>
+                                    <Text>
+                                        {this.state.number_of_replies_from_user} respostas para perguntas estratégicas
+                                    </Text>
+
                                     < Box textAlign="center">
                                         <Button
                                             width="full"

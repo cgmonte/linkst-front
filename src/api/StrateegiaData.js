@@ -1,4 +1,7 @@
+import UserSession from '../components/UserSession';
+
 export const getStraeegiaData = async ({ token }) => {
+  const user_id = UserSession.getId();
   let strateegiaData = [];
   let stProjects = [];
   let stMissions = [];
@@ -9,7 +12,8 @@ export const getStraeegiaData = async ({ token }) => {
   let stConvergencePoints = [];
   let stConversationPoints = [];
   let stKitQuestions = []
-  // let stReplies = [];
+  let stReplies = [];
+  let userStReplies = [];
 
   try {
     const projects = await strateegiaProjects({ token: token });
@@ -56,6 +60,7 @@ export const getStraeegiaData = async ({ token }) => {
 
     for (const point of stDivergencePoints) {
       let divergence_content = await strateegiaContents({ token: token, content_id: point.id });
+      // console.log(point.id)
       stDivergenceContents.push(divergence_content);
 
     }
@@ -63,10 +68,29 @@ export const getStraeegiaData = async ({ token }) => {
     stDivergenceContents.forEach(function (content) {
       content.kit.questions.forEach(function (question) {
         stKitQuestions.push(question);
+        // for (const question of stKitQuestions) {
+        //   let parent_comments = await strateegiaParentComments({ token, content_id: content.id, question_id = question.id })
+        //   stReplies.push(parent_comments)
+        // }
       })
     })
 
-    console.log(stKitQuestions)
+    for (const content of stDivergenceContents) {
+      for (const question of content.kit.questions) {
+        let parent_comments = await strateegiaParentComments({ token, content_id: content.id, question_id: question.id });
+        stReplies.push(parent_comments);
+        for (const reply of parent_comments.content) {
+          // console.log(user_id);
+          if (reply.author.id === user_id) {
+            // console.log(reply.text);
+            userStReplies.push(reply);
+          }
+        }
+      }
+    }
+
+
+    console.log(userStReplies)
 
     strateegiaData.push({
       stProjects,
@@ -75,7 +99,8 @@ export const getStraeegiaData = async ({ token }) => {
       stMaps,
       stDivergencePoints,
       stConvergencePoints,
-      stConversationPoints
+      stConversationPoints,
+      userStReplies
     })
 
     return strateegiaData;
@@ -133,29 +158,29 @@ export const strateegiaMissions = async ({ token, project_id }) => {
   });
 };
 
-// export const strateegiaParentComments = async ({ token, mission_id }) => {
-//   return new Promise((resolve, reject) => {
+export const strateegiaParentComments = async ({ token, content_id, question_id }) => {
+  return new Promise((resolve, reject) => {
 
-//     var myHeaders = new Headers();
+    var myHeaders = new Headers();
 
-//     const url = 'https://api.strateegia.digital:443/projects/v1/mission/' + mission_id + '/content'
+    const url = 'https://api.strateegia.digital:443/projects/v1/content/' + content_id + '/question/' + question_id + '/comment'
 
-//     myHeaders.set('Authorization', 'Bearer ' + token);
-//     myHeaders.append('Content-Type', 'application/json')
+    myHeaders.set('Authorization', 'Bearer ' + token);
+    myHeaders.append('Content-Type', 'application/json')
 
-//     fetch(url, {
-//       method: 'GET',
-//       headers: myHeaders,
-//     })
-//       .then((response) => {
-//         if (response.ok) {
-//           resolve(response.json());
-//         } else {
-//           reject();
-//         }
-//       });
-//   });
-// };
+    fetch(url, {
+      method: 'GET',
+      headers: myHeaders,
+    })
+      .then((response) => {
+        if (response.ok) {
+          resolve(response.json());
+        } else {
+          reject();
+        }
+      });
+  });
+};
 
 export const strateegiaContents = async ({ token, content_id }) => {
   return new Promise((resolve, reject) => {
