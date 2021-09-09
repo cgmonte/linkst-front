@@ -113,7 +113,7 @@ export class LoginForm extends React.Component {
                                         value={this.state.email}
                                         onChange={this.handleEmail}
                                         placeholder="email@example.com"
-                                        size="lg"
+                                        size="sm"
                                         autoComplete="username"
                                     />
                                 </FormControl>
@@ -127,15 +127,16 @@ export class LoginForm extends React.Component {
                                             onChange={this.handlePassword}
                                             placeholder="*******"
                                             autoComplete="current-password"
+                                            size="sm"
                                         />
                                         <InputRightElement>
-                                            <Button onClick={this.handlePasswordVisibility} marginRight="0.4rem" h="2rem">
+                                            <Button onClick={this.handlePasswordVisibility} marginRight="-0.9em" marginTop="-1.2em" size="xs">
                                                 {this.state.showPassword ? <ViewOffIcon /> : <ViewIcon />}
                                             </Button>
                                         </InputRightElement>
                                     </InputGroup>
                                 </FormControl>
-                                <Button width="full" mt={4} type="submit" onClick={this.handleSubmit}>
+                                <Button width="full" mt={4} type="submit" onClick={this.handleSubmit} size="sm">
                                     {this.state.isLoading ? (
                                         <CircularProgress isIndeterminate size="24px" color="teal" />
                                     ) : (

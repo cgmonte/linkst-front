@@ -131,10 +131,10 @@ class Profile extends React.Component {
 
                                         <Image src="st-icon.png" width="5vw"/>
 
-                                        <Text fontSize="xs" textAlign="left" marginTop="1vw">
+                                        <Text fontSize="xs" textAlign="left" marginTop="1vw" color="GrayText">
                                             Baseado em suas atividades na plataforma strateegia.digital,
                                             você obteve a certificação ao lado. No LinkedIn, é possível
-                                            Aidicionar a certificação ao seu pergil profissional ou posta-la na sua timeline.
+                                            aidicionar a certificação ao seu perfil profissional e / ou posta-la na sua timeline.
                                             Veja opçções abaixo.
                                         </Text>
 
