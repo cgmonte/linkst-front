@@ -9,6 +9,7 @@ import {
     Box,
     Button,
     Progress,
+    Image
     // AspectRatio
 } from '@chakra-ui/react';
 
@@ -122,27 +123,49 @@ class Profile extends React.Component {
                                     </Flex>
                                 </div>
                             ) : (
-                                <Flex alignItems="flex-end">
+                                <Flex>
 
-                                    <Certificate data={this.state}/>
-                                    
-                                    < Flex textAlign="center" marginLeft="1.1em" flexDirection="column">
+                                    <Certificate data={this.state} />
+
+                                    < Flex textAlign="center" marginLeft="2.5vw" flexDirection="column" alignItems="center" height="auto" width="12em">
+
+                                        <Image src="st-icon.png" width="5vw"/>
+
+                                        <Text fontSize="xs" textAlign="left" marginTop="1vw">
+                                            Baseado em suas atividades na plataforma strateegia.digital,
+                                            você obteve a certificação ao lado. No LinkedIn, é possível
+                                            Aidicionar a certificação ao seu pergil profissional ou posta-la na sua timeline.
+                                            Veja opçções abaixo.
+                                        </Text>
+
+                                        <Box flexGrow="1" />
                                         <Button
+                                            colorScheme="teal"
+                                            isDisabled={true}
+                                            size="sm"
                                             width="15em"
                                             mt={4}>
                                             Adicionar ao LinkedIn
                                         </Button>
                                         <Button
+                                            colorScheme="teal"
+                                            isDisabled={true}
+                                            size="sm"
                                             width="15em"
                                             mt={4}>
                                             Postar no feed do LinkedIn
                                         </Button>
                                         <Button
+                                            colorScheme="teal"
+                                            size="sm"
                                             width="15em"
                                             mt={4}>
                                             Baixar como arquivo
                                         </Button>
                                         <Button
+                                            colorScheme="teal"
+                                            variant="outline"
+                                            size="sm"
                                             width="15em"
                                             mt={4}
                                             onClick={this.handleClick}>
