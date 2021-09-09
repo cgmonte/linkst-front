@@ -13,6 +13,8 @@ import {
     // AspectRatio
 } from '@chakra-ui/react';
 
+// import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
+
 import UserSession from '../components/UserSession';
 
 import Certificate from '../components/Certificate';
@@ -82,6 +84,17 @@ class Profile extends React.Component {
     };
 
 
+    // MyDoc = () => (
+    //     <Document>
+    //         <Page>
+    //             <Certificate />
+    //         </Page>
+    //     </Document>
+    // );
+
+
+
+
 
     render() {
 
@@ -129,7 +142,7 @@ class Profile extends React.Component {
 
                                     < Flex textAlign="center" marginLeft="2.5vw" flexDirection="column" alignItems="center" height="auto" width="12em">
 
-                                        <Image src="st-icon.png" width="5vw"/>
+                                        <Image src="st-icon.png" width="5vw" />
 
                                         <Text fontSize="xs" textAlign="left" marginTop="1vw" color="GrayText">
                                             Baseado em suas atividades na plataforma strateegia.digital,
@@ -159,7 +172,8 @@ class Profile extends React.Component {
                                             colorScheme="teal"
                                             size="sm"
                                             width="15em"
-                                            mt={4}>
+                                            mt={4}
+                                            onClick={this.handleDownloadClick}>
                                             Baixar como arquivo
                                         </Button>
                                         <Button
@@ -171,6 +185,7 @@ class Profile extends React.Component {
                                             onClick={this.handleClick}>
                                             Sair
                                         </Button>
+
                                     </Flex>
                                 </Flex>
                             )

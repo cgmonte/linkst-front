@@ -3,8 +3,6 @@ import {
     ChakraProvider,
     Flex,
     Image,
-    Divider,
-    Text
 } from '@chakra-ui/react';
 
 import { LoginForm } from './LoginForm'
