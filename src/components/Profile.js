@@ -14,6 +14,8 @@ import {
 
 import UserSession from '../components/UserSession';
 
+import Certificate from '../components/Certificate';
+
 // import { getStraeegiaData } from '../api/StrateegiaData';
 
 class Profile extends React.Component {
@@ -78,6 +80,8 @@ class Profile extends React.Component {
         this.props.history.push("/login");
     };
 
+
+
     render() {
 
         return (
@@ -117,49 +121,11 @@ class Profile extends React.Component {
                                         </Text>
                                     </Flex>
                                 </div>
-
-
-
                             ) : (
                                 <Flex alignItems="flex-end">
-                                    <AspectRatio ratio={16 / 9} minW="70vw" maxW="80vw">
-                                        <Box backgroundImage="cert_background.png" backgroundSize="cover" position="relative">
-                                            <Box position="absolute">
-                                                <Text fontSize="xl" paddingTop="0.4em" color="white" textAlign="right">
-                                                    Certificamos que
-                                                </Text>
-                                                <Text fontSize="3xl" paddingTop="0.4em" color="white" textAlign="right">
-                                                    {this.full_name}
-                                                </Text>
-                                                <Text fontSize="x1" paddingTop="0.4em" color="white" textAlign="right">
-                                                    é um inovador strateegia.
-                                                </Text>
-                                            </Box>
-                                            <Box color="white" position="absolute" bottom="150px" right="150px" fontSize="xl">
-                                                <Text>
-                                                    {this.state.number_of_projects} projetos inovadores
-                                                </Text>
-                                                <Text>
-                                                    {this.state.number_of_missions} jornadas de inovação
-                                                </Text>
-                                                <Text>
-                                                    {this.state.number_of_divergence_points} pontos de divergência
-                                                </Text>
-                                                <Text>
-                                                    {this.state.number_of_convergence_points} pontos de convergência
-                                                </Text>
-                                                <Text>
-                                                    {this.state.number_of_conversation_points} pontos de conversação
-                                                </Text>
-                                                <Text>
-                                                    {this.state.number_of_replies_from_user} respostas para perguntas estratégicas
-                                                </Text>
-                                                <Text>
-                                                    {this.state.number_of_comment_replies_from_user} comentários em respostas para perguntas estratégicas
-                                                </Text>
-                                            </Box>
-                                        </Box>
-                                    </AspectRatio >
+
+                                    <Certificate data={this.state}/>
+                                    
                                     < Flex textAlign="center" marginLeft="1.1em" flexDirection="column">
                                         <Button
                                             width="15em"
