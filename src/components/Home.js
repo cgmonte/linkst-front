@@ -15,13 +15,13 @@ import {
 
 // import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
 
-import UserSession from '../components/UserSession';
+import UserSession from './UserSession';
 
-import Certificate from '../components/Certificate';
+import Certificate from './Certificate';
 
 // import { getStraeegiaData } from '../api/StrateegiaData';
 
-class Profile extends React.Component {
+class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -200,4 +200,4 @@ class Profile extends React.Component {
     }
 }
 
-export default withRouter(Profile);
+export default withRouter(Home);

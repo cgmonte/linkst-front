@@ -96,7 +96,7 @@ export class LoginForm extends React.Component {
 
                     <Redirect
                         to={{
-                            pathname: "/profile",
+                            pathname: "/home",
                         }}
                     />
 
