@@ -105,7 +105,7 @@ export class LoginForm extends React.Component {
                     <>
                         <Box flexShrink="0" my={4} textAlign="right" width="20em">
                             <Image src="logotype.png" paddingBottom="4em"/>
-                            <Text fontSize="xs" color="GrayText" paddingBottom="2em" textAlign="left">
+                            <Text fontSize="sm" color="GrayText" paddingBottom="2em" textAlign="left">
                                 Entre abaixo com seu login e senha do <br /> Strateegia para começar.
                             </Text>
                             <form onSubmit={this.handleSubmit}>
@@ -118,7 +118,7 @@ export class LoginForm extends React.Component {
                                         value={this.state.email}
                                         onChange={this.handleEmail}
                                         placeholder="email@example.com"
-                                        size="sm"
+                                        size="lg"
                                         autoComplete="username"
                                     />
                                 </FormControl>
@@ -132,16 +132,16 @@ export class LoginForm extends React.Component {
                                             onChange={this.handlePassword}
                                             placeholder="*******"
                                             autoComplete="current-password"
-                                            size="sm"
+                                            size="lg"
                                         />
                                         <InputRightElement>
-                                            <Button onClick={this.handlePasswordVisibility} marginRight="-0.9em" marginTop="-1.2em" size="xs">
+                                            <Button onClick={this.handlePasswordVisibility} marginRight="0.3em" marginTop="0em" size="md">
                                                 {this.state.showPassword ? <ViewOffIcon /> : <ViewIcon />}
                                             </Button>
                                         </InputRightElement>
                                     </InputGroup>
                                 </FormControl>
-                                <Button width="auto" mt={4} type="submit" onClick={this.handleSubmit} size="sm" colorScheme="teal" marginTop="2vw">
+                                <Button width="auto" mt={4} type="submit" onClick={this.handleSubmit} size="md" colorScheme="teal" marginTop="2vw">
                                     {this.state.isLoading ? (
                                         <CircularProgress isIndeterminate size="24px" color="teal" />
                                     ) : (

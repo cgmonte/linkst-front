@@ -21,7 +21,7 @@ class Certificate extends React.Component {
     render() {
         return (
             <ChakraProvider>
-                <AspectRatio ratio={16 / 9.76} minW="60vw" maxW="80vw">
+                <AspectRatio ratio={16 / 9.76} width="65vw">
                     <Box backgroundImage="cert_background.png" backgroundSize="cover" position="relative">
 
                         <Box position="absolute" right="26vw" top="13vw" fontWeight="bold">

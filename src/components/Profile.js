@@ -140,11 +140,11 @@ class Profile extends React.Component {
 
                                     <Certificate data={this.state} />
 
-                                    < Flex textAlign="center" marginLeft="2.5vw" flexDirection="column" alignItems="center" height="auto" width="12em">
+                                    < Flex textAlign="center" marginLeft="2.9vw" flexDirection="column" alignItems="center" height="auto" width="15em">
 
                                         <Image src="st-icon.png" width="5vw" />
 
-                                        <Text fontSize="xs" textAlign="left" marginTop="1vw" color="GrayText">
+                                        <Text fontSize="s" textAlign="left" marginTop="1vw" color="GrayText">
                                             Baseado em suas atividades na plataforma strateegia.digital,
                                             você obteve a certificação ao lado. No LinkedIn, é possível
                                             aidicionar a certificação ao seu perfil profissional e / ou posta-la na sua timeline.
@@ -155,23 +155,23 @@ class Profile extends React.Component {
                                         <Button
                                             colorScheme="teal"
                                             isDisabled={true}
-                                            size="sm"
-                                            width="15em"
+                                            size="md"
+                                            width="16em"
                                             mt={4}>
-                                            Adicionar ao LinkedIn
+                                            Adicionar ao perfil do LinkedIn
                                         </Button>
                                         <Button
                                             colorScheme="teal"
                                             isDisabled={true}
-                                            size="sm"
-                                            width="15em"
+                                            size="md"
+                                            width="16em"
                                             mt={4}>
                                             Postar no feed do LinkedIn
                                         </Button>
                                         <Button
                                             colorScheme="teal"
-                                            size="sm"
-                                            width="15em"
+                                            size="md"
+                                            width="16em"
                                             mt={4}
                                             onClick={this.handleDownloadClick}>
                                             Baixar como arquivo
@@ -179,8 +179,8 @@ class Profile extends React.Component {
                                         <Button
                                             colorScheme="teal"
                                             variant="outline"
-                                            size="sm"
-                                            width="15em"
+                                            size="md"
+                                            width="16em"
                                             mt={4}
                                             onClick={this.handleClick}>
                                             Sair
