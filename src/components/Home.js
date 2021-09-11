@@ -2,6 +2,16 @@ import React from "react";
 
 import { withRouter } from 'react-router-dom';
 
+// import domtoimage from 'dom-to-image';
+
+import * as htmlToImage from 'html-to-image';
+
+// import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+
+import { jsPDF } from "jspdf";
+
+import { saveAs } from 'file-saver';
+
 import {
     ChakraProvider,
     Flex,
@@ -40,13 +50,15 @@ class Home extends React.Component {
         this.handleClick = this.handleClick.bind(this)
 
         this.getStData = this.getStData.bind(this)
+
+        // this.MyDoc;
     }
 
     async getStData(access_token) {
         // const strateegiaData = await getStraeegiaData({ token: access_token });
         // this.setState({ number_of_projects: strateegiaData[0].stProjects.length });
         // this.setState({ number_of_missions: strateegiaData[0].stMissions.length });
-        // this.setState({ number_of_maps: strateegiaData[0].stMaps.length });
+        // // this.setState({ number_of_maps: strateegiaData[0].stMaps.length });
         // this.setState({ number_of_divergence_points: strateegiaData[0].stDivergencePoints.length });
         // this.setState({ number_of_convergence_points: strateegiaData[0].stConvergencePoints.length });
         // this.setState({ number_of_conversation_points: strateegiaData[0].stConversationPoints.length });
@@ -62,10 +74,10 @@ class Home extends React.Component {
         this.setState({ number_of_replies_from_user: 14 });
         this.setState({ number_of_comment_replies_from_user: 81 });
 
-        this.setState({ fetching: false });
-        //     setTimeout(function () {
-        //         this.setState({ fetching: false });
-        //     }.bind(this), 3000);
+        // this.setState({ fetching: false });
+            setTimeout(function () {
+                this.setState({ fetching: false });
+            }.bind(this), 3000);
     }
 
     componentDidMount() {
@@ -83,18 +95,39 @@ class Home extends React.Component {
         this.props.history.push("/login");
     };
 
+    saveCertPdf() {
+        const component = document.getElementById('cert');
+        const pdf_file = new jsPDF({
+            hotfixes: ["px_scaling"],
+            orientation: "landscape",
+            unit: "px",
+            format: [1889, 1153]
+        });
+        if (pdf_file) {
+            htmlToImage.toPng(component, {
+                canvasWidth: 1889,
+                canvasHeight: 1153,
+                pixelRatio: 1
+            })
+                .then(img => {
+                    pdf_file.addImage(img, 'PNG', 0, 0);
+                    pdf_file.save('certificate.pdf');
+                });
+        }
+    }
 
-    // MyDoc = () => (
-    //     <Document>
-    //         <Page>
-    //             <Certificate />
-    //         </Page>
-    //     </Document>
-    // );
+    saveCertPng() {
+        const component = document.getElementById('cert');
 
-
-
-
+        htmlToImage.toPng(component, {
+            canvasWidth: 1889,
+            canvasHeight: 1153,
+            // pixelRatio: 1
+        })
+            .then(png => {
+                saveAs(png, 'certificate.png');
+            });
+    }
 
     render() {
 
@@ -146,7 +179,7 @@ class Home extends React.Component {
 
                                         <Text fontSize="s" textAlign="left" marginTop="1vw" color="GrayText">
                                             Baseado em suas atividades na plataforma strateegia.digital,
-                                            você obteve a certificação ao lado. No LinkedIn, é possível
+                                            você obteve a certificação ao lado.No LinkedIn, é possível
                                             aidicionar a certificação ao seu perfil profissional e / ou posta-la na sua timeline.
                                             Veja opçções abaixo.
                                         </Text>
@@ -173,7 +206,7 @@ class Home extends React.Component {
                                             size="md"
                                             width="16em"
                                             mt={4}
-                                            onClick={this.handleDownloadClick}>
+                                            onClick={this.saveCertPdf}>
                                             Baixar como arquivo
                                         </Button>
                                         <Button
