@@ -111,7 +111,7 @@ class Home extends React.Component {
             })
                 .then(img => {
                     pdf_file.addImage(img, 'PNG', 0, 0);
-                    pdf_file.save('certificate.pdf');
+                    pdf_file.save('Certificado_Strateegia.pdf');
                 });
         }
     }
@@ -125,7 +125,7 @@ class Home extends React.Component {
             // pixelRatio: 1
         })
             .then(png => {
-                saveAs(png, 'certificate.png');
+                saveAs(png, 'Certificado_Strateegia.png');
             });
     }
 
@@ -170,8 +170,8 @@ class Home extends React.Component {
                                 </div>
                             ) : (
                                 <Flex>
-
-                                    <Certificate data={this.state} />
+                                    
+                                    <Certificate data={this.state}/>
 
                                     < Flex textAlign="center" marginLeft="2.9vw" flexDirection="column" alignItems="center" height="auto" width="15em">
 
