@@ -19,8 +19,15 @@ import {
     Box,
     Button,
     Progress,
-    Image
-    // AspectRatio
+    Image,
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverHeader,
+    PopoverBody,
+    Portal,
+    PopoverArrow,
+    PopoverCloseButton,
 } from '@chakra-ui/react';
 
 // import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
@@ -43,11 +50,14 @@ class Home extends React.Component {
             number_of_convergence_points: 0,
             number_of_replies_from_user: 0,
             number_of_comment_replies_from_user: 0,
+            issue_date: {},
             fetching: false,
         };
         this.full_name = UserSession.getName()
 
-        this.handleClick = this.handleClick.bind(this)
+        this.handleClickSair = this.handleClickSair.bind(this)
+
+        this.handleClickAdd = this.handleClickAdd.bind(this)
 
         this.getStData = this.getStData.bind(this)
 
@@ -75,24 +85,43 @@ class Home extends React.Component {
         this.setState({ number_of_comment_replies_from_user: 81 });
 
         // this.setState({ fetching: false });
-            setTimeout(function () {
-                this.setState({ fetching: false });
-            }.bind(this), 3000);
+        setTimeout(function () {
+            this.setState({ fetching: false });
+        }.bind(this), 3000);
     }
 
     componentDidMount() {
         this.setState({ fetching: true });
         this.getStData(UserSession.getToken())
+        this.setState({ issue_date: this.getCurrentDate() });
+        // console.log(this.getCurrentDate())
 
     }
 
-    handleClick() {
+    getCurrentDate() {
+        const current_date = new Date().toISOString()
+        return {
+            date: current_date.split("T")[0],
+            year: current_date.substring(0, 4),
+            month: current_date.substring(6, 7),
+            day: current_date.substring(8, 10)
+        }
+    }
+
+    handleClickSair() {
 
         UserSession.removeToken()
         UserSession.removeId()
         UserSession.removeName()
 
         this.props.history.push("/login");
+    };
+
+    handleClickAdd() {
+
+        let url = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=Experiência%20em%20Strateegia&organizationName=st%20Teste%20Studio&issueYear=${this.state.issue_date.year}&issueMonth=${this.state.issue_date.month}`
+
+        window.open(url, '_blank').focus();
     };
 
     saveCertPdf() {
@@ -128,6 +157,8 @@ class Home extends React.Component {
                 saveAs(png, 'Certificado_Strateegia.png');
             });
     }
+
+
 
     render() {
 
@@ -170,8 +201,8 @@ class Home extends React.Component {
                                 </div>
                             ) : (
                                 <Flex>
-                                    
-                                    <Certificate data={this.state}/>
+
+                                    <Certificate data={this.state} />
 
                                     < Flex textAlign="center" marginLeft="2.9vw" flexDirection="column" alignItems="center" height="auto" width="15em">
 
@@ -191,31 +222,66 @@ class Home extends React.Component {
                                             size="md"
                                             width="16em"
                                             mt={4}>
-                                            Adicionar ao perfil do LinkedIn
-                                        </Button>
-                                        <Button
-                                            colorScheme="teal"
-                                            isDisabled={true}
-                                            size="md"
-                                            width="16em"
-                                            mt={4}>
                                             Postar no feed do LinkedIn
                                         </Button>
                                         <Button
                                             colorScheme="teal"
+                                            isDisabled={false}
                                             size="md"
                                             width="16em"
                                             mt={4}
-                                            onClick={this.saveCertPdf}>
-                                            Baixar como arquivo
+                                            onClick={this.handleClickAdd}>
+                                            Adicionar ao perfil do LinkedIn
                                         </Button>
+
+
+
+
+                                        <Popover placement="left-end" matchWidth={true}>
+                                            <PopoverTrigger>
+                                                <Button
+                                                    colorScheme="teal"
+                                                    size="md"
+                                                    width="16em"
+                                                    mt={4}>
+                                                    Baixar como arquivo
+                                                </Button>
+                                            </PopoverTrigger>
+                                            <Portal matchWidth={true}>
+                                                <PopoverContent>
+                                                    <PopoverArrow />
+                                                    <PopoverHeader>Selecione o tipo de arquivo para baixar</PopoverHeader>
+                                                    <PopoverCloseButton />
+                                                    <PopoverBody>
+                                                        <Button
+                                                            // colorScheme="teal"
+                                                            size="md"
+                                                            mt={4}
+                                                            width="8em"
+                                                            onClick={this.saveCertPng}>
+                                                            PNG
+                                                        </Button>
+                                                        <Button
+                                                            // colorScheme="teal"
+                                                            size="md"
+                                                            mt={4}
+                                                            width="8em"
+                                                            onClick={this.saveCertPdf}
+                                                            marginLeft="1em">
+                                                            PDF
+                                                        </Button>
+                                                    </PopoverBody>
+                                                </PopoverContent>
+                                            </Portal>
+                                        </Popover>
+
                                         <Button
                                             colorScheme="teal"
                                             variant="outline"
                                             size="md"
                                             width="16em"
                                             mt={4}
-                                            onClick={this.handleClick}>
+                                            onClick={this.handleClickSair}>
                                             Sair
                                         </Button>
 
