@@ -2,11 +2,7 @@ import React from "react";
 
 import { withRouter } from 'react-router-dom';
 
-// import domtoimage from 'dom-to-image';
-
 import * as htmlToImage from 'html-to-image';
-
-// import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 
 import { jsPDF } from "jspdf";
 
@@ -30,11 +26,11 @@ import {
     PopoverCloseButton,
 } from '@chakra-ui/react';
 
-// import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
-
 import UserSession from './UserSession';
 
 import Certificate from './Certificate';
+
+import StatsTable from './StatsTable'
 
 // import { getStraeegiaData } from '../api/StrateegiaData';
 
@@ -60,8 +56,6 @@ class Home extends React.Component {
         this.handleClickAdd = this.handleClickAdd.bind(this)
 
         this.getStData = this.getStData.bind(this)
-
-        // this.MyDoc;
     }
 
     async getStData(access_token) {
@@ -84,18 +78,16 @@ class Home extends React.Component {
         this.setState({ number_of_replies_from_user: 14 });
         this.setState({ number_of_comment_replies_from_user: 81 });
 
-        // this.setState({ fetching: false });
-        setTimeout(function () {
-            this.setState({ fetching: false });
-        }.bind(this), 3000);
+        this.setState({ fetching: false });
+        // setTimeout(function () {
+        //     this.setState({ fetching: false });
+        // }.bind(this), 3000);
     }
 
     componentDidMount() {
         this.setState({ fetching: true });
         this.getStData(UserSession.getToken())
         this.setState({ issue_date: this.getCurrentDate() });
-        // console.log(this.getCurrentDate())
-
     }
 
     getCurrentDate() {
@@ -208,12 +200,11 @@ class Home extends React.Component {
 
                                         <Image src="st-icon.png" width="5vw" />
 
-                                        <Text fontSize="s" textAlign="left" marginTop="1vw" color="GrayText">
-                                            Baseado em suas atividades na plataforma strateegia.digital,
-                                            você obteve a certificação ao lado.No LinkedIn, é possível
-                                            aidicionar a certificação ao seu perfil profissional e / ou posta-la na sua timeline.
-                                            Veja opçções abaixo.
+                                        <Text fontSize="s" textAlign="left" marginTop="1vw" color="GrayText" marginBottom="1em">
+                                            O nível da certificação é calculado com base na sua atividade na plataforma strateegia.digital. Veja abaixo os dados nos quais nos baseamos para gerar o seu certificado.
                                         </Text>
+
+                                        <StatsTable data={this.state} />
 
                                         <Box flexGrow="1" />
                                         <Button
@@ -233,10 +224,6 @@ class Home extends React.Component {
                                             onClick={this.handleClickAdd}>
                                             Adicionar ao perfil do LinkedIn
                                         </Button>
-
-
-
-
                                         <Popover placement="left-end" matchWidth={true}>
                                             <PopoverTrigger>
                                                 <Button

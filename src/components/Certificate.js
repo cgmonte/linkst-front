@@ -25,7 +25,7 @@ class Certificate extends React.Component {
                     <AspectRatio ratio={16 / 9.76} width="65vw">
                         <Box backgroundImage="cert_background.png" backgroundSize="cover" position="relative" id="cert" boxShadow="2xl">
 
-                            <Box position="absolute" right="26vw" top="13vw" fontWeight="bold">
+                            <Box position="absolute" right="20vw" top="16vw" fontWeight="bold">
                                 <Text fontSize="1vw" paddingTop="0.4em" color="white" textAlign="right">
                                     Certificamos que
                                 </Text>
@@ -33,31 +33,16 @@ class Certificate extends React.Component {
                                     {this.full_name}
                                 </Text>
                                 <Text fontSize="1vw" paddingTop="0.4em" color="white" textAlign="right">
-                                    é um <Text as="span" color="#F5B333"> inovador strateegia.</Text>
+                                    atingiu o nível <Text as="span" color="#F5B333"> JR1 </Text> de experiência em Strateegia
                                 </Text>
                             </Box>
 
                             <Box color="white" position="absolute" bottom="0px" right="0px" fontSize="0.9vw" padding="4.5vw">
                                 <Text>
-                                    {this.props.data.number_of_projects} projetos inovadores
+                                    Data de emissão:
                                 </Text>
                                 <Text>
-                                    {this.props.data.number_of_missions} jornadas de inovação
-                                </Text>
-                                <Text>
-                                    {this.props.data.number_of_divergence_points} pontos de divergência
-                                </Text>
-                                <Text>
-                                    {this.props.data.number_of_convergence_points} pontos de convergência
-                                </Text>
-                                <Text>
-                                    {this.props.data.number_of_conversation_points} pontos de conversação
-                                </Text>
-                                <Text>
-                                    {this.props.data.number_of_replies_from_user} respostas para perguntas estratégicas
-                                </Text>
-                                <Text>
-                                    {this.props.data.number_of_comment_replies_from_user} comentários em respostas para perguntas <br /> estratégicas
+                                {this.props.data.issue_date.day}/{this.props.data.issue_date.month}/{this.props.data.issue_date.year}
                                 </Text>
                             </Box>
 
