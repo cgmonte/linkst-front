@@ -24,6 +24,7 @@ import {
     Portal,
     PopoverArrow,
     PopoverCloseButton,
+    Link
 } from '@chakra-ui/react';
 
 import UserSession from './UserSession';
@@ -161,7 +162,13 @@ class Home extends React.Component {
                     this.props.history.push("/login")
 
                 ) : (
-                    <Flex width="full" height="100vh" alignContent="center" alignItems="center" justifyContent="center">
+                    <Flex
+                        width="full"
+                        height="100vh"
+                        alignContent="center"
+                        alignItems="center"
+                        justifyContent="center"
+                    >
 
                         <Flex flexDirection="column" justifyContent="space-between">
 
@@ -194,18 +201,19 @@ class Home extends React.Component {
                             ) : (
                                 <Flex>
 
-                                    <Certificate data={this.state} />
+                                    <Certificate data={this.state}
+                                    />
 
-                                    < Flex textAlign="center" marginLeft="2.9vw" flexDirection="column" alignItems="center" height="auto" width="15em">
+                                    < Flex textAlign="center" marginLeft="2.9vw" flexDirection="column" alignItems="center" width="16em" height="39.6vw">
 
                                         <Image src="st-icon.png" width="5vw" />
+                                        <Box minHeight="3em" overflow="auto">
+                                            <Text fontSize="s" textAlign="left" marginTop="1vw" color="GrayText" marginBottom="1em">
+                                                O nível da certificação é calculado com base na <Link color="teal.500" href="#" onClick={console.log('vau')}> sua atividade </Link> na plataforma strateegia.digital.
+                                            </Text>
 
-                                        <Text fontSize="s" textAlign="left" marginTop="1vw" color="GrayText" marginBottom="1em">
-                                            O nível da certificação é calculado com base na sua atividade na plataforma strateegia.digital. Veja abaixo os dados nos quais nos baseamos para gerar o seu certificado.
-                                        </Text>
-
-                                        <StatsTable data={this.state} />
-
+                                            {/* <StatsTable data={this.state} /> */}
+                                        </Box>
                                         <Box flexGrow="1" />
                                         <Button
                                             colorScheme="teal"
@@ -224,7 +232,7 @@ class Home extends React.Component {
                                             onClick={this.handleClickAdd}>
                                             Adicionar ao perfil do LinkedIn
                                         </Button>
-                                        <Popover placement="left-end" matchWidth={true}>
+                                        <Popover placement="left-end" matchWidth={true} trigger="hover">
                                             <PopoverTrigger>
                                                 <Button
                                                     colorScheme="teal"

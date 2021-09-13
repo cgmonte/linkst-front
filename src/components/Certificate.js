@@ -23,7 +23,7 @@ class Certificate extends React.Component {
             
                 <ChakraProvider>
                     <AspectRatio ratio={16 / 9.76} width="65vw">
-                        <Box backgroundImage="cert_background.png" backgroundSize="cover" position="relative" id="cert" boxShadow="2xl">
+                        <Box backgroundImage="cert_background.png" backgroundSize="cover" position="relative" id="cert" boxShadow="2xl" width="65vw">
 
                             <Box position="absolute" right="20vw" top="16vw" fontWeight="bold">
                                 <Text fontSize="1vw" paddingTop="0.4em" color="white" textAlign="right">
