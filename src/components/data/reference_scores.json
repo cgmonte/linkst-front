@@ -1,0 +1,92 @@
+[
+    {
+        "level_name": "stb1",
+        "number_of_projects": 1,
+        "number_of_missions": 1,
+        "number_of_divergence_points": 3,
+        "number_of_convergence_points": 0,
+        "number_of_conversation_points": 0,
+        "number_of_replies_from_user": 3,
+        "number_of_comment_replies_from_user": 9
+    },
+    {
+        "level_name": "stb2",
+        "number_of_projects": 4,
+        "number_of_missions": 4,
+        "number_of_divergence_points": 12,
+        "number_of_convergence_points": 1,
+        "number_of_conversation_points": 2,
+        "number_of_replies_from_user": 10,
+        "number_of_comment_replies_from_user": 15
+    },
+    {
+        "level_name": "stb3",
+        "number_of_projects": 8,
+        "number_of_missions": 8,
+        "number_of_divergence_points": 20,
+        "number_of_convergence_points": 2,
+        "number_of_conversation_points": 4,
+        "number_of_replies_from_user": 18,
+        "number_of_comment_replies_from_user": 25
+    },
+    {
+        "level_name": "sts1",
+        "number_of_projects": 12,
+        "number_of_missions": 12,
+        "number_of_divergence_points": 28,
+        "number_of_convergence_points": 3,
+        "number_of_conversation_points": 6,
+        "number_of_replies_from_user": 25,
+        "number_of_comment_replies_from_user": 40
+    },
+    {
+        "level_name": "sts2",
+        "number_of_projects": 16,
+        "number_of_missions": 16,
+        "number_of_divergence_points": 36,
+        "number_of_convergence_points": 4,
+        "number_of_conversation_points": 8,
+        "number_of_replies_from_user": 30,
+        "number_of_comment_replies_from_user": 35
+    },
+    {
+        "level_name": "sts3",
+        "number_of_projects": 20,
+        "number_of_missions": 20,
+        "number_of_divergence_points": 40,
+        "number_of_convergence_points": 5,
+        "number_of_conversation_points": 9,
+        "number_of_replies_from_user": 36,
+        "number_of_comment_replies_from_user": 45
+    },
+    {
+        "level_name": "sta1",
+        "number_of_projects": 30,
+        "number_of_missions": 30,
+        "number_of_divergence_points": 60,
+        "number_of_convergence_points": 6,
+        "number_of_conversation_points": 12,
+        "number_of_replies_from_user": 50,
+        "number_of_comment_replies_from_user": 60
+    },
+    {
+        "level_name": "sta2",
+        "number_of_projects": 40,
+        "number_of_missions": 40,
+        "number_of_divergence_points": 80,
+        "number_of_convergence_points": 7,
+        "number_of_conversation_points": 15,
+        "number_of_replies_from_user": 74,
+        "number_of_comment_replies_from_user": 80
+    },
+    {
+        "level_name": "sta3",
+        "number_of_projects": 50,
+        "number_of_missions": 50,
+        "number_of_divergence_points": 100,
+        "number_of_convergence_points": 8,
+        "number_of_conversation_points": 21,
+        "number_of_replies_from_user": 85,
+        "number_of_comment_replies_from_user": 120
+    }
+]

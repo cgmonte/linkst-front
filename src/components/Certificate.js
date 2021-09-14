@@ -33,7 +33,7 @@ class Certificate extends React.Component {
                                     {this.full_name}
                                 </Text>
                                 <Text fontSize="1vw" paddingTop="0.4em" color="white" textAlign="right">
-                                    atingiu o nível <Text as="span" color="#F5B333"> JR1 </Text> de experiência em Strateegia
+                                    atingiu o nível <Text as="span" color="#F5B333"> {this.props.data.cert_level.toUpperCase()} </Text> de experiência em Strateegia
                                 </Text>
                             </Box>
 

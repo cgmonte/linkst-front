@@ -31,7 +31,7 @@ import UserSession from './UserSession';
 
 import Certificate from './Certificate';
 
-import StatsTable from './StatsTable'
+import { rankUserStData } from './Calc'
 
 // import { getStraeegiaData } from '../api/StrateegiaData';
 
@@ -49,6 +49,7 @@ class Home extends React.Component {
             number_of_comment_replies_from_user: 0,
             issue_date: {},
             fetching: false,
+            cert_level: 'stb0'
         };
         this.full_name = UserSession.getName()
 
@@ -57,6 +58,8 @@ class Home extends React.Component {
         this.handleClickAdd = this.handleClickAdd.bind(this)
 
         this.getStData = this.getStData.bind(this)
+
+        this.rankUserStData = rankUserStData.bind(this)
     }
 
     async getStData(access_token) {
@@ -77,9 +80,12 @@ class Home extends React.Component {
         this.setState({ number_of_convergence_points: 1 });
         this.setState({ number_of_conversation_points: 12 });
         this.setState({ number_of_replies_from_user: 14 });
-        this.setState({ number_of_comment_replies_from_user: 81 });
+        this.setState({ number_of_comment_replies_from_user: 81 }, () => {
+            this.setState({ cert_level: this.rankUserStData(this.state)});
+        });
 
         this.setState({ fetching: false });
+
         // setTimeout(function () {
         //     this.setState({ fetching: false });
         // }.bind(this), 3000);
@@ -89,6 +95,7 @@ class Home extends React.Component {
         this.setState({ fetching: true });
         this.getStData(UserSession.getToken())
         this.setState({ issue_date: this.getCurrentDate() });
+
     }
 
     getCurrentDate() {
@@ -209,7 +216,7 @@ class Home extends React.Component {
                                         <Image src="st-icon.png" width="5vw" />
                                         <Box minHeight="3em" overflow="auto">
                                             <Text fontSize="s" textAlign="left" marginTop="1vw" color="GrayText" marginBottom="1em">
-                                                O nível da certificação é calculado com base na <Link color="teal.500" href="#" onClick={console.log('vau')}> sua atividade </Link> na plataforma strateegia.digital.
+                                                O nível da certificação é calculado com base na <Link color="teal.500" href="http://localhost:3000/stats"> sua atividade </Link> na plataforma strateegia.digital.
                                             </Text>
 
                                             {/* <StatsTable data={this.state} /> */}
