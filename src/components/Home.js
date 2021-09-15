@@ -14,13 +14,24 @@ import SideBar from "./SideBar";
 
 
 class Home extends React.Component {
-    // constructor(props) {
-    //     super(props)
-    // }
+    constructor(props) {
+        super(props)
+        this.state = {
+            tabIndex: 0
+        }
+        this.handleTabIndexUpdate = this.handleTabIndexUpdate.bind(this)
+    }
 
     // componentDidMount() {
     //     console.log('home montou')
     // }
+
+    handleTabIndexUpdate(tabIndex) {
+        this.setState({ tabIndex: tabIndex }, function () {
+            // console.log('aaaaaeeee', this.state.tabIndex)
+            // this.props.handleTabIndexUpdate(this.state.tabIndex)
+        });
+    }
 
     render() {
 
@@ -37,10 +48,12 @@ class Home extends React.Component {
                         alignContent="center"
                         alignItems="top"
                         justifyContent="center"
-                        paddingTop="15vh"
+                        paddingTop="10vh"
                     >
-                        <SideBar /> <MainContent/>
-                        {/* <SideBar /> <MainContent/> */}
+                        {/* <SideBar tabIdenx={this.props.tabIdenx}/> <MainContent/> */}
+                        <SideBar tabIndex={this.state.tabIndex}/> 
+                        {/* <Text>{this.state.tabIndex}</Text> */}
+                        <MainContent handleTabIndexUpdate={this.handleTabIndexUpdate}/>
                     </Flex>
                 )
                 }

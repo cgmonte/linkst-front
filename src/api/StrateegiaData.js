@@ -1,4 +1,4 @@
-import UserSession from '../components/UserSession';
+import UserSession from "../components/UserSession";
 
 export const getStraeegiaData = async ({ token }) => {
   const user_id = UserSession.getId();

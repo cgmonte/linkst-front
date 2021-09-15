@@ -12,7 +12,7 @@ import Loader from "./Loader";
 
 import UserSession from './UserSession';
 
-import { getStraeegiaData } from '../api/StrateegiaData';
+// import { getStraeegiaData } from '../api/StrateegiaData';
 
 class MainContent extends React.Component {
     constructor(props) {
@@ -22,10 +22,19 @@ class MainContent extends React.Component {
             fetched_st_data: false,
             stData: {},
             cert_level: 'stb0',
-            issue_date: {}
+            issue_date: {},
+            tabIndex: 0
         };
         this.getStData = this.getStData.bind(this);
         this.rankUserStData = rankUserStData.bind(this);
+        this.handleTabIndexUpdate = this.handleTabIndexUpdate.bind(this)
+    }
+
+    handleTabIndexUpdate(tabIndex) {
+        this.setState({ tabIndex: tabIndex }, function () {
+            // console.log('aaaaaeeee', this.state.tabIndex)
+            this.props.handleTabIndexUpdate(this.state.tabIndex)
+        });
     }
 
     async getStData(access_token) {
@@ -52,6 +61,10 @@ class MainContent extends React.Component {
             this.setState({ fetched_st_data: true });
             this.setState({ cert_level: this.rankUserStData(this.state.stData) });
         });
+    }
+
+    updateTabIndex() {
+        
     }
 
     getCurrentDate() {
@@ -84,12 +97,22 @@ class MainContent extends React.Component {
         }
 
         return (
-            <ContentTabs 
-            stData={this.state.stData}
-            cert_level={this.state.cert_level}
-            issue_date={this.state.issue_date}
-            />
-            // <Text>Nada não</Text>
+            <>
+                {/* <Home tabIdenx={this.props.tabIdenx}/> */}
+                <ContentTabs
+                    // stData={this.state.stData}
+                    cert_level={this.state.cert_level}
+                    issue_date={this.state.issue_date}
+                    number_of_projects = {this.state.stData.number_of_projects}
+                    number_of_missions = {this.state.stData.number_of_missions}
+                    number_of_divergence_points = {this.state.stData.number_of_divergence_points}
+                    number_of_convergence_points = {this.state.stData.number_of_convergence_points}
+                    number_of_conversation_points = {this.state.stData.number_of_conversation_points}
+                    number_of_replies_from_user = {this.state.stData.number_of_replies_from_user}
+                    number_of_comment_replies_from_user = {this.state.stData.number_of_comment_replies_from_user}
+                    handleTabIndexUpdate = {this.handleTabIndexUpdate}
+                />
+            </>
         );
     }
 }

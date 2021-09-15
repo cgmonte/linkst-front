@@ -16,18 +16,10 @@ import {
     // Heading
 } from "@chakra-ui/react"
 
-import UserSession from '../components/UserSession';
+// import UserSession from '../components/UserSession';
 
 class StatsTable extends React.Component {
 
-    constructor(props) {
-        super(props)
-        this.full_name = UserSession.getName()
-    }
-
-    componentDidMount() {
-        console.log(this.props.data.cert_level)
-    }
 
     render() {
         return (
@@ -45,37 +37,37 @@ class StatsTable extends React.Component {
                         <Tbody>
                             <Tr>
                                 <Td>Projetos</Td>
-                                <Td isNumeric fontWeight="bold">{this.props.data.number_of_projects}</Td>
+                                <Td isNumeric fontWeight="bold">{this.props.number_of_projects}</Td>
                                 <Td isNumeric fontWeight="bold">10</Td>
                             </Tr>
                             <Tr>
                                 <Td>Jornadas</Td>
-                                <Td isNumeric fontWeight="bold">{this.props.data.number_of_missions}</Td>
+                                <Td isNumeric fontWeight="bold">{this.props.number_of_missions}</Td>
                                 <Td isNumeric fontWeight="bold">15</Td>
                             </Tr>
                             <Tr>
                                 <Td>Pontos de divergência</Td>
-                                <Td isNumeric fontWeight="bold">{this.props.data.number_of_divergence_points}</Td>
+                                <Td isNumeric fontWeight="bold">{this.props.number_of_divergence_points}</Td>
                                 <Td isNumeric fontWeight="bold">40</Td>
                             </Tr>
                             <Tr>
                                 <Td>Pontos de convergência</Td>
-                                <Td isNumeric fontWeight="bold">{this.props.data.number_of_convergence_points}</Td>
+                                <Td isNumeric fontWeight="bold">{this.props.number_of_convergence_points}</Td>
                                 <Td isNumeric fontWeight="bold">3</Td>
                             </Tr>
                             <Tr>
                                 <Td>Pontos de conversação</Td>
-                                <Td isNumeric fontWeight="bold">{this.props.data.number_of_conversation_points}</Td>
+                                <Td isNumeric fontWeight="bold">{this.props.number_of_conversation_points}</Td>
                                 <Td isNumeric fontWeight="bold">5</Td>
                             </Tr>
                             <Tr>
                                 <Td>Respostas para perguntas estratégicas</Td>
-                                <Td isNumeric fontWeight="bold">{this.props.data.number_of_replies_from_user}</Td>
+                                <Td isNumeric fontWeight="bold">{this.props.number_of_replies_from_user}</Td>
                                 <Td isNumeric fontWeight="bold">25</Td>
                             </Tr>
                             <Tr>
                                 <Td>Comentários em respostas</Td>
-                                <Td isNumeric fontWeight="bold">{this.props.data.number_of_comment_replies_from_user}</Td>
+                                <Td isNumeric fontWeight="bold">{this.props.number_of_comment_replies_from_user}</Td>
                                 <Td isNumeric fontWeight="bold">100</Td>
                             </Tr>
                         </Tbody>

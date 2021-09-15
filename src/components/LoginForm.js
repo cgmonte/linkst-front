@@ -20,8 +20,8 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 import { strateegiaLogin } from '../api/StrateegiaLogin';
 // import { strateegiaUserMe } from '../api/StrateegiaUserMe'
-import UserSession from '../components/UserSession';
-import { ErrorMessage } from '../components/ErrorMessage';
+import UserSession from './UserSession';
+import { ErrorMessage } from './ErrorMessage';
 // import { strateegiaUserMe } from '../api/StrateegiaUserMe';
 
 export class LoginForm extends React.Component {

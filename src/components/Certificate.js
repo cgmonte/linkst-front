@@ -8,7 +8,7 @@ import {
     AspectRatio
 } from '@chakra-ui/react';
 
-import UserSession from '../components/UserSession';
+import UserSession from './UserSession';
 
 
 class Certificate extends React.Component {
@@ -24,7 +24,7 @@ class Certificate extends React.Component {
             <ChakraProvider>
                 <AspectRatio
                     ratio={16 / 9.76}
-                    width="65vw"
+                    width="62vw"
                 >
                     <Box
                         backgroundImage="cert_background.png"
@@ -32,7 +32,7 @@ class Certificate extends React.Component {
                         position="relative"
                         id="cert"
                         boxShadow="2xl"
-                        width="65vw"
+                        width="62vw"
                     >
 
                         <Box
