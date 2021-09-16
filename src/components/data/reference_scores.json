@@ -1,5 +1,6 @@
 [
     {
+        "level": 1,
         "level_name": "stb1",
         "number_of_projects": 1,
         "number_of_missions": 1,
@@ -10,6 +11,7 @@
         "number_of_comment_replies_from_user": 9
     },
     {
+        "level": 2,
         "level_name": "stb2",
         "number_of_projects": 4,
         "number_of_missions": 4,
@@ -20,6 +22,7 @@
         "number_of_comment_replies_from_user": 15
     },
     {
+        "level": 3,
         "level_name": "stb3",
         "number_of_projects": 8,
         "number_of_missions": 8,
@@ -30,6 +33,7 @@
         "number_of_comment_replies_from_user": 25
     },
     {
+        "level": 4,
         "level_name": "sts1",
         "number_of_projects": 12,
         "number_of_missions": 12,
@@ -40,6 +44,7 @@
         "number_of_comment_replies_from_user": 40
     },
     {
+        "level": 5,
         "level_name": "sts2",
         "number_of_projects": 16,
         "number_of_missions": 16,
@@ -50,6 +55,7 @@
         "number_of_comment_replies_from_user": 35
     },
     {
+        "level": 6,
         "level_name": "sts3",
         "number_of_projects": 20,
         "number_of_missions": 20,
@@ -60,6 +66,7 @@
         "number_of_comment_replies_from_user": 45
     },
     {
+        "level": 7,
         "level_name": "sta1",
         "number_of_projects": 30,
         "number_of_missions": 30,
@@ -70,6 +77,7 @@
         "number_of_comment_replies_from_user": 60
     },
     {
+        "level": 8,
         "level_name": "sta2",
         "number_of_projects": 40,
         "number_of_missions": 40,
@@ -80,6 +88,7 @@
         "number_of_comment_replies_from_user": 80
     },
     {
+        "level": 9,
         "level_name": "sta3",
         "number_of_projects": 50,
         "number_of_missions": 50,

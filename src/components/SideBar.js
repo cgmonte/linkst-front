@@ -1,5 +1,7 @@
 import React from "react";
 
+import { withRouter } from 'react-router-dom';
+
 import {
     Flex,
     Box,
@@ -15,12 +17,13 @@ import SideBarLinkedIn from './SideBarLinkedIn'
 
 import SideBarStats from "./SideBarStats";
 
+import SideBarLoader from "./SideBarLoader";
+
 class SideBar extends React.Component {
     constructor(props) {
         super(props)
         this.full_name = UserSession.getName()
         this.handleClickSair = this.handleClickSair.bind(this)
-        this.handleClickAdd = this.handleClickAdd.bind(this)
     }
 
     handleClickSair() {
@@ -30,16 +33,13 @@ class SideBar extends React.Component {
         this.props.history.push("/login");
     };
 
-    handleClickAdd() {
-        let url = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=Experiência%20em%20Strateegia&organizationName=st%20Teste%20Studio&issueYear=${this.state.issue_date.year}&issueMonth=${this.state.issue_date.month}`
-        window.open(url, '_blank').focus();
-    };
-
     render() {
         return (
-            < Flex textAlign="left" flexDirection="column" alignItems="center" width="16em" height="82vh">
+            < Flex textAlign="left" flexDirection="column" alignItems="start" width="16em" height="calc(39.6vw)" paddingTop="0.5rem">
 
                 <Image src="st-icon.png" height="4em" />
+
+                {this.props.tabIndex === 4 && <SideBarLoader />}
 
                 {this.props.tabIndex === 0 && <SideBarCertificate />}
 
@@ -52,9 +52,10 @@ class SideBar extends React.Component {
                     colorScheme="teal"
                     variant="outline"
                     size="md"
-                    width="16em"
+                    width="13em"
                     mt={4}
-                    onClick={this.handleClickSair}>
+                    onClick={this.handleClickSair}
+                    >
                     Sair
                 </Button>
             </Flex>
@@ -62,4 +63,4 @@ class SideBar extends React.Component {
     }
 }
 
-export default SideBar;
+export default withRouter(SideBar);

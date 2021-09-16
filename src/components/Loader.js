@@ -15,25 +15,27 @@ class Loader extends React.Component {
     render() {
         return (
             <>
-                <Flex flexDirection="column" justifyContent="space-between">
-                    <Flex flexDirection="column" alignItems="center">
-                        <Text fontSize="2xl">
-                            Carregando dados do Strateegia!
-                        </Text>
-                    </Flex>
-                    <Box
-                        borderWidth="1px"
-                        borderRadius="lg"
-                        borderColor="#E2E8F0"
-                        marginY="2em"
-                        padding="1em"
-                    >
-                        <Progress size="xs" isIndeterminate />
-                    </Box>
-                    <Flex flexDirection="column" alignItems="center">
-                        <Text fontSize="1xl">
-                            Isso pode levar algum tempo...
-                        </Text>
+                <Flex width="65vw" height="39.6vw" alignItems="center" justifyContent="center">
+                    <Flex flexDirection="column" >
+                        <Flex flexDirection="column">
+                            <Text fontSize="2xl">
+                            Isso pode levar alguns minutos...
+                            </Text>
+                        </Flex>
+                        <Box
+                            borderWidth="1px"
+                            borderRadius="lg"
+                            borderColor="#E2E8F0"
+                            marginY="2em"
+                            padding="1em"
+                        >
+                            <Progress size="xs" isIndeterminate colorScheme="teal"/>
+                        </Box>
+                        <Flex flexDirection="column" alignItems="center">
+                            {/* <Text fontSize="1xl">
+                                Isso pode levar alguns minutos...
+                            </Text> */}
+                        </Flex>
                     </Flex>
                 </Flex>
             </>

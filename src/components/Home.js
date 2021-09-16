@@ -17,7 +17,7 @@ class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            tabIndex: 0
+            tabIndex: 4
         }
         this.handleTabIndexUpdate = this.handleTabIndexUpdate.bind(this)
     }
@@ -46,7 +46,7 @@ class Home extends React.Component {
                         width="full"
                         height="100vh"
                         alignContent="center"
-                        alignItems="top"
+                        // alignItems="top"
                         justifyContent="center"
                         paddingTop="10vh"
                     >

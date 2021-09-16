@@ -33,6 +33,10 @@ class ContentTabs extends React.Component {
         });
     }
 
+    componentDidMount() {
+        this.handleTabsChange(0)
+    }
+
     // componentDidMount() {
     //     // this.stData = this.props.stData;
     //     console.log('vai', this.state.tabIndex)
@@ -41,8 +45,8 @@ class ContentTabs extends React.Component {
     render() {
         return (
             <>
-                <Flex width="65vw" height="39.6vw" paddingTop="3em" paddingLeft="5em">
-                    <Tabs index={this.state.tabIndex} onChange={this.handleTabsChange} size="md" isFitted width="65vw">
+                <Flex width="65vw" height="39.6vw">
+                    <Tabs index={this.state.tabIndex} onChange={this.handleTabsChange} size="md" isFitted width="65vw" colorScheme="teal">
                         <TabList>
                             <Tab>1. Certificado</Tab>
                             <Tab>2. Compartilhar no LinkedIn</Tab>
@@ -58,7 +62,7 @@ class ContentTabs extends React.Component {
                                 </Box>
                             </TabPanel>
                             <TabPanel>
-                                <LinkedIn />
+                                <LinkedIn issue_date={this.props.issue_date}/>
                             </TabPanel>
                             <TabPanel>
                                 <Stats

@@ -52,8 +52,8 @@ class SideBarCertificate extends React.Component {
 
     render() {
         return (
-            < Flex textAlign="left" flexDirection="column" alignItems="left" width="16em" height="39.6vw" paddingTop="1em">
-                <Text>
+            < Flex textAlign="left" flexDirection="column" alignItems="left" width="14.5em" paddingTop="1em">
+                <Text fontSize="md">
                     Geramos os certificados ao lado baseados nas suas estatísticas de uso da plataforma strateegia.digital.
                 </Text>
                 <br />

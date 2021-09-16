@@ -15,7 +15,7 @@ export function rankUserStData(st_data) {
                 st_data.number_of_replies_from_user >= reference_score.number_of_replies_from_user &&
                 st_data.number_of_comment_replies_from_user >= reference_score.number_of_comment_replies_from_user
             ) {
-                achieved_levels.push(reference_score.level_name)
+                achieved_levels.push(reference_score.level)
             }
         }
     )

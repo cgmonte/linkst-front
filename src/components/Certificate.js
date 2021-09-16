@@ -31,7 +31,7 @@ class Certificate extends React.Component {
                         backgroundSize="cover"
                         position="relative"
                         id="cert"
-                        boxShadow="2xl"
+                        boxShadow="lg"
                         width="62vw"
                     >
 
@@ -63,7 +63,7 @@ class Certificate extends React.Component {
                                 paddingTop="0.4em"
                                 color="white"
                                 textAlign="right">
-                                atingiu o nível <Text as="span" color="#F5B333"> {this.props.cert_level.toUpperCase()} </Text> de experiência em Strateegia
+                                atingiu o nível <Text as="span" color="#F5B333"> {this.props.cert_level} </Text> de experiência em Strateegia
                             </Text>
                         </Box>
 
