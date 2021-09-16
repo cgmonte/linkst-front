@@ -8,9 +8,6 @@ import {
 } from '@chakra-ui/react';
 
 class Loader extends React.Component {
-    // constructor(props) {
-    //     super(props)
-    // }
 
     render() {
         return (

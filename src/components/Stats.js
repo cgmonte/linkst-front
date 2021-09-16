@@ -5,8 +5,6 @@ import {
     AspectRatio
 } from '@chakra-ui/react';
 
-// import UserSession from './UserSession';
-
 import StatsTable from './StatsTable'
 
 class Stats extends React.Component {
@@ -25,7 +23,6 @@ class Stats extends React.Component {
                     alignItems="start"
                     justifyContent="start !important"
                 >
-                    {/* < Flex textAlign="left" flexDirection="column" alignItems="left" width="16em" height="39.6vw" paddingTop="1em"> */}
                     <Flex  width="100%" height="100%" paddingX="0.7em" paddingY="2em" justifyContent="center">
                         <Flex width="95%" flexDirection="column" paddingX="2em" paddingY="2em" backgroundColor="whitesmoke" alignItems="center" border="1px" borderColor="lightgrey" borderRadius="md" boxShadow="sm">
                         <StatsTable

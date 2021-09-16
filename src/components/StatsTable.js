@@ -2,18 +2,14 @@ import React from "react";
 
 import reference_scores from './data/reference_scores.json';
 
-// import reference_scores from './data/reference_scores.json';
-
 import {
     ChakraProvider,
     Table,
     Thead,
     Tbody,
-    // Tfoot,
     Tr,
     Th,
     Td,
-    // TableCaption,
     Box,
     Heading,
     Text

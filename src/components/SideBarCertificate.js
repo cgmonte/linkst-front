@@ -9,11 +9,8 @@ import { saveAs } from 'file-saver';
 import {
     Flex,
     Text,
-    // Box,
     Button
 } from '@chakra-ui/react';
-
-// import UserSession from './UserSession';
 
 class SideBarCertificate extends React.Component {
 

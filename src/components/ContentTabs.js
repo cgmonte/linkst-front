@@ -22,13 +22,10 @@ class ContentTabs extends React.Component {
         this.state = {
             tabIndex: 0
         };
-        // this.stData = this.props.stData;
     }
 
     handleTabsChange = (index) => {
-        // console.log('vai', this.state.tabIndex);
         this.setState({ tabIndex: index }, function () {
-            // console.log('foi', this.state.tabIndex)
             this.props.handleTabIndexUpdate(this.state.tabIndex)
         });
     }
@@ -36,11 +33,6 @@ class ContentTabs extends React.Component {
     componentDidMount() {
         this.handleTabsChange(0)
     }
-
-    // componentDidMount() {
-    //     // this.stData = this.props.stData;
-    //     console.log('vai', this.state.tabIndex)
-    // }
 
     render() {
         return (

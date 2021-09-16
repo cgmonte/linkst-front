@@ -22,15 +22,13 @@ class Home extends React.Component {
         this.handleTabIndexUpdate = this.handleTabIndexUpdate.bind(this)
     }
 
-    // componentDidMount() {
-    //     console.log('home montou')
-    // }
-
     handleTabIndexUpdate(tabIndex) {
-        this.setState({ tabIndex: tabIndex }, function () {
-            // console.log('aaaaaeeee', this.state.tabIndex)
-            // this.props.handleTabIndexUpdate(this.state.tabIndex)
-        });
+        this.setState({ tabIndex: tabIndex },
+            // function () {
+            //     // console.log('aaaaaeeee', this.state.tabIndex)
+            //     // this.props.handleTabIndexUpdate(this.state.tabIndex)
+            // }
+        );
     }
 
     render() {
@@ -51,9 +49,9 @@ class Home extends React.Component {
                         paddingTop="10vh"
                     >
                         {/* <SideBar tabIdenx={this.props.tabIdenx}/> <MainContent/> */}
-                        <SideBar tabIndex={this.state.tabIndex}/> 
+                        <SideBar tabIndex={this.state.tabIndex} />
                         {/* <Text>{this.state.tabIndex}</Text> */}
-                        <MainContent handleTabIndexUpdate={this.handleTabIndexUpdate}/>
+                        <MainContent handleTabIndexUpdate={this.handleTabIndexUpdate} />
                     </Flex>
                 )
                 }

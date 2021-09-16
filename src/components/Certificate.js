@@ -2,7 +2,6 @@ import React from "react";
 
 import {
     ChakraProvider,
-    // Flex,
     Text,
     Box,
     AspectRatio

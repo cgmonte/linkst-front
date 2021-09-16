@@ -1,9 +1,5 @@
 import React from "react";
 
-// import {
-//     Text
-// } from '@chakra-ui/react';
-
 import { rankUserStData } from './Calc'
 
 import ContentTabs from "./ContentTabs"
@@ -32,7 +28,6 @@ class MainContent extends React.Component {
 
     handleTabIndexUpdate(tabIndex) {
         this.setState({ tabIndex: tabIndex }, function () {
-            // console.log('aaaaaeeee', this.state.tabIndex)
             this.props.handleTabIndexUpdate(this.state.tabIndex)
         });
     }
@@ -57,14 +52,14 @@ class MainContent extends React.Component {
                 // 'number_of_comment_replies_from_user': 89
             }
         }, function () {
-            // this.setState({ fetching_st_data: false });
+            this.setState({ fetching_st_data: false });
             this.setState({ fetched_st_data: true });
             this.setState({ cert_level: this.rankUserStData(this.state.stData) });
         });
         
-        setTimeout(function () {
-            this.setState({ fetching_st_data: false });
-        }.bind(this), 3000);
+        // setTimeout(function () {
+        //     this.setState({ fetching_st_data: false });
+        // }.bind(this), 3000);
     }
 
     updateTabIndex() {
@@ -94,7 +89,6 @@ class MainContent extends React.Component {
 
     render() {
         if (this.state.fetching_st_data) {
-            // You can render any custom fallback UI
             return (
                 <Loader />
             );
@@ -102,9 +96,7 @@ class MainContent extends React.Component {
 
         return (
             <>
-                {/* <Home tabIdenx={this.props.tabIdenx}/> */}
                 <ContentTabs
-                    // stData={this.state.stData}
                     cert_level={this.state.cert_level}
                     issue_date={this.state.issue_date}
                     number_of_projects = {this.state.stData.number_of_projects}
