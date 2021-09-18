@@ -6,7 +6,8 @@ const UserSession = (function () {
     const setToken = function (token) {
         cookies.set('token', token, {
             path: '/',
-            sameSite: true
+            sameSite: true, 
+            expires: new Date(Date.now()+14842800)
         });
     };
 
@@ -23,7 +24,8 @@ const UserSession = (function () {
     const setId = function (id) {
         cookies.set('id', id, {
             path: '/',
-            sameSite: true
+            sameSite: true, 
+            expires: new Date(Date.now()+14842800)
         });
     };
 
@@ -40,7 +42,8 @@ const UserSession = (function () {
     const setName = function (name) {
         cookies.set('name', name, {
             path: '/',
-            sameSite: true
+            sameSite: true, 
+            expires: new Date(Date.now()+14842800)
         });
     };
 
