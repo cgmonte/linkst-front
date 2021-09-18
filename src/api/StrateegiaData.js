@@ -15,6 +15,7 @@ export const getStraeegiaData = async ({ token }) => {
   let stReplies = [];
   let userStReplies = [];
   let userCommentReplies = [];
+  let userMentorhips = [];
 
   try {
     const projects = await strateegiaProjects({ token: token });
@@ -26,6 +27,13 @@ export const getStraeegiaData = async ({ token }) => {
 
     for (const project of stProjects) {
       let missions = await strateegiaMissions({ token: token, project_id: project.id });
+
+      missions.users.forEach(function (user) {
+        if (user.id === UserSession.getId() && user.project_roles.includes('MENTOR')) {
+          userMentorhips.push({'project_id': project.id, 'project_title': project.title})
+        }
+      })
+
       missions.missions.forEach(function (mission) {
         stMissions.push(mission);
       })
@@ -93,12 +101,6 @@ export const getStraeegiaData = async ({ token }) => {
       }
     }
 
-
-
-    // console.log(
-    //   userCommentReplies
-    // )
-
     strateegiaData.push({
       stProjects,
       stMissions,
@@ -108,9 +110,10 @@ export const getStraeegiaData = async ({ token }) => {
       stConvergencePoints,
       stConversationPoints,
       userStReplies,
-      userCommentReplies
+      userCommentReplies,
+      userMentorhips
     })
-
+    // console.log(userMentorhips)
     return strateegiaData;
 
   } catch (e) {

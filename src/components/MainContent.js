@@ -42,7 +42,8 @@ class MainContent extends React.Component {
                 'number_of_convergence_points': strateegiaData[0].stConvergencePoints.length,
                 'number_of_conversation_points': strateegiaData[0].stConversationPoints.length,
                 'number_of_replies_from_user': strateegiaData[0].userStReplies.length,
-                'number_of_comment_replies_from_user': strateegiaData[0].userCommentReplies.length
+                'number_of_comment_replies_from_user': strateegiaData[0].userCommentReplies.length,
+                'number_of_mentorships': strateegiaData[0].userMentorhips.length
                 // 'number_of_projects': 3,
                 // 'number_of_missions': 5,
                 // 'number_of_divergence_points': 29,
@@ -55,6 +56,7 @@ class MainContent extends React.Component {
             this.setState({ fetching_st_data: false });
             this.setState({ fetched_st_data: true });
             this.setState({ cert_level: this.rankUserStData(this.state.stData) });
+            // console.log(this.state.stData.rendernumber_of_mentorships)
         });
         
         // setTimeout(function () {
