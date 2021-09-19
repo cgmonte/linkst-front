@@ -8,7 +8,17 @@ import Loader from "./Loader";
 
 import UserSession from './UserSession';
 
-import { getStraeegiaData } from '../api/StrateegiaData';
+// import { getStraeegiaData } from '../api/StrateegiaData';
+
+import {
+    strateegiaProjects,
+    strateegiaMissions,
+    strateegiaMaps,
+    strateegiaHasContribution,
+    strateegiaContents,
+    strateegiaParentComments,
+    strateegiaCommentReplies
+} from "../api/StrateegiaData";
 
 class MainContent extends React.Component {
     constructor(props) {
@@ -24,6 +34,7 @@ class MainContent extends React.Component {
         this.getStData = this.getStData.bind(this);
         this.rankUserStData = rankUserStData.bind(this);
         this.handleTabIndexUpdate = this.handleTabIndexUpdate.bind(this)
+        this.getStraeegiaData = this.getStraeegiaData.bind(this)
     }
 
     handleTabIndexUpdate(tabIndex) {
@@ -32,8 +43,129 @@ class MainContent extends React.Component {
         });
     }
 
+    getStraeegiaData = async ({ token }) => {
+        const user_id = UserSession.getId();
+        let strateegiaData = [];
+        let stProjects = [];
+        let stMissions = [];
+        let stMaps = [];
+        let stDivergenceContents = [];
+        // let stPoints = [];
+        let stDivergencePoints = [];
+        let stConvergencePoints = [];
+        let stConversationPoints = [];
+        let stKitQuestions = []
+        let stReplies = [];
+        let userStReplies = [];
+        let userCommentReplies = [];
+        let userMentorhips = [];
+
+        try {
+            const projects = await strateegiaProjects({ token: token });
+            projects.forEach(function (lab) {
+                lab.projects.forEach(function (project) {
+                    stProjects.push(project);
+                })
+            })
+
+            for (const project of stProjects) {
+                let missions = await strateegiaMissions({ token: token, project_id: project.id });
+
+                missions.users.forEach(function (user) {
+                    if (user.id === UserSession.getId() && user.project_roles.includes('MENTOR')) {
+                        userMentorhips.push({ 'project_id': project.id, 'project_title': project.title })
+                    }
+                })
+
+                missions.missions.forEach(function (mission) {
+                    stMissions.push(mission);
+                })
+            }
+
+            for (const mission of stMissions) {
+                let map = await strateegiaMaps({ token: token, mission_id: mission.id });
+                stMaps.push(map);
+            }
+
+            stMaps.forEach(function (map) {
+                map.points.forEach(function (point) {
+                    // stPoints.push(point);
+                    switch (point.point_type) {
+                        case 'DIVERGENCE':
+                            stDivergencePoints.push(point);
+                            break;
+                        case 'CONVERGENCE':
+                            stConvergencePoints.push(point);
+                            break;
+                        case 'CONVERSATION':
+                            stConversationPoints.push(point);
+                            break;
+                        default:
+                            console.log('Tipo de ponto não mapeado')
+                    }
+                })
+            })
+
+            for (const point of stDivergencePoints) {
+                let has_contributed = await strateegiaHasContribution({ token: token, content_id: point.id });
+                if (has_contributed.has_contributed === true) {
+                    let divergence_content = await strateegiaContents({ token: token, content_id: point.id });
+                    stDivergenceContents.push(divergence_content);
+                }
+            }
+
+            stDivergenceContents.forEach(function (content) {
+                content.kit.questions.forEach(function (question) {
+                    stKitQuestions.push(question);
+                })
+            })
+
+            for (const content of stDivergenceContents) {
+                for (const question of content.kit.questions) {
+                    let parent_comments = await strateegiaParentComments({ token, content_id: content.id, question_id: question.id });
+                    stReplies.push(parent_comments);
+                    for (const reply of parent_comments.content) {
+                        if (reply.author.id === user_id) {
+                            userStReplies.push(reply);
+                        }
+                    }
+                }
+            }
+
+            for (const reply of stReplies) {
+                for (const content of reply.content) {
+                    let question_comment_replies = await strateegiaCommentReplies({ token, question_comment_id: content.id });
+                    for (const question_comment_reply of question_comment_replies.content) {
+                        if (question_comment_reply.author.id === user_id) {
+
+                            userCommentReplies.push(question_comment_reply)
+                        }
+                    }
+                }
+            }
+
+            strateegiaData.push({
+                stProjects,
+                stMissions,
+                stDivergenceContents,
+                stMaps,
+                stDivergencePoints,
+                stConvergencePoints,
+                stConversationPoints,
+                userStReplies,
+                userCommentReplies,
+                userMentorhips
+            })
+            // console.log(userMentorhips)
+            return strateegiaData;
+
+        } catch (e) {
+            return e;
+        }
+    };
+
     async getStData(access_token) {
-        const strateegiaData = await getStraeegiaData({ token: access_token });
+        const strateegiaData = await this.getStraeegiaData({ token: access_token });
         this.setState({
             stData: {
                 'number_of_projects': strateegiaData[0].stProjects.length,
@@ -58,14 +190,14 @@ class MainContent extends React.Component {
             this.setState({ cert_level: this.rankUserStData(this.state.stData) });
             // console.log(this.state.stData.rendernumber_of_mentorships)
         });
-        
+
         // setTimeout(function () {
         //     this.setState({ fetching_st_data: false });
         // }.bind(this), 3000);
     }
 
     updateTabIndex() {
-        
+
     }
 
     getCurrentDate() {
@@ -101,14 +233,14 @@ class MainContent extends React.Component {
                 <ContentTabs
                     cert_level={this.state.cert_level}
                     issue_date={this.state.issue_date}
-                    number_of_projects = {this.state.stData.number_of_projects}
-                    number_of_missions = {this.state.stData.number_of_missions}
-                    number_of_divergence_points = {this.state.stData.number_of_divergence_points}
-                    number_of_convergence_points = {this.state.stData.number_of_convergence_points}
-                    number_of_conversation_points = {this.state.stData.number_of_conversation_points}
-                    number_of_replies_from_user = {this.state.stData.number_of_replies_from_user}
-                    number_of_comment_replies_from_user = {this.state.stData.number_of_comment_replies_from_user}
-                    handleTabIndexUpdate = {this.handleTabIndexUpdate}
+                    number_of_projects={this.state.stData.number_of_projects}
+                    number_of_missions={this.state.stData.number_of_missions}
+                    number_of_divergence_points={this.state.stData.number_of_divergence_points}
+                    number_of_convergence_points={this.state.stData.number_of_convergence_points}
+                    number_of_conversation_points={this.state.stData.number_of_conversation_points}
+                    number_of_replies_from_user={this.state.stData.number_of_replies_from_user}
+                    number_of_comment_replies_from_user={this.state.stData.number_of_comment_replies_from_user}
+                    handleTabIndexUpdate={this.handleTabIndexUpdate}
                 />
             </>
         );
