@@ -25,7 +25,7 @@ class MainContent extends React.Component {
         super(props);
         this.state = {
             fetching_st_data: false,
-            fetched_st_data: false,
+            fetching_state: '',
             stData: {},
             cert_level: 'stb0',
             issue_date: {},
@@ -61,6 +61,7 @@ class MainContent extends React.Component {
         let userMentorhips = [];
 
         try {
+            this.setState({fetching_state: 'Carregando Jornadas'})
             const projects = await strateegiaProjects({ token: token });
             projects.forEach(function (lab) {
                 lab.projects.forEach(function (project) {
@@ -69,6 +70,7 @@ class MainContent extends React.Component {
             })
 
             for (const project of stProjects) {
+                this.setState({fetching_state: 'Carregando Mapas'})
                 let missions = await strateegiaMissions({ token: token, project_id: project.id });
 
                 missions.users.forEach(function (user) {
@@ -83,6 +85,7 @@ class MainContent extends React.Component {
             }
 
             for (const mission of stMissions) {
+                this.setState({fetching_state: 'Carregando Kits'})
                 let map = await strateegiaMaps({ token: token, mission_id: mission.id });
                 stMaps.push(map);
             }
@@ -107,6 +110,7 @@ class MainContent extends React.Component {
             })
 
             for (const point of stDivergencePoints) {
+                this.setState({fetching_state: 'Verificando contribuições'})
                 let has_contributed = await strateegiaHasContribution({ token: token, content_id: point.id });
                 if (has_contributed.has_contributed === true) {
                     let divergence_content = await strateegiaContents({ token: token, content_id: point.id });
@@ -122,6 +126,7 @@ class MainContent extends React.Component {
 
             for (const content of stDivergenceContents) {
                 for (const question of content.kit.questions) {
+                    this.setState({fetching_state: 'Capturando respostas'})
                     let parent_comments = await strateegiaParentComments({ token, content_id: content.id, question_id: question.id });
                     stReplies.push(parent_comments);
                     for (const reply of parent_comments.content) {
@@ -134,6 +139,7 @@ class MainContent extends React.Component {
 
             for (const reply of stReplies) {
                 for (const content of reply.content) {
+                    this.setState({fetching_state: 'Capturando comentários'})
                     let question_comment_replies = await strateegiaCommentReplies({ token, question_comment_id: content.id });
                     for (const question_comment_reply of question_comment_replies.content) {
                         if (question_comment_reply.author.id === user_id) {
@@ -186,7 +192,6 @@ class MainContent extends React.Component {
             }
         }, function () {
             this.setState({ fetching_st_data: false });
-            this.setState({ fetched_st_data: true });
             this.setState({ cert_level: this.rankUserStData(this.state.stData) });
             // console.log(this.state.stData.rendernumber_of_mentorships)
         });
@@ -224,7 +229,7 @@ class MainContent extends React.Component {
     render() {
         if (this.state.fetching_st_data) {
             return (
-                <Loader />
+                <Loader fetching_state={this.state.fetching_state}/>
             );
         }
 

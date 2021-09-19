@@ -15,7 +15,7 @@ class Loader extends React.Component {
                 <Flex width="65vw" height="39.6vw" alignItems="center" justifyContent="center">
                     <Flex flexDirection="column" >
                         <Flex flexDirection="column">
-                            <Text fontSize="2xl">
+                            <Text fontSize="xl">
                             Isso pode levar alguns minutos...
                             </Text>
                         </Flex>
@@ -29,9 +29,9 @@ class Loader extends React.Component {
                             <Progress size="xs" isIndeterminate colorScheme="teal"/>
                         </Box>
                         <Flex flexDirection="column" alignItems="center">
-                            {/* <Text fontSize="1xl">
-                                Isso pode levar alguns minutos...
-                            </Text> */}
+                            <Text fontSize="md">
+                                {this.props.fetching_state}
+                            </Text>
                         </Flex>
                     </Flex>
                 </Flex>
