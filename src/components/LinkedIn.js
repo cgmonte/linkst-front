@@ -15,7 +15,7 @@ class LinkedIn extends React.Component {
     }
     
     handleClickAdd() {
-        let url = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=Experiência%20em%20Strateegia&organizationName=st%20Teste%20Studio&issueYear=${this.props.issue_date.year}&issueMonth=${this.props.issue_date.month}`
+        let url = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=Habilidades%20em%20jornadas%20de%20transformação%20digital&organizationId=76088100&issueYear=${this.props.issue_date.year}&issueMonth=${this.props.issue_date.month}`
         window.open(url, '_blank').focus();
     };
 
