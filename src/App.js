@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Text } from '@chakra-ui/react';
 
 import { Login } from './components/Login';
 import Home from './components/Home';
@@ -15,6 +15,11 @@ function App() {
           </Route>
           <Route path="/home">
             <Home />
+          </Route>
+          <Route path="/text">
+            <Text>
+              Foi
+            </Text>
           </Route>
         </Switch>
       </BrowserRouter>
