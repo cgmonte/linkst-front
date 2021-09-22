@@ -7,6 +7,8 @@ import {
     AspectRatio
 } from '@chakra-ui/react';
 
+import { openSignInWindow } from "./Popup";
+
 // import { LinkedInAuth } from '../api/LinkedInApi'
 
 const axios = require('axios');
@@ -38,7 +40,8 @@ class LinkedIn extends React.Component {
         })
             .then(function (response) {
                 // console.log(response);
-                window.open(response.headers['x-final-url'], '_blank').focus();
+                // window.open(response.headers['x-final-url'], '_blank').focus();
+                openSignInWindow(response.headers['x-final-url'], window, 'Login no LinkedIn', 600, 700)
             })
             .catch(function (error) {
                 console.log(error);
