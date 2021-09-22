@@ -31,13 +31,13 @@ class LinkedIn extends React.Component {
                 response_type: 'code',
                 client_id: '782r44eaplkfzr',
                 // redirect_uri: 'https://radiant-brushlands-64499.herokuapp.com/',
-                redirect_uri: 'http://localhost:3000/home',
+                redirect_uri: 'http://localhost:3000/share',
                 state: 'JSNCUEJH=83jfiD2çH83hidhs9',
                 scope: 'w_member_social',
             }
         })
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 window.open(response.headers['x-final-url'], '_blank').focus();
             })
             .catch(function (error) {

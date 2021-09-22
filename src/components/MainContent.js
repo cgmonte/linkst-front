@@ -148,6 +148,8 @@ class MainContent extends React.Component {
                 }
             }
 
+
+
             strateegiaData.push({
                 stProjects,
                 stMissions,

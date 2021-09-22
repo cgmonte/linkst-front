@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { ChakraProvider, Text } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 
 import { Login } from './components/Login';
+import LinkedInShare from './components/LinkedInShare';
 import Home from './components/Home';
 
 function App() {
@@ -16,10 +17,8 @@ function App() {
           <Route path="/home">
             <Home />
           </Route>
-          <Route path="/text">
-            <Text>
-              Foi
-            </Text>
+          <Route path="/share">
+            <LinkedInShare />
           </Route>
         </Switch>
       </BrowserRouter>

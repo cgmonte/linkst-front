@@ -3,6 +3,26 @@ import Cookies from 'universal-cookie';
 const UserSession = (function () {
     const cookies = new Cookies();
 
+
+    const setAccessToken = function (token, timeout) {
+        cookies.set('access_token', token, {
+            path: '/',
+            sameSite: true, 
+            expires: new Date(Date.now()+timeout)
+        });
+    };
+
+    const getAccessToken = function () {
+        return cookies.get('access_token');
+    };
+
+    const removeAccessToken = function () {
+        cookies.remove('access_token', {
+            path: '/'
+        });
+    };
+
+
     const setToken = function (token) {
         cookies.set('token', token, {
             path: '/',
@@ -67,6 +87,9 @@ const UserSession = (function () {
         setName: setName,
         getName: getName,
         removeName: removeName,
+        setAccessToken: setAccessToken,
+        getAccessToken: getAccessToken,
+        removeAccessToken: removeAccessToken
     }
 
 })();
