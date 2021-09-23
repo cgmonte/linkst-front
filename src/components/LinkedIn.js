@@ -9,6 +9,8 @@ import {
 
 import { openSignInWindow } from "./Popup";
 
+import { linkedInProfileData } from "../api/LinkedInApi";
+
 // import { LinkedInAuth } from '../api/LinkedInApi'
 
 const axios = require('axios');
@@ -19,6 +21,7 @@ class LinkedIn extends React.Component {
         this.handleClickAdd = this.handleClickAdd.bind(this)
         this.handleClickShare = this.handleClickShare.bind(this)
         this.receiveMessage = this.receiveMessage.bind(this)
+        this.getLinkedInProfileData = this.getLinkedInProfileData.bind(this)
     }
 
     handleClickAdd() {
@@ -27,21 +30,17 @@ class LinkedIn extends React.Component {
     };
 
     handleClickShare = async () => {
-        // const response = await LinkedInAuth();
-        // console.log(response)
         window.addEventListener('message', event => this.receiveMessage(event), false);
         axios.get('https://radiant-brushlands-64499.herokuapp.com/https://www.linkedin.com/oauth/v2/authorization?scope=r_liteprofile%20w_member_social', {
             params: {
                 response_type: 'code',
                 client_id: '782r44eaplkfzr',
-                // redirect_uri: 'https://radiant-brushlands-64499.herokuapp.com/',
                 redirect_uri: 'http://localhost:3000/share',
                 state: 'JSNCUEJH=83jfiD2çH83hidhs9',
                 // scope: 'r_liteprofile%20w_member_social',
             }
         })
             .then(function (response) {
-                // console.log(response);
                 // window.open(response.headers['x-final-url'], '_blank').focus();
                 openSignInWindow(response.headers['x-final-url'], window, 'Login no LinkedIn', 600, 700)
             })
@@ -51,17 +50,29 @@ class LinkedIn extends React.Component {
             .then(function () {
                 // always executed
             });
-        // window.open(url, '_blank').focus();
     };
 
+    getLinkedInProfileData = async ({ access_token }) => {
+        // console.log('FOIIIII', access_token.access_token)
+        let profile_data = await linkedInProfileData({ access_token: access_token.access_token })
+        console.log('EEEEEE', profile_data)
+    }
+
     receiveMessage = event => {
+
         // Do we trust the sender of this message? (might be
         // different from what we originally opened, for example).
         // if (event.origin !== BASE_URL) {
         //   return;
         // }
+
         const { data } = event;
-        console.log('FOIIIII', data)
+        if (data !== undefined) {
+            this.getLinkedInProfileData({ access_token: data })
+        }
+
+        // console.log('linkedInProfileData', linkedInProfileData(data.access_token))
+
         // if we trust the sender and the source is our popup
         // if (data.source === 'lma-login-redirect') {
         //   // get the URL params and redirect to our server to use Passport to auth/login
@@ -69,7 +80,9 @@ class LinkedIn extends React.Component {
         //   const redirectUrl = `/auth/google/login${payload}`;
         //   window.location.pathname = redirectUrl;
         // }
-       };
+
+        window.removeEventListener('message', this.receiveMessage);
+    };
 
     render() {
         return (
