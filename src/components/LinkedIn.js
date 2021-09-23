@@ -9,7 +9,7 @@ import {
 
 import { openSignInWindow } from "./Popup";
 
-import { linkedInProfileData } from "../api/LinkedInApi";
+// import { linkedInProfileData } from "../api/LinkedInApi";
 
 // import { LinkedInAuth } from '../api/LinkedInApi'
 
@@ -20,8 +20,8 @@ class LinkedIn extends React.Component {
         super(props)
         this.handleClickAdd = this.handleClickAdd.bind(this)
         this.handleClickShare = this.handleClickShare.bind(this)
-        this.receiveMessage = this.receiveMessage.bind(this)
-        this.getLinkedInProfileData = this.getLinkedInProfileData.bind(this)
+        // this.receiveMessage = this.receiveMessage.bind(this)
+        // this.getLinkedInProfileData = this.getLinkedInProfileData.bind(this)
     }
 
     handleClickAdd() {
@@ -52,37 +52,37 @@ class LinkedIn extends React.Component {
             });
     };
 
-    getLinkedInProfileData = async ({ access_token }) => {
-        // console.log('FOIIIII', access_token.access_token)
-        let profile_data = await linkedInProfileData({ access_token: access_token.access_token })
-        console.log('EEEEEE', profile_data)
-    }
+    // getLinkedInProfileData = async ({ access_token }) => {
+    //     // console.log('FOIIIII', access_token.access_token)
+    //     let profile_data = await linkedInProfileData({ access_token: access_token.access_token })
+    //     console.log('EEEEEE', profile_data)
+    // }
 
-    receiveMessage = event => {
+    // receiveMessage = event => {
 
-        // Do we trust the sender of this message? (might be
-        // different from what we originally opened, for example).
-        // if (event.origin !== BASE_URL) {
-        //   return;
-        // }
+    //     // Do we trust the sender of this message? (might be
+    //     // different from what we originally opened, for example).
+    //     // if (event.origin !== BASE_URL) {
+    //     //   return;
+    //     // }
 
-        const { data } = event;
-        if (data !== undefined) {
-            this.getLinkedInProfileData({ access_token: data })
-        }
+    //     const { data } = event;
+    //     if (data !== undefined) {
+    //         this.getLinkedInProfileData({ access_token: data })
+    //     }
 
-        // console.log('linkedInProfileData', linkedInProfileData(data.access_token))
+    //     // console.log('linkedInProfileData', linkedInProfileData(data.access_token))
 
-        // if we trust the sender and the source is our popup
-        // if (data.source === 'lma-login-redirect') {
-        //   // get the URL params and redirect to our server to use Passport to auth/login
-        //   const { payload } = data;
-        //   const redirectUrl = `/auth/google/login${payload}`;
-        //   window.location.pathname = redirectUrl;
-        // }
+    //     // if we trust the sender and the source is our popup
+    //     // if (data.source === 'lma-login-redirect') {
+    //     //   // get the URL params and redirect to our server to use Passport to auth/login
+    //     //   const { payload } = data;
+    //     //   const redirectUrl = `/auth/google/login${payload}`;
+    //     //   window.location.pathname = redirectUrl;
+    //     // }
 
-        window.removeEventListener('message', this.receiveMessage);
-    };
+    //     window.removeEventListener('message', this.receiveMessage);
+    // };
 
     render() {
         return (

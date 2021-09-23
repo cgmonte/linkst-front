@@ -8,6 +8,8 @@ import { withRouter } from 'react-router-dom';
 
 import UserSession from './UserSession';
 
+import { linkedInProfileData } from "../api/LinkedInApi";
+
 const axios = require('axios');
 
 class LinkedInShare extends React.Component {
@@ -18,6 +20,14 @@ class LinkedInShare extends React.Component {
         //     access_code: '',
         // };
         this.handleAccess = this.handleAccess.bind(this)
+        this.getLinkedInProfileData = this.getLinkedInProfileData.bind(this)
+    }
+
+    getLinkedInProfileData = async ({ access_token }) => {
+        console.log('FOIIIII', access_token)
+        // let profile_data = await linkedInProfileData({ access_token: access_token })
+        // console.log('EEEEEE', profile_data)
+        // return profile_data
     }
 
     handleAccess = ({ authorization_code }) => {
@@ -33,13 +43,15 @@ class LinkedInShare extends React.Component {
         )
             .then(function (response) {
                 UserSession.setAccessToken(response.data.access_token, response.data.expires_in);
-                window.opener.postMessage({ 'access_token': UserSession.getAccessToken() });
+                this.getLinkedInProfileData({ access_token: response.data.access_token })
+                // console.log(profile_data)
+                // window.opener.postMessage({ 'access_token': UserSession.getAccessToken() });
             })
             .catch(function (error) {
                 console.log(error);
             })
             .then(function () {
-                window.close();
+                // window.close();
                 // always executed
             });
     };
