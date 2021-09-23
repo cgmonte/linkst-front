@@ -19,15 +19,15 @@ class LinkedInShare extends React.Component {
         //     authorization_code: '',
         //     access_code: '',
         // };
-        this.handleAccess = this.handleAccess.bind(this)
-        this.getLinkedInProfileData = this.getLinkedInProfileData.bind(this)
+        this.handleAccess = this.handleAccess.bind(this);
+        this.getLinkedInProfileData = this.getLinkedInProfileData.bind(this);
     }
 
+
+
     getLinkedInProfileData = async ({ access_token }) => {
-        console.log('FOIIIII', access_token)
-        // let profile_data = await linkedInProfileData({ access_token: access_token })
-        // console.log('EEEEEE', profile_data)
-        // return profile_data
+        let profile_data = await linkedInProfileData({ access_token: access_token })
+        console.log('EEEEEE', profile_data)
     }
 
     handleAccess = ({ authorization_code }) => {
@@ -42,10 +42,13 @@ class LinkedInShare extends React.Component {
             + 'grant_type=authorization_code&client_id=782r44eaplkfzr&client_secret=VGKnUhm3eZPNl5Io&redirect_uri=http://localhost:3000/share&code=' + authorization_code, config
         )
             .then(function (response) {
-                UserSession.setAccessToken(response.data.access_token, response.data.expires_in);
-                this.getLinkedInProfileData({ access_token: response.data.access_token })
-                // console.log(profile_data)
-                // window.opener.postMessage({ 'access_token': UserSession.getAccessToken() });
+
+
+                if (response !== undefined) {
+                    console.log('essa é a resposta completa:', response, 'Essa é a resposta data.access_token:', response.data.access_token)
+                    UserSession.setAccessToken(response.data.access_token, response.data.expires_in);
+                    
+                }
             })
             .catch(function (error) {
                 console.log(error);
@@ -59,16 +62,10 @@ class LinkedInShare extends React.Component {
     componentDidMount() {
 
         this.handleAccess({ authorization_code: this.props.location.search.slice(6) })
-        // console.log('access_token', access_token)
-
-        // const params = window.location.search;
-
-        // if (window.opener) {
-            // send them to the opening window
-            // console.log('BORAAAAAAAA', data)
-            // window.opener.postMessage({ 'access_token': UserSession.getAccessToken() });
-            // close the popup
-            // window.close();
+        this.getLinkedInProfileData({ access_token: UserSession.getAccessToken() })
+        // window.opener.postMessage({ 'access_token': UserSession.getAccessToken() });
+        // close the popup
+        // window.close();
         // }
     }
 
