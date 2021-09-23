@@ -2,9 +2,9 @@ import React from "react";
 
 import { withRouter } from 'react-router-dom';
 
-import {
-    Text
-} from "@chakra-ui/react"
+// import {
+//     Text
+// } from "@chakra-ui/react"
 
 import UserSession from './UserSession';
 
@@ -29,34 +29,46 @@ class LinkedInShare extends React.Component {
         }
 
         axios.post('https://radiant-brushlands-64499.herokuapp.com/https://www.linkedin.com/oauth/v2/accessToken?'
-        +'grant_type=authorization_code&client_id=782r44eaplkfzr&client_secret=VGKnUhm3eZPNl5Io&redirect_uri=http://localhost:3000/share&code='+authorization_code,config
+            + 'grant_type=authorization_code&client_id=782r44eaplkfzr&client_secret=VGKnUhm3eZPNl5Io&redirect_uri=http://localhost:3000/share&code=' + authorization_code, config
         )
             .then(function (response) {
-                UserSession.setAccessToken(response.data.access_token, response.data.expires_in)
+                UserSession.setAccessToken(response.data.access_token, response.data.expires_in);
+                window.opener.postMessage({ 'access_token': UserSession.getAccessToken() });
             })
             .catch(function (error) {
                 console.log(error);
             })
             .then(function () {
+                window.close();
                 // always executed
             });
     };
 
     componentDidMount() {
 
-        const access_token = this.handleAccess({ authorization_code: this.props.location.search.slice(6) })
-        console.log('access_token', access_token)
+        this.handleAccess({ authorization_code: this.props.location.search.slice(6) })
+        // console.log('access_token', access_token)
+
+        // const params = window.location.search;
+
+        // if (window.opener) {
+            // send them to the opening window
+            // console.log('BORAAAAAAAA', data)
+            // window.opener.postMessage({ 'access_token': UserSession.getAccessToken() });
+            // close the popup
+            // window.close();
+        // }
     }
 
     render() {
         return (
             <>
-                <Text>
-                    O Access Token do LinkedIn
-                    <br/>
-                    {UserSession.getAccessToken()}
-                    {/* {this.props.match.params.code} */}
-                </Text>
+                {/* <Text> */}
+                {/* O Access Token do LinkedIn */}
+                {/* <br/> */}
+                {/* {UserSession.getAccessToken()} */}
+                {/* {this.props.match.params.code} */}
+                {/* </Text> */}
             </>
         )
     }

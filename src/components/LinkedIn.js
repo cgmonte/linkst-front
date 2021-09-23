@@ -18,6 +18,7 @@ class LinkedIn extends React.Component {
         super(props)
         this.handleClickAdd = this.handleClickAdd.bind(this)
         this.handleClickShare = this.handleClickShare.bind(this)
+        this.receiveMessage = this.receiveMessage.bind(this)
     }
 
     handleClickAdd() {
@@ -28,14 +29,15 @@ class LinkedIn extends React.Component {
     handleClickShare = async () => {
         // const response = await LinkedInAuth();
         // console.log(response)
-        axios.get('https://radiant-brushlands-64499.herokuapp.com/https://www.linkedin.com/oauth/v2/authorization?', {
+        window.addEventListener('message', event => this.receiveMessage(event), false);
+        axios.get('https://radiant-brushlands-64499.herokuapp.com/https://www.linkedin.com/oauth/v2/authorization?scope=r_liteprofile%20w_member_social', {
             params: {
                 response_type: 'code',
                 client_id: '782r44eaplkfzr',
                 // redirect_uri: 'https://radiant-brushlands-64499.herokuapp.com/',
                 redirect_uri: 'http://localhost:3000/share',
                 state: 'JSNCUEJH=83jfiD2çH83hidhs9',
-                scope: 'w_member_social',
+                // scope: 'r_liteprofile%20w_member_social',
             }
         })
             .then(function (response) {
@@ -51,6 +53,23 @@ class LinkedIn extends React.Component {
             });
         // window.open(url, '_blank').focus();
     };
+
+    receiveMessage = event => {
+        // Do we trust the sender of this message? (might be
+        // different from what we originally opened, for example).
+        // if (event.origin !== BASE_URL) {
+        //   return;
+        // }
+        const { data } = event;
+        console.log('FOIIIII', data)
+        // if we trust the sender and the source is our popup
+        // if (data.source === 'lma-login-redirect') {
+        //   // get the URL params and redirect to our server to use Passport to auth/login
+        //   const { payload } = data;
+        //   const redirectUrl = `/auth/google/login${payload}`;
+        //   window.location.pathname = redirectUrl;
+        // }
+       };
 
     render() {
         return (

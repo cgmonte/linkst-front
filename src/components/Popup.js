@@ -1,26 +1,36 @@
 let windowObjectReference = null;
 let previousUrl = null;
 
-const receiveMessage = event => {
-    // Do we trust the sender of this message? (might be
-    // different from what we originally opened, for example).
-    // if (event.origin !== BASE_URL) {
-    //   return;
-    // }
-    const { data } = event;
-    console.log('BORAAAAAAAA', data)
-    // if we trust the sender and the source is our popup
-    // if (data.source === 'lma-login-redirect') {
-    //   // get the URL params and redirect to our server to use Passport to auth/login
-    //   const { payload } = data;
-    //   const redirectUrl = `/auth/google/login${payload}`;
-    //   window.location.pathname = redirectUrl;
-    // }
-};
+// const receiveMessage = event => {
+//     // Do we trust the sender of this message? (might be
+//     // different from what we originally opened, for example).
+//     // if (event.origin !== BASE_URL) {
+//     //   return;
+//     // }
+//     const params = window.location.search;
+
+//     if (window.opener) {
+//         // send them to the opening window
+//         console.log('BORAAAAAAAA', data)
+//         window.opener.postMessage(event);
+//         // close the popup
+//         window.close();
+//     }
+
+//     const { data } = event;
+//     console.log('BORAAAAAAAA', data)
+//     // if we trust the sender and the source is our popup
+//     // if (data.source === 'lma-login-redirect') {
+//     //   // get the URL params and redirect to our server to use Passport to auth/login
+//     //   const { payload } = data;
+//     //   const redirectUrl = `/auth/google/login${payload}`;
+//     //   window.location.pathname = redirectUrl;
+//     // }
+// };
 
 export const openSignInWindow = (url, win, name, h, w) => {
     // remove any existing event listeners
-    window.removeEventListener('message', receiveMessage);
+    // window.removeEventListener('message', receiveMessage);
 
     const y = win.top.outerHeight / 2 + win.top.screenY - (h / 2);
     const x = win.top.outerWidth / 2 + win.top.screenX - (w / 2);
@@ -48,7 +58,7 @@ export const openSignInWindow = (url, win, name, h, w) => {
     }
 
     // add the listener for receiving a message from the popup
-    window.addEventListener('message', event => receiveMessage(event), false);
+    // window.addEventListener('message', event => receiveMessage(event), false);
     // assign the previous URL
     previousUrl = url;
 };
@@ -58,3 +68,18 @@ export const openSignInWindow = (url, win, name, h, w) => {
 //     const x = win.top.outerWidth / 2 + win.top.screenX - (w / 2);
 //     return win.open(url, windowName, `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=${w}, height=${h}, top=${y}, left=${x}`);
 // }
+
+// export default () => {
+//     useEffect(() => {
+//         // get the URL parameters which will include the auth token
+//         const params = window.location.search;
+//         if (window.opener) {
+//             // send them to the opening window
+//             window.opener.postMessage(params);
+//             // close the popup
+//             window.close();
+//         }
+//     });
+//     // some text to show the user
+//     return <p>Please wait...</p>;
+// };
