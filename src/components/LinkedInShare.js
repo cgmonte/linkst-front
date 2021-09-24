@@ -20,6 +20,7 @@ class LinkedInShare extends React.Component {
         super(props)
         this.state = {
             publishing: true,
+            profile_data: {}
         };
         this.handleAccess = this.handleAccess.bind(this);
         this.getLinkedInProfileData = this.getLinkedInProfileData.bind(this);
@@ -29,7 +30,13 @@ class LinkedInShare extends React.Component {
 
     getLinkedInProfileData = async ({ access_token }) => {
         let profile_data = await linkedInProfileData({ access_token: access_token })
-        console.log('EEEEEE', profile_data)
+
+        this.setState({ profile_data: profile_data }, function () {
+            console.log(this.state.profile_data.id)
+        })
+        // console.log('state set', this.state.profile_data));
+        // console.log('EEEEEE', profile_data)
+
     }
 
     handleAccess = ({ authorization_code }) => {
@@ -44,22 +51,22 @@ class LinkedInShare extends React.Component {
             axios.post('https://radiant-brushlands-64499.herokuapp.com/https://www.linkedin.com/oauth/v2/accessToken?'
                 + 'grant_type=authorization_code&client_id=782r44eaplkfzr&client_secret=VGKnUhm3eZPNl5Io&redirect_uri=http://localhost:3000/share&code=' + authorization_code, config
             )
-            .then(function (response) {
+                .then(function (response) {
 
 
-                if (response !== undefined) {
-                    console.log('essa é a resposta completa:', response, 'Essa é a resposta data.access_token:', response.data.access_token)
-                    UserSession.setAccessToken(response.data.access_token, response.data.expires_in);
+                    if (response !== undefined) {
+                        console.log('essa é a resposta completa:', response, 'Essa é a resposta data.access_token:', response.data.access_token)
+                        UserSession.setAccessToken(response.data.access_token, response.data.expires_in);
 
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-            .then(function () {
-                // window.close();
-                // always executed
-            });
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .then(function () {
+                    // window.close();
+                    // always executed
+                });
         }
     };
 
@@ -81,8 +88,15 @@ class LinkedInShare extends React.Component {
                     {this.state.publishing ? (
                         <>
                             <Flex flexDirection="column">
-
                                 <Text fontSize="xl">
+                                    Olá, {this.state.profile_data.localizedFirstName}
+
+                                </Text>
+                                <Text fontSize="sm" marginBottom="6em">
+                                    Usuário do LinkedIn ID {this.state.profile_data.id}
+
+                                </Text>
+                                <Text fontSize="md">
                                     Aguarde, estamos fazendo a postagem na sua timeline!
                                 </Text>
                             </Flex>
