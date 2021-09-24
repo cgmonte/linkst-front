@@ -11,7 +11,7 @@ import {
 
 import UserSession from './UserSession';
 
-import { linkedInProfileData } from "../api/LinkedInApi";
+import { linkedInProfileData, ShareText } from "../api/LinkedInApi";
 
 const axios = require('axios');
 
@@ -20,17 +20,31 @@ class LinkedInShare extends React.Component {
         super(props)
         this.state = {
             publishing: true,
-            profile_data: {}
+            profile_data: {},
+            shared: false
         };
         this.handleAccess = this.handleAccess.bind(this);
         this.getLinkedInProfileData = this.getLinkedInProfileData.bind(this);
+        this.shareOnLinkedIn = this.shareOnLinkedIn.bind(this);
     }
 
     getLinkedInProfileData = async ({ access_token }) => {
         let profile_data = await linkedInProfileData({ access_token: access_token })
 
-        this.setState({ profile_data: profile_data }, function () {
-            console.log(this.state.profile_data.id)
+        this.setState({ profile_data: profile_data }, async function () {
+            console.log('state was set',this.state.profile_data.id)
+            await ShareText({ access_token: access_token, author: this.state.profile_data.id })
+            // this.shareOnLinkedIn({ access_token: UserSession.getAccessToken(), author: this.state.profile_data.id })
+        })
+    }
+
+    shareOnLinkedIn = async ({ access_token, author }) => {
+        let share_response = await ShareText({ access_token: access_token, author: author })
+        console.log(share_response)
+
+        this.setState({ shared: true }, function () {
+            console.log('compartilhado!', share_response)
+            
         })
     }
 
@@ -69,6 +83,7 @@ class LinkedInShare extends React.Component {
 
         this.handleAccess({ authorization_code: this.props.location.search.slice(6) })
         this.getLinkedInProfileData({ access_token: UserSession.getAccessToken() })
+        // this.shareOnLinkedIn({ access_token: UserSession.getAccessToken(), author: this.state.profile_data.id })
         // window.opener.postMessage({ 'access_token': UserSession.getAccessToken() });
         // close the popup
         // window.close();
