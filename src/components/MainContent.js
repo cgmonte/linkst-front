@@ -194,7 +194,7 @@ class MainContent extends React.Component {
         }, function () {
             this.setState({ fetching_st_data: false });
             this.setState({ cert_level: this.rankUserStData(this.state.stData) });
-            // console.log(this.state.stData.rendernumber_of_mentorships)
+            // console.log(this.state.stData.number_of_mentorships)
         });
 
         // setTimeout(function () {
@@ -246,6 +246,7 @@ class MainContent extends React.Component {
                     number_of_conversation_points={this.state.stData.number_of_conversation_points}
                     number_of_replies_from_user={this.state.stData.number_of_replies_from_user}
                     number_of_comment_replies_from_user={this.state.stData.number_of_comment_replies_from_user}
+                    number_of_mentorships={this.state.stData.number_of_mentorships}
                     handleTabIndexUpdate={this.handleTabIndexUpdate}
                 />
             </>

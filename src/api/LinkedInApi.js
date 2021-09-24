@@ -39,7 +39,7 @@ export const ShareText = async ({ access_token, author }) => {
       'specificContent': {
         'com.linkedin.ugc.ShareContent': {
           'shareCommentary': {
-            'text': '@digitalstrateegia certifica que tenho habilidades em strateegia.digital!'
+            'text': 'linkedin.com/company/digitalstrateegia certifica que tenho habilidades em strateegia.digital!'
           },
           'shareMediaCategory': 'NONE'
         }

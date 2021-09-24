@@ -17,7 +17,7 @@ class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            tabIndex: 4
+            tabIndex: 0
         }
         this.handleTabIndexUpdate = this.handleTabIndexUpdate.bind(this)
     }

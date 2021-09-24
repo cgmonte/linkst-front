@@ -7,7 +7,7 @@ import {
     TabPanels,
     Tab,
     TabPanel,
-    Flex
+    Flex,
 } from "@chakra-ui/react"
 
 import Certificate from "./Certificate";
@@ -26,11 +26,12 @@ class ContentTabs extends React.Component {
 
     handleTabsChange = (index) => {
         this.setState({ tabIndex: index }, function () {
-            this.props.handleTabIndexUpdate(this.state.tabIndex)
+            // this.props.handleTabIndexUpdate(this.state.tabIndex)
         });
     }
 
     componentDidMount() {
+        // console.log(this.props.number_of_menthorships)
         this.handleTabsChange(0)
     }
 
@@ -67,6 +68,7 @@ class ContentTabs extends React.Component {
                                     number_of_conversation_points={this.props.number_of_conversation_points}
                                     number_of_replies_from_user={this.props.number_of_replies_from_user}
                                     number_of_comment_replies_from_user={this.props.number_of_comment_replies_from_user}
+                                    number_of_menthorships={this.props.number_of_mentorships}
                                 />
                             </TabPanel>
                         </TabPanels>

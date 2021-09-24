@@ -95,6 +95,11 @@ class StatsTable extends React.Component {
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_comment_replies_from_user}</Td>
                                     <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_comment_replies_from_user}</Td>
                                 </Tr>
+                                <Tr>
+                                    <Td>Mentorias</Td>
+                                    <Td isNumeric fontWeight="bold">{this.props.number_of_menthorships}</Td>
+                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_comment_replies_from_user}</Td>
+                                </Tr>
                             </Tbody>
                         </Table>
                     </Box>

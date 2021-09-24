@@ -9,8 +9,19 @@ import { saveAs } from 'file-saver';
 import {
     Flex,
     Text,
-    Button
+    Button,
+    VStack,
+    Heading,
+    Divider,
+
 } from '@chakra-ui/react';
+
+import { TiSocialLinkedin } from 'react-icons/ti';
+
+import { IoMdImage } from 'react-icons/io';
+
+import { AiFillFileImage } from 'react-icons/ai';
+
 
 class SideBarCertificate extends React.Component {
 
@@ -51,33 +62,73 @@ class SideBarCertificate extends React.Component {
         return (
             < Flex textAlign="left" flexDirection="column" alignItems="left" width="14.5em" paddingTop="1em">
                 <Text fontSize="md">
-                    Geramos os certificados ao lado baseados nas suas estatísticas de uso da plataforma strateegia.digital.
+                    Geramos o certificado baseado nas suas estatísticas de uso da plataforma strateegia.digital.
                 </Text>
                 <br />
-                <Text>
-                    Você pode baixar o certificado num dos formatos abaixo!
-                </Text>
-                <Flex marginTop="1em">
+
+
+                <VStack spacing={0} align="stretch" colorScheme="teal">
+                    <Divider />
+                    <Heading as="h6" size="sm" paddingY="1em">
+                        Compartilhar no LinkedIn
+                    </Heading>
+                    {/* <Divider /> */}
+
                     <Button
                         colorScheme="teal"
                         size="md"
                         mt={4}
-                        width="6em"
+                        variant="ghost"
                         onClick={this.saveCertPng}
+                        width="100%" justifyContent="flex-start"
+                        leftIcon={<TiSocialLinkedin />}
                     >
-                        PNG
+                        Adicionar ao perfil
                     </Button>
+                    {/* <Divider /> */}
+                    <Button
+                        alignContent="start"
+                        colorScheme="teal"
+                        size="md"
+                        mt={4}
+                        variant="ghost"
+                        onClick={this.saveCertPdf}
+                        width="100%" justifyContent="flex-start"
+                        leftIcon={<TiSocialLinkedin />}
+                    >
+                        Publicar no feed
+                    </Button>
+                    <Divider />
+                    <Heading as="h6" size="sm" paddingY="1em">
+                        Baixar certificado
+                    </Heading>
+                    {/* <Divider /> */}
+
                     <Button
                         colorScheme="teal"
                         size="md"
                         mt={4}
-                        width="6em"
-                        marginLeft="1em"
-                        onClick={this.saveCertPdf}
+                        variant="ghost"
+                        onClick={this.saveCertPng}
+                        width="100%" justifyContent="flex-start"
+                        leftIcon={<IoMdImage/>}
                     >
-                        PDF
+                        Arquivo PNG
                     </Button>
-                </Flex>
+                    {/* <Divider /> */}
+                    <Button
+                        alignContent="start"
+                        colorScheme="teal"
+                        size="md"
+                        mt={4}
+                        variant="ghost"
+                        onClick={this.saveCertPdf}
+                        width="100%" justifyContent="flex-start"
+                        leftIcon={<AiFillFileImage/>}
+                    >
+                        Arquivo PDF
+                    </Button>
+                </VStack>
             </Flex>
         )
     }
