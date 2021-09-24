@@ -2,9 +2,12 @@ import React from "react";
 
 import { withRouter } from 'react-router-dom';
 
-// import {
-//     Text
-// } from "@chakra-ui/react"
+import {
+    Text,
+    Progress,
+    Flex,
+    Box
+} from "@chakra-ui/react"
 
 import UserSession from './UserSession';
 
@@ -15,10 +18,9 @@ const axios = require('axios');
 class LinkedInShare extends React.Component {
     constructor(props) {
         super(props)
-        // this.state = {
-        //     authorization_code: '',
-        //     access_code: '',
-        // };
+        this.state = {
+            publishing: true,
+        };
         this.handleAccess = this.handleAccess.bind(this);
         this.getLinkedInProfileData = this.getLinkedInProfileData.bind(this);
     }
@@ -38,16 +40,17 @@ class LinkedInShare extends React.Component {
             }
         }
 
-        axios.post('https://radiant-brushlands-64499.herokuapp.com/https://www.linkedin.com/oauth/v2/accessToken?'
-            + 'grant_type=authorization_code&client_id=782r44eaplkfzr&client_secret=VGKnUhm3eZPNl5Io&redirect_uri=http://localhost:3000/share&code=' + authorization_code, config
-        )
+        if (!UserSession.getAccessToken()) {
+            axios.post('https://radiant-brushlands-64499.herokuapp.com/https://www.linkedin.com/oauth/v2/accessToken?'
+                + 'grant_type=authorization_code&client_id=782r44eaplkfzr&client_secret=VGKnUhm3eZPNl5Io&redirect_uri=http://localhost:3000/share&code=' + authorization_code, config
+            )
             .then(function (response) {
 
 
                 if (response !== undefined) {
                     console.log('essa é a resposta completa:', response, 'Essa é a resposta data.access_token:', response.data.access_token)
                     UserSession.setAccessToken(response.data.access_token, response.data.expires_in);
-                    
+
                 }
             })
             .catch(function (error) {
@@ -57,6 +60,7 @@ class LinkedInShare extends React.Component {
                 // window.close();
                 // always executed
             });
+        }
     };
 
     componentDidMount() {
@@ -71,14 +75,34 @@ class LinkedInShare extends React.Component {
 
     render() {
         return (
-            <>
-                {/* <Text> */}
-                {/* O Access Token do LinkedIn */}
-                {/* <br/> */}
-                {/* {UserSession.getAccessToken()} */}
-                {/* {this.props.match.params.code} */}
-                {/* </Text> */}
-            </>
+
+            <Flex width="100%" height="100vh" alignItems="center" justifyContent="center">
+                <Flex flexDirection="column" >
+                    {this.state.publishing ? (
+                        <>
+                            <Flex flexDirection="column">
+
+                                <Text fontSize="xl">
+                                    Aguarde, estamos fazendo a postagem na sua timeline!
+                                </Text>
+                            </Flex>
+                            <Box
+                                borderWidth="1px"
+                                borderRadius="lg"
+                                borderColor="#E2E8F0"
+                                marginY="2em"
+                                padding="1em"
+                            >
+                                <Progress size="sm" isAnimated hasStripe isIndeterminate colorScheme="teal" />
+                            </Box> </>
+                    ) : (
+                        <Text fontSize="xl">Postagem completa!</Text>
+                    )}
+
+                </Flex>
+            </Flex>
+
+
         )
     }
 }
