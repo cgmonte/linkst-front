@@ -26,17 +26,12 @@ class LinkedInShare extends React.Component {
         this.getLinkedInProfileData = this.getLinkedInProfileData.bind(this);
     }
 
-
-
     getLinkedInProfileData = async ({ access_token }) => {
         let profile_data = await linkedInProfileData({ access_token: access_token })
 
         this.setState({ profile_data: profile_data }, function () {
             console.log(this.state.profile_data.id)
         })
-        // console.log('state set', this.state.profile_data));
-        // console.log('EEEEEE', profile_data)
-
     }
 
     handleAccess = ({ authorization_code }) => {
@@ -93,7 +88,7 @@ class LinkedInShare extends React.Component {
 
                                 </Text>
                                 <Text fontSize="sm" marginBottom="6em">
-                                    Usuário do LinkedIn ID {this.state.profile_data.id}
+                                    LinkedIn user ID {this.state.profile_data.id}
 
                                 </Text>
                                 <Text fontSize="md">
