@@ -1,8 +1,6 @@
 import React from "react";
 
 import {
-    ChakraProvider,
-    Text,
     Box,
     AspectRatio
 } from '@chakra-ui/react';
@@ -26,7 +24,7 @@ class Certificate extends React.Component {
     render() {
         return (
 
-            <ChakraProvider>
+            
                 <AspectRatio
                     ratio={16 / 9.76}
                     width="62vw"
@@ -41,27 +39,19 @@ class Certificate extends React.Component {
                         boxShadow="lg"
                         width="62vw"
                     >
-                        {this.props.cert_type === 'participante' && <ParticipanteCertText cert_level={this.props.cert_level_participante} />}
-                        {this.props.cert_type === 'mentor' && <MentorCertText cert_level={this.props.cert_level_mentor} />}
-
-                        <Box
-                            color="white"
-                            position="absolute"
-                            top="0px"
-                            right="0px"
-                            fontSize="0.9vw"
-                            padding="8.5vw">
-                            <Text>
-                                Data de emissão:
-                            </Text>
-                            <Text>
-                                {this.props.issue_date.day}/{this.props.issue_date.month}/{this.props.issue_date.year}
-                            </Text>
-                        </Box>
+                        {this.props.cert_type === 'participante' && <ParticipanteCertText 
+                        issue_date={this.props.issue_date}
+                        cert_level={this.props.cert_level_participante} 
+                        />}
+                        
+                        {this.props.cert_type === 'mentor' && <MentorCertText 
+                        issue_date={this.props.issue_date} 
+                        cert_level={this.props.cert_level_mentor} 
+                        />}
 
                     </Box>
                 </AspectRatio >
-            </ChakraProvider>
+            
         )
     }
 }

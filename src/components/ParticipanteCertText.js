@@ -20,39 +20,90 @@ class ParticipanteCertText extends React.Component {
 
     render() {
         return (
-            <Box
-                position="absolute"
-                right="20vw"
-                top="16vw"
-                fontWeight="bold"
-            >
-                <Text
-                    fontSize="1vw"
-                    paddingTop="0.4em"
-                    color="white"
-                    textAlign="right"
+            <>
+                <Box
+                    position="absolute"
+                    right="19vw"
+                    top="16vw"
+                    width="35vw"
                 >
-                    Certificamos que
-                </Text>
-                <Text
-                    fontSize="1.3vw"
-                    paddingTop="0.4em"
-                    color="#52BAA8"
-                    textAlign="right"
-                    textTransform="uppercase"
+                    {this.props.cert_level === 1 ? (
+                        <>
+                            <Text
+                                fontSize="1vw"
+                                paddingTop="0.4em"
+                                color="black"
+                                textAlign="right"
+                            >
+                                Certificamos que <Text as="span" color="#7B1AE2" textAlign="right" textTransform="uppercase" fontWeight="bold"> {this.full_name} </Text> adquiriu
+                            </Text>
+
+                            <Text
+                                fontSize="1vw"
+                                paddingTop="0.4em"
+                                color="black"
+                                textAlign="right"
+                            >
+                                habilidades em <Text as="span" color="black" fontWeight="bold"> JORNADAS DE TRANSFORMAÇÃO DIGITAL </Text>
+                            </Text>
+
+                            <Text
+                                fontSize="1vw"
+                                paddingTop="0.4em"
+                                color="black"
+                                textAlign="right"
+                            >
+                                na plataforma <Text as="span" color="#E4345B" fontWeight="bold"> strateegia.digital </Text>
+                            </Text>
+                        </>
+                    ) : (
+                        <>
+                            <Text
+                                fontSize="1vw"
+                                paddingTop="0.4em"
+                                color="white"
+                                textAlign="right"
+                            >
+                                Certificamos que <Text as="span" color="#F9B411" textAlign="right" textTransform="uppercase" fontWeight="bold"> {this.full_name} </Text> adquiriu
+                            </Text>
+
+                            <Text
+                                fontSize="1vw"
+                                paddingTop="0.4em"
+                                color="white"
+                                textAlign="right"
+                            >
+                                habilidades em <Text as="span" color="white" fontWeight="bold"> JORNADAS DE TRANSFORMAÇÃO DIGITAL </Text>
+                            </Text>
+
+                            <Text
+                                fontSize="1vw"
+                                paddingTop="0.4em"
+                                color="white"
+                                textAlign="right"
+                            >
+                                na plataforma <Text as="span" color="#36C8B5" fontWeight="bold"> strateegia.digital </Text>
+                            </Text>
+                        </>
+                    )}
+                </Box >
+                <Box
+                    color={this.props.cert_level === 1 ? "black" : "white"}
+                    position="absolute"
+                    bottom="0px"
+                    left="0px"
+                    paddingLeft="14.8vw"
+                    paddingBottom="10vh"
+                    fontSize="0.9vw"
                 >
-                    {this.full_name}
-                </Text>
-                <Text
-                    width="60vh"
-                    fontSize="1vw"
-                    paddingTop="0.4em"
-                    color="white"
-                    textAlign="right">
-                    adquiriu habilidades em <Text as="span" color="black"> JORNADAS DE TRANSFORMAÇÃO DIGITAL </Text> na plataforma strateegia.digital
-                    {this.props.cert_level}
-                </Text>
-            </Box>
+                    <Text>
+                        Data de emissão:
+                    </Text>
+                    <Text>
+                        {this.props.issue_date.day}/{this.props.issue_date.month}/{this.props.issue_date.year}
+                    </Text>
+                </Box>
+            </>
         )
     }
 }
