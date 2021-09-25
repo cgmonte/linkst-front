@@ -26,7 +26,7 @@ class Certificate extends React.Component {
                     width="62vw"
                 >
                     <Box
-                        backgroundImage="cert_background.png"
+                        backgroundImage="certs/participante_1.png"
                         backgroundSize="cover"
                         position="relative"
                         id="cert"

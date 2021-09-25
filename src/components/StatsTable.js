@@ -30,8 +30,8 @@ class StatsTable extends React.Component {
     componentDidMount() {
 
         this.setState({
-            next_level_data: reference_scores.filter(obj => {
-                if (this.props.cert_level < 9) {
+            next_level_data: reference_scores.participante.filter(obj => {
+                if (this.props.cert_level < 3) {
                     return obj.level === this.props.cert_level + 1
                 } else {
                     return obj.level_name === this.props.cert_level
@@ -95,11 +95,11 @@ class StatsTable extends React.Component {
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_comment_replies_from_user}</Td>
                                     <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_comment_replies_from_user}</Td>
                                 </Tr>
-                                <Tr>
+                                {/* <Tr>
                                     <Td>Mentorias</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_menthorships}</Td>
-                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_comment_replies_from_user}</Td>
-                                </Tr>
+                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_menthorships}</Td>
+                                </Tr> */}
                             </Tbody>
                         </Table>
                     </Box>

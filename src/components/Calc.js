@@ -1,10 +1,10 @@
 import reference_scores from './data/reference_scores.json';
 
-export function rankUserStData(st_data) {
+export function rankUserStData(st_data, cert_type) {
 
     let achieved_levels = []
 
-    reference_scores.slice().reverse().forEach(
+    reference_scores.participante.slice().reverse().forEach(
         function (reference_score) {
             if (
                 st_data.number_of_projects >= reference_score.number_of_projects &&
