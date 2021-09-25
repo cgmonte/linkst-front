@@ -9,6 +9,8 @@ import {
 
 import UserSession from './UserSession';
 
+import MentorCertText from "./MentorCertText";
+import ParticipanteCertText from "./ParticipanteCertText";
 
 class Certificate extends React.Component {
 
@@ -21,7 +23,6 @@ class Certificate extends React.Component {
     //     console.log(this.props.cert_type)
     // }
 
-
     render() {
         return (
 
@@ -31,44 +32,17 @@ class Certificate extends React.Component {
                     width="62vw"
                 >
                     <Box
-                        backgroundImage={"certs/" + this.props.cert_type + "_" + this.props.cert_level + ".png"}
+                        backgroundImage={this.props.cert_type === 'participante' ?
+                            "certs/" + this.props.cert_type + "_" + this.props.cert_level_participante + ".png"
+                            : "certs/" + this.props.cert_type + "_" + this.props.cert_level_mentor + ".png" }
                         backgroundSize="cover"
                         position="relative"
                         id="cert"
                         boxShadow="lg"
                         width="62vw"
                     >
-                        <Box
-                            position="absolute"
-                            right="20vw"
-                            top="16vw"
-                            fontWeight="bold"
-                        >
-                            <Text
-                                fontSize="1vw"
-                                paddingTop="0.4em"
-                                color="white"
-                                textAlign="right"
-                            >
-                                Certificamos que
-                            </Text>
-                            <Text
-                                fontSize="1.3vw"
-                                paddingTop="0.4em"
-                                color="#52BAA8"
-                                textAlign="right"
-                                textTransform="uppercase"
-                            >
-                                {this.full_name}
-                            </Text>
-                            <Text
-                                fontSize="1vw"
-                                paddingTop="0.4em"
-                                color="white"
-                                textAlign="right">
-                                atingiu o nível <Text as="span" color="black"> {this.props.cert_level} </Text> de experiência em Strateegia
-                            </Text>
-                        </Box>
+                        {this.props.cert_type === 'participante' && <ParticipanteCertText cert_level={this.props.cert_level_participante} />}
+                        {this.props.cert_type === 'mentor' && <MentorCertText cert_level={this.props.cert_level_mentor} />}
 
                         <Box
                             color="white"

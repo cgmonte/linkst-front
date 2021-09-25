@@ -49,18 +49,20 @@ class ContentTabs extends React.Component {
                             <TabPanel>
                                 <Box paddingTop="1vh">
                                     <Certificate
-                                        cert_level={this.props.cert_level}
+                                        cert_level_participante={this.props.cert_level_participante}
+                                        cert_level_mentor={this.props.cert_level_mentor}
                                         issue_date={this.props.issue_date}
                                         cert_type={this.props.cert_type}
                                     />
                                 </Box>
                             </TabPanel>
                             <TabPanel>
-                                <LinkedIn issue_date={this.props.issue_date}/>
+                                <LinkedIn issue_date={this.props.issue_date} />
                             </TabPanel>
                             <TabPanel>
                                 <Stats
-                                    cert_level={this.props.cert_level}
+                                    cert_level_participante={this.props.cert_level_participante}
+                                    cert_level_mentor={this.props.cert_level_mentor}
                                     cert_type={this.props.cert_type}
                                     has_mentorship={this.props.has_mentorship}
                                     issue_date={this.props.issue_date}

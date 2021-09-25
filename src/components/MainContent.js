@@ -25,7 +25,8 @@ class MainContent extends React.Component {
             fetching_st_data: false,
             fetching_state: [0, ''],
             stData: {},
-            cert_level: 0,
+            cert_level_mentor: 0,
+            cert_level_participante: 0,
             issue_date: {},
             tabIndex: 0
         };
@@ -183,33 +184,43 @@ class MainContent extends React.Component {
                 // 'number_of_replies_from_user': strateegiaData[0].userStReplies.length,
                 // 'number_of_comment_replies_from_user': strateegiaData[0].userCommentReplies.length,
                 // 'number_of_mentorships': strateegiaData[0].userMentorhips.length
-                'number_of_projects': 8,
-                'number_of_missions': 8,
-                'number_of_divergence_points': 20,
-                'number_of_convergence_points': 2,
-                'number_of_conversation_points': 4,
-                'number_of_replies_from_user': 18,
-                'number_of_comment_replies_from_user': 25,
+                'number_of_projects': 9,
+                'number_of_missions': 9,
+                'number_of_divergence_points': 21,
+                'number_of_convergence_points': 3,
+                'number_of_conversation_points': 5,
+                'number_of_replies_from_user': 19,
+                'number_of_comment_replies_from_user': 35,
                 'number_of_mentorships': 2
             }
         }, function () {
             this.setState({ fetching_st_data: false });
-            this.setState({ cert_level: this.rankUserStData({ stData: this.state.stData }, { cert_type: this.props.cert_type }) },
-                function () {
-                    if (this.state.stData.number_of_mentorships > 0) {
-                        this.props.handleMentorshipUpdate(true)
-                    }
-                }
-            );
+
+            const cert_levels = this.rankUserStData({ stData: this.state.stData })
+
+            //console.log(cert_levels)
+
+            this.setState({
+                cert_level_participante: cert_levels.achieved_levels_participante
+            });
+
+            if (this.state.stData.number_of_mentorships > 0) {
+                console.log(cert_levels)
+                this.props.handleMentorshipUpdate(true)
+                this.setState({
+                    cert_level_mentor: cert_levels.achieved_levels_mentor
+                });
+            }
+
         });
         // setTimeout(function () {
         //     this.setState({ fetching_st_data: false });
         // }.bind(this), 3000);
     }
 
-    updateTabIndex() {
+    //updateTabIndex() {
 
-    }
+    // }
 
     getCurrentDate() {
         const current_date = new Date().toISOString()
@@ -241,7 +252,8 @@ class MainContent extends React.Component {
         return (
             <>
                 <ContentTabs
-                    cert_level={this.state.cert_level}
+                    cert_level_participante={this.state.cert_level_participante}
+                    cert_level_mentor={this.state.cert_level_mentor}
                     cert_type={this.props.cert_type}
                     has_mentorship={this.props.has_mentorship}
                     issue_date={this.state.issue_date}
