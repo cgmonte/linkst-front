@@ -92,8 +92,8 @@ class ParticipanteCertText extends React.Component {
                     position="absolute"
                     bottom="0px"
                     left="0px"
-                    paddingLeft="14.8vw"
-                    paddingBottom="10vh"
+                    paddingLeft="14.85vw"
+                    paddingBottom="7.5vw"
                     fontSize="0.9vw"
                 >
                     <Text>

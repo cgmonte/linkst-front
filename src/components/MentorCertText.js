@@ -14,44 +14,91 @@ class MentorCertText extends React.Component {
         this.full_name = UserSession.getName()
     }
 
-    // componentDidMount (){
-    //     console.log(this.props.cert_type)
-    // }
-
-
     render() {
         return (
-            <Box
-                position="absolute"
-                right="20vw"
-                top="16vw"
-                fontWeight="bold"
-            >
-                <Text
-                    fontSize="1vw"
-                    paddingTop="0.4em"
-                    color="white"
+            <>
+                <Box
+                    position="absolute"
+                    right="19vw"
+                    top="16vw"
+                    width="35vw"
+                >
+                    {this.props.cert_level === 1 ? (
+                        <>
+                            <Text
+                                fontSize="1.25vw"
+                                paddingTop="0.4em"
+                                color="black"
+                                textAlign="right"
+                            >
+                                Certificamos que <Text as="span" color="#2D4FEE" textAlign="right" textTransform="uppercase" fontWeight="extrabold"> {this.full_name} </Text>
+                            </Text>
+
+                            <Text
+                                fontSize="1.25vw"
+                                paddingTop="0.4em"
+                                color="black"
+                                textAlign="right"
+                            >
+                                habilita <Text as="span" color="black" fontWeight="extrabold"> JORNADAS DE TRANSFORMAÇÃO DIGITAL </Text>
+                            </Text>
+
+                            <Text
+                                fontSize="1.25vw"
+                                paddingTop="0.4em"
+                                color="black"
+                                textAlign="right"
+                            >
+                                na plataforma <Text as="span" color="#E4345B" fontWeight="bold"> strateegia.digital </Text>
+                            </Text>
+                        </>
+                    ) : (
+                        <>
+                            <Text
+                                fontSize="1.25vw"
+                                paddingTop="0.4em"
+                                color="white"
+                                textAlign="right"
+                            >
+                                Certificamos que <Text as="span" color="#36C8B5" textAlign="right" textTransform="uppercase" fontWeight="bold"> {this.full_name} </Text>
+                            </Text>
+
+                            <Text
+                                fontSize="1.25vw"
+                                paddingTop="0.4em"
+                                color="white"
+                                textAlign="right"
+                            >
+                                habilita <Text as="span" color="white" fontWeight="bold"> JORNADAS DE TRANSFORMAÇÃO DIGITAL </Text>
+                            </Text>
+
+                            <Text
+                                fontSize="1.25vw"
+                                paddingTop="0.4em"
+                                color="white"
+                                textAlign="right"
+                            >
+                                na plataforma <Text as="span" color="#F9B411" fontWeight="bold"> strateegia.digital </Text>
+                            </Text>
+                        </>
+                    )}
+                </Box >
+                <Box
+                    color={this.props.cert_level === 1 ? "black" : "white"}
+                    position="absolute"
+                    bottom="3.5vw"
+                    right="19vw"
+                    //paddingRight="9vw"
+                    //paddingBottom="9.8vh"
+                    fontSize="0.9vw"
                     textAlign="right"
                 >
-                    Certificamos que
-                </Text>
-                <Text
-                    fontSize="1.3vw"
-                    paddingTop="0.4em"
-                    color="#52BAA8"
-                    textAlign="right"
-                    textTransform="uppercase"
-                >
-                    {this.full_name}
-                </Text>
-                <Text
-                    fontSize="1vw"
-                    paddingTop="0.4em"
-                    color="white"
-                    textAlign="right">
-                    atingiu o nível <Text as="span" color="black"> {this.props.cert_level} </Text> de experiêncifsdfsdfsda em Strateegia
-                </Text>
-            </Box>
+                    <Text>
+                        Data de emissão: {this.props.issue_date.day}/{this.props.issue_date.month}/{this.props.issue_date.year}
+                    </Text>
+                    
+                </Box>
+            </>
         )
     }
 }
