@@ -24,7 +24,6 @@ export const linkedInProfileData = async ({ access_token }) => {
 
 export const ShareText = async ({ access_token, author }) => {
   return new Promise((resolve, reject) => {
-    console.log('ooooia',access_token, author)
     var myHeaders = new Headers();
 
     const url = 'https://radiant-brushlands-64499.herokuapp.com/https://api.linkedin.com/v2/ugcPosts'

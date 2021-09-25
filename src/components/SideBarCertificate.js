@@ -13,6 +13,9 @@ import {
     VStack,
     Heading,
     Divider,
+    Switch,
+    FormControl,
+    FormLabel
 
 } from '@chakra-ui/react';
 
@@ -24,6 +27,9 @@ import { AiFillFileImage } from 'react-icons/ai';
 
 
 class SideBarCertificate extends React.Component {
+    // constructor(props) {
+    //     super(props)
+    // }
 
     saveCertPng() {
         const component = document.getElementById('cert');
@@ -63,11 +69,21 @@ class SideBarCertificate extends React.Component {
             < Flex textAlign="left" flexDirection="column" alignItems="left" width="14.5em" paddingTop="1em">
                 <Text fontSize="md">
                     Geramos o certificado baseado nas suas estatísticas de uso da plataforma strateegia.digital.
+
                 </Text>
                 <br />
 
+                {this.props.has_mentorship === true && <>
+                    <FormControl display="flex" alignItems="center" marginBottom="1em">
+                        <Switch id="email-alerts" colorScheme="teal"/>
+                        <FormLabel htmlFor="email-alerts" mb="0" marginLeft="0.5em">
+                            Certificado Habilitador
+                        </FormLabel>
+                    </FormControl>
+                </>}
 
-                <VStack spacing={0} align="stretch" colorScheme="teal">
+
+                <VStack spacing={0} align="stretch">
                     <Divider />
                     <Heading as="h6" size="sm" paddingY="1em">
                         Compartilhar no LinkedIn
@@ -111,7 +127,7 @@ class SideBarCertificate extends React.Component {
                         variant="ghost"
                         onClick={this.saveCertPng}
                         width="100%" justifyContent="flex-start"
-                        leftIcon={<IoMdImage/>}
+                        leftIcon={<IoMdImage />}
                     >
                         Arquivo PNG
                     </Button>
@@ -124,7 +140,7 @@ class SideBarCertificate extends React.Component {
                         variant="ghost"
                         onClick={this.saveCertPdf}
                         width="100%" justifyContent="flex-start"
-                        leftIcon={<AiFillFileImage/>}
+                        leftIcon={<AiFillFileImage />}
                     >
                         Arquivo PDF
                     </Button>

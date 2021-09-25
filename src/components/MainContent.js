@@ -25,7 +25,9 @@ class MainContent extends React.Component {
             fetching_st_data: false,
             fetching_state: [0, ''],
             stData: {},
-            cert_level: 'stb0',
+            has_mentorship: false,
+            cert_level: 0,
+            cert_type: '',
             issue_date: {},
             tabIndex: 0
         };
@@ -59,7 +61,7 @@ class MainContent extends React.Component {
         let userMentorhips = [];
 
         try {
-            this.setState({fetching_state: [10, 'Carregando Jornadas']})
+            this.setState({ fetching_state: [10, 'Carregando Jornadas'] })
             const projects = await strateegiaProjects({ token: token });
             projects.forEach(function (lab) {
                 lab.projects.forEach(function (project) {
@@ -68,7 +70,7 @@ class MainContent extends React.Component {
             })
 
             for (const project of stProjects) {
-                this.setState({fetching_state: [20, 'Carregando Mapas']})
+                this.setState({ fetching_state: [20, 'Carregando Mapas'] })
                 let missions = await strateegiaMissions({ token: token, project_id: project.id });
 
                 missions.users.forEach(function (user) {
@@ -83,7 +85,7 @@ class MainContent extends React.Component {
             }
 
             for (const mission of stMissions) {
-                this.setState({fetching_state: [30, 'Carregando Kits']})
+                this.setState({ fetching_state: [30, 'Carregando Kits'] })
                 let map = await strateegiaMaps({ token: token, mission_id: mission.id });
                 stMaps.push(map);
             }
@@ -108,7 +110,7 @@ class MainContent extends React.Component {
             })
 
             for (const point of stDivergencePoints) {
-                this.setState({fetching_state: [50, 'Verificando contribuições']})
+                this.setState({ fetching_state: [50, 'Verificando contribuições'] })
                 let has_contributed = await strateegiaHasContribution({ token: token, content_id: point.id });
                 if (has_contributed.has_contributed === true) {
                     let divergence_content = await strateegiaContents({ token: token, content_id: point.id });
@@ -124,7 +126,7 @@ class MainContent extends React.Component {
 
             for (const content of stDivergenceContents) {
                 for (const question of content.kit.questions) {
-                    this.setState({fetching_state: [60, 'Capturando respostas']})
+                    this.setState({ fetching_state: [60, 'Capturando respostas'] })
                     let parent_comments = await strateegiaParentComments({ token, content_id: content.id, question_id: question.id });
                     stReplies.push(parent_comments);
                     for (const reply of parent_comments.content) {
@@ -137,7 +139,7 @@ class MainContent extends React.Component {
 
             for (const reply of stReplies) {
                 for (const content of reply.content) {
-                    this.setState({fetching_state: [80, 'Capturando comentários']})
+                    this.setState({ fetching_state: [80, 'Capturando comentários'] })
                     let question_comment_replies = await strateegiaCommentReplies({ token, question_comment_id: content.id });
                     for (const question_comment_reply of question_comment_replies.content) {
                         if (question_comment_reply.author.id === user_id) {
@@ -193,8 +195,16 @@ class MainContent extends React.Component {
             }
         }, function () {
             this.setState({ fetching_st_data: false });
+
             this.setState({ cert_level: this.rankUserStData(this.state.stData) });
-            // console.log(this.state.stData.number_of_mentorships)
+
+            if (this.state.stData.number_of_mentorships > 0) {
+                this.setState({ has_mentorship: true },
+                    function () {
+                        this.props.handleMenotshipUpdate(this.state.has_mentorship)
+                    })
+
+            }
         });
 
         // setTimeout(function () {
@@ -225,12 +235,19 @@ class MainContent extends React.Component {
         this.getStData(UserSession.getToken())
         this.setState({ issue_date: this.getCurrentDate() });
 
+
+
+        // if (this.state.stData.number_of_mentorships > 0) {
+        //     this.setState({ has_mentorship: true }, console.log('peraeeee',this.state.has_mentorship));
+        //     this.props.handleMenotshipUpdate(this.state.has_mentorship)
+        // }
+
     }
 
     render() {
         if (this.state.fetching_st_data) {
             return (
-                <Loader fetching_state={this.state.fetching_state}/>
+                <Loader fetching_state={this.state.fetching_state} />
             );
         }
 
@@ -238,6 +255,8 @@ class MainContent extends React.Component {
             <>
                 <ContentTabs
                     cert_level={this.state.cert_level}
+                    cert_type={this.state.cert_type}
+                    has_mentorship={this.state.has_mentorship}
                     issue_date={this.state.issue_date}
                     number_of_projects={this.state.stData.number_of_projects}
                     number_of_missions={this.state.stData.number_of_missions}

@@ -60,6 +60,8 @@ class ContentTabs extends React.Component {
                             <TabPanel>
                                 <Stats
                                     cert_level={this.props.cert_level}
+                                    cert_type={this.props.cert_type}
+                                    has_mentorship={this.props.has_mentorship}
                                     issue_date={this.props.issue_date}
                                     number_of_projects={this.props.number_of_projects}
                                     number_of_missions={this.props.number_of_missions}

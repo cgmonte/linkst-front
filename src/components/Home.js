@@ -17,9 +17,11 @@ class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            tabIndex: 0
+            tabIndex: 0,
+            has_mentorship: false
         }
         this.handleTabIndexUpdate = this.handleTabIndexUpdate.bind(this)
+        this.handleMenotshipUpdate = this.handleMenotshipUpdate.bind(this)
     }
 
     handleTabIndexUpdate(tabIndex) {
@@ -27,6 +29,15 @@ class Home extends React.Component {
             // function () {
             //     // console.log('aaaaaeeee', this.state.tabIndex)
             //     // this.props.handleTabIndexUpdate(this.state.tabIndex)
+            // }
+        );
+    }
+
+    handleMenotshipUpdate(has_mentorship) {
+
+        this.setState({ has_mentorship: has_mentorship },
+            // function () {
+            //     this.props.handleTabIndexUpdate(this.state.tabIndex)
             // }
         );
     }
@@ -49,9 +60,15 @@ class Home extends React.Component {
                         paddingTop="10vh"
                     >
                         {/* <SideBar tabIdenx={this.props.tabIdenx}/> <MainContent/> */}
-                        <SideBar tabIndex={this.state.tabIndex} />
+                        <SideBar 
+                        tabIndex={this.state.tabIndex} 
+                        has_mentorship={this.state.has_mentorship} 
+                        />
                         {/* <Text>{this.state.tabIndex}</Text> */}
-                        <MainContent handleTabIndexUpdate={this.handleTabIndexUpdate} />
+                        <MainContent 
+                        handleTabIndexUpdate={this.handleTabIndexUpdate} 
+                        handleMenotshipUpdate={this.handleMenotshipUpdate} 
+                        />
                     </Flex>
                 )
                 }

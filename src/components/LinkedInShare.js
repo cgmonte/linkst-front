@@ -32,7 +32,6 @@ class LinkedInShare extends React.Component {
         let profile_data = await linkedInProfileData({ access_token: access_token })
 
         this.setState({ profile_data: profile_data }, async function () {
-            console.log('state was set',this.state.profile_data.id)
             await ShareText({ access_token: access_token, author: this.state.profile_data.id })
             // this.shareOnLinkedIn({ access_token: UserSession.getAccessToken(), author: this.state.profile_data.id })
         })
@@ -64,7 +63,6 @@ class LinkedInShare extends React.Component {
 
 
                     if (response !== undefined) {
-                        console.log('essa é a resposta completa:', response, 'Essa é a resposta data.access_token:', response.data.access_token)
                         UserSession.setAccessToken(response.data.access_token, response.data.expires_in);
 
                     }

@@ -1,33 +1,6 @@
 let windowObjectReference = null;
 let previousUrl = null;
 
-// const receiveMessage = event => {
-//     // Do we trust the sender of this message? (might be
-//     // different from what we originally opened, for example).
-//     // if (event.origin !== BASE_URL) {
-//     //   return;
-//     // }
-//     const params = window.location.search;
-
-//     if (window.opener) {
-//         // send them to the opening window
-//         console.log('BORAAAAAAAA', data)
-//         window.opener.postMessage(event);
-//         // close the popup
-//         window.close();
-//     }
-
-//     const { data } = event;
-//     console.log('BORAAAAAAAA', data)
-//     // if we trust the sender and the source is our popup
-//     // if (data.source === 'lma-login-redirect') {
-//     //   // get the URL params and redirect to our server to use Passport to auth/login
-//     //   const { payload } = data;
-//     //   const redirectUrl = `/auth/google/login${payload}`;
-//     //   window.location.pathname = redirectUrl;
-//     // }
-// };
-
 export const openSignInWindow = (url, win, name, h, w) => {
     // remove any existing event listeners
     // window.removeEventListener('message', receiveMessage);

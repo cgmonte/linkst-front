@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 
 import {
     Flex,
-    Box,
     Button,
     Image,
 } from '@chakra-ui/react';
@@ -41,18 +40,18 @@ class SideBar extends React.Component {
 
                 {this.props.tabIndex === 4 && <SideBarLoader />}
 
-                {this.props.tabIndex === 0 && <SideBarCertificate />}
+                {this.props.tabIndex === 0 && <SideBarCertificate has_mentorship={this.props.has_mentorship} />}
 
                 {this.props.tabIndex === 1 && <SideBarLinkedIn />}
 
                 {this.props.tabIndex === 2 && <SideBarStats />}
 
-                <Box flexGrow="1" />
+                {/* <Box flexGrow="1" /> */}
                 <Button
-                    colorScheme="teal"
-                    variant="outline"
+                    // colorScheme="teal"
+                    // variant="outline"
                     size="md"
-                    width="13em"
+                    width="12em"
                     mt={4}
                     onClick={this.handleClickSair}
                     >

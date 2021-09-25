@@ -23,20 +23,22 @@ class Stats extends React.Component {
                     alignItems="start"
                     justifyContent="start !important"
                 >
-                    <Flex  width="100%" height="100%" paddingX="0.7em" paddingY="2em" justifyContent="center">
+                    <Flex width="100%" height="100%" paddingX="0.7em" paddingY="2em" justifyContent="center">
                         <Flex width="95%" flexDirection="column" paddingX="2em" paddingY="2em" backgroundColor="whitesmoke" alignItems="center" border="1px" borderColor="lightgrey" borderRadius="md" boxShadow="sm">
-                        <StatsTable
-                        cert_level={this.props.cert_level}
-                        issue_date={this.props.issue_date}
-                        number_of_projects={this.props.number_of_projects}
-                        number_of_missions={this.props.number_of_missions}
-                        number_of_divergence_points={this.props.number_of_divergence_points}
-                        number_of_convergence_points={this.props.number_of_convergence_points}
-                        number_of_conversation_points={this.props.number_of_conversation_points}
-                        number_of_replies_from_user={this.props.number_of_replies_from_user}
-                        number_of_comment_replies_from_user={this.props.number_of_comment_replies_from_user}
-                        number_of_menthorships={this.props.number_of_menthorships}
-                    />
+                            <StatsTable
+                                cert_level={this.props.cert_level}
+                                cert_type={this.props.cert_type}
+                                has_mentorship={this.props.has_mentorship}
+                                issue_date={this.props.issue_date}
+                                number_of_projects={this.props.number_of_projects}
+                                number_of_missions={this.props.number_of_missions}
+                                number_of_divergence_points={this.props.number_of_divergence_points}
+                                number_of_convergence_points={this.props.number_of_convergence_points}
+                                number_of_conversation_points={this.props.number_of_conversation_points}
+                                number_of_replies_from_user={this.props.number_of_replies_from_user}
+                                number_of_comment_replies_from_user={this.props.number_of_comment_replies_from_user}
+                                number_of_menthorships={this.props.number_of_menthorships}
+                            />
                         </Flex>
                     </Flex>
 
