@@ -45,7 +45,7 @@
             "number_of_conversation_points": 0,
             "number_of_replies_from_user": 3,
             "number_of_comment_replies_from_user": 9,
-            "number_of_menthorship": 1
+            "number_of_mentorships": 1
         },
         {
             "level": 2,
@@ -57,7 +57,7 @@
             "number_of_conversation_points": 2,
             "number_of_replies_from_user": 10,
             "number_of_comment_replies_from_user": 15,
-            "number_of_menthorship": 2
+            "number_of_mentorships": 2
         },
         {
             "level": 3,
@@ -69,7 +69,7 @@
             "number_of_conversation_points": 4,
             "number_of_replies_from_user": 18,
             "number_of_comment_replies_from_user": 25,
-            "number_of_menthorship": 3
+            "number_of_mentorships": 3
         }
     ]
 }

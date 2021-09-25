@@ -28,7 +28,6 @@ class StatsTable extends React.Component {
     }
 
     componentDidMount() {
-
         this.setState({
             next_level_data: reference_scores.participante.filter(obj => {
                 if (this.props.cert_level < 3) {
@@ -56,44 +55,44 @@ class StatsTable extends React.Component {
                                 <Tr>
                                     <Th>Atividade</Th>
                                     <Th textAlign="right">Sua quantidade atual</Th>
-                                    <Th textAlign="right">Próximo nível: {this.state.next_level_data[0].level}</Th>
+                                    {/* <Th textAlign="right">Próximo nível: {this.state.next_level_data[0].level}</Th> */}
                                 </Tr>
                             </Thead>
                             <Tbody>
                                 <Tr>
                                     <Td>Projetos</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_projects}</Td>
-                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_projects}</Td>
+                                    {/* <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_projects}</Td> */}
                                 </Tr>
                                 <Tr>
                                     <Td>Jornadas</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_missions}</Td>
-                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_missions}</Td>
+                                    {/* <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_missions}</Td> */}
                                 </Tr>
                                 <Tr>
                                     <Td>Pontos de divergência</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_divergence_points}</Td>
-                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_divergence_points}</Td>
+                                    {/* <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_divergence_points}</Td> */}
                                 </Tr>
                                 <Tr>
                                     <Td>Pontos de convergência</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_convergence_points}</Td>
-                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_convergence_points}</Td>
+                                    {/* <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_convergence_points}</Td> */}
                                 </Tr>
                                 <Tr>
                                     <Td>Pontos de conversação</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_conversation_points}</Td>
-                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_conversation_points}</Td>
+                                    {/* <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_conversation_points}</Td> */}
                                 </Tr>
                                 <Tr>
                                     <Td>Respostas para perguntas estratégicas</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_replies_from_user}</Td>
-                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_replies_from_user}</Td>
+                                    {/* <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_replies_from_user}</Td> */}
                                 </Tr>
                                 <Tr>
                                     <Td>Comentários em respostas</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_comment_replies_from_user}</Td>
-                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_comment_replies_from_user}</Td>
+                                    {/* <Td isNumeric fontWeight="bold">{this.state.next_level_data[0].number_of_comment_replies_from_user}</Td> */}
                                 </Tr>
                                 {/* <Tr>
                                     <Td>Mentorias</Td>

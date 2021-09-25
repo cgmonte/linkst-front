@@ -50,7 +50,7 @@ class SideBar extends React.Component {
                 <Button
                     // colorScheme="teal"
                     // variant="outline"
-                    size="md"
+                    size="sm"
                     width="12em"
                     mt={4}
                     onClick={this.handleClickSair}

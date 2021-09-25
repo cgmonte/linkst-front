@@ -27,7 +27,7 @@ class MainContent extends React.Component {
             stData: {},
             has_mentorship: false,
             cert_level: 0,
-            cert_type: '',
+            cert_type: 'mentor',
             issue_date: {},
             tabIndex: 0
         };
@@ -184,19 +184,24 @@ class MainContent extends React.Component {
                 // 'number_of_replies_from_user': strateegiaData[0].userStReplies.length,
                 // 'number_of_comment_replies_from_user': strateegiaData[0].userCommentReplies.length,
                 // 'number_of_mentorships': strateegiaData[0].userMentorhips.length
-                'number_of_projects': 3,
-                'number_of_missions': 5,
-                'number_of_divergence_points': 29,
-                'number_of_convergence_points': 1,
-                'number_of_conversation_points': 8,
-                'number_of_replies_from_user': 14,
-                'number_of_comment_replies_from_user': 89,
-                'number_of_mentorships': 1
+                'number_of_projects': 8,
+                'number_of_missions': 8,
+                'number_of_divergence_points': 20,
+                'number_of_convergence_points': 2,
+                'number_of_conversation_points': 4,
+                'number_of_replies_from_user': 18,
+                'number_of_comment_replies_from_user': 25,
+                'number_of_mentorships': 3
             }
         }, function () {
             this.setState({ fetching_st_data: false });
-
-            this.setState({ cert_level: this.rankUserStData(this.state.stData) });
+            this.setState({ cert_level: this.rankUserStData({stData: this.state.stData}, {cert_type: this.state.cert_type}) },
+                function () {
+                    console.log('Nível de certificação:', this.state.cert_level)
+                    console.log('Tipo de certificação:', this.state.cert_type)
+                }
+            );
+            
 
             if (this.state.stData.number_of_mentorships > 0) {
                 this.setState({ has_mentorship: true },
