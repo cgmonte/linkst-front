@@ -17,6 +17,11 @@ class Certificate extends React.Component {
         this.full_name = UserSession.getName()
     }
 
+    // componentDidMount (){
+    //     console.log(this.props.cert_type)
+    // }
+
+
     render() {
         return (
 
@@ -26,14 +31,13 @@ class Certificate extends React.Component {
                     width="62vw"
                 >
                     <Box
-                        backgroundImage="certs/participante_1.png"
+                        backgroundImage={"certs/" + this.props.cert_type + "_" + this.props.cert_level + ".png"}
                         backgroundSize="cover"
                         position="relative"
                         id="cert"
                         boxShadow="lg"
                         width="62vw"
                     >
-
                         <Box
                             position="absolute"
                             right="20vw"
@@ -62,17 +66,17 @@ class Certificate extends React.Component {
                                 paddingTop="0.4em"
                                 color="white"
                                 textAlign="right">
-                                atingiu o nível <Text as="span" color="#F5B333"> {this.props.cert_level} </Text> de experiência em Strateegia
+                                atingiu o nível <Text as="span" color="black"> {this.props.cert_level} </Text> de experiência em Strateegia
                             </Text>
                         </Box>
 
                         <Box
                             color="white"
                             position="absolute"
-                            bottom="0px"
+                            top="0px"
                             right="0px"
                             fontSize="0.9vw"
-                            padding="4.5vw">
+                            padding="8.5vw">
                             <Text>
                                 Data de emissão:
                             </Text>

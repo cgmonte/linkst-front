@@ -29,6 +29,7 @@ import { AiFillFileImage } from 'react-icons/ai';
 class SideBarCertificate extends React.Component {
     // constructor(props) {
     //     super(props)
+        
     // }
 
     saveCertPng() {
@@ -75,8 +76,14 @@ class SideBarCertificate extends React.Component {
 
                 {this.props.has_mentorship === true && <>
                     <FormControl display="flex" alignItems="center" marginBottom="1em">
-                        <Switch id="email-alerts" colorScheme="teal"/>
-                        <FormLabel htmlFor="email-alerts" mb="0" marginLeft="0.5em" fontSize="sm">
+                        <Switch
+                            id="modo-habilitador"
+                            colorScheme="teal"
+                            // onChange={console.log('eeeeeee isso ai')}
+                            onChange={(e) => this.props.handleCertTypeUpdate()}
+
+                        />
+                        <FormLabel htmlFor="modo-habilitador" mb="0" marginLeft="0.5em" fontSize="sm">
                             Certificado Habilitador
                         </FormLabel>
                     </FormControl>

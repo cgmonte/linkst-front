@@ -40,7 +40,10 @@ class SideBar extends React.Component {
 
                 {this.props.tabIndex === 4 && <SideBarLoader />}
 
-                {this.props.tabIndex === 0 && <SideBarCertificate has_mentorship={this.props.has_mentorship} />}
+                {this.props.tabIndex === 0 && <SideBarCertificate
+                    has_mentorship={this.props.has_mentorship}
+                    handleCertTypeUpdate={this.props.handleCertTypeUpdate}
+                />}
 
                 {this.props.tabIndex === 1 && <SideBarLinkedIn />}
 
@@ -54,7 +57,7 @@ class SideBar extends React.Component {
                     width="12em"
                     mt={4}
                     onClick={this.handleClickSair}
-                    >
+                >
                     Sair
                 </Button>
             </Flex>

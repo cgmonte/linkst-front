@@ -18,10 +18,12 @@ class Home extends React.Component {
         super(props)
         this.state = {
             tabIndex: 0,
-            has_mentorship: false
+            has_mentorship: false,
+            cert_type: 'participante'
         }
         this.handleTabIndexUpdate = this.handleTabIndexUpdate.bind(this)
-        this.handleMenotshipUpdate = this.handleMenotshipUpdate.bind(this)
+        this.handleMentorshipUpdate = this.handleMentorshipUpdate.bind(this)
+        this.handleCertTypeUpdate = this.handleCertTypeUpdate.bind(this)
     }
 
     handleTabIndexUpdate(tabIndex) {
@@ -33,13 +35,24 @@ class Home extends React.Component {
         );
     }
 
-    handleMenotshipUpdate(has_mentorship) {
+    handleMentorshipUpdate(has_mentorship) {
 
         this.setState({ has_mentorship: has_mentorship },
             // function () {
             //     this.props.handleTabIndexUpdate(this.state.tabIndex)
             // }
         );
+    }
+
+    handleCertTypeUpdate() {
+        if (this.state.cert_type === 'participante') {
+            this.setState({ cert_type: 'mentor' }, function () {
+            });
+        }
+        else {
+            this.setState({ cert_type: 'participante' }, function () {
+            });
+        }
     }
 
     render() {
@@ -60,14 +73,17 @@ class Home extends React.Component {
                         paddingTop="10vh"
                     >
                         {/* <SideBar tabIdenx={this.props.tabIdenx}/> <MainContent/> */}
-                        <SideBar 
-                        tabIndex={this.state.tabIndex} 
-                        has_mentorship={this.state.has_mentorship} 
+                        <SideBar
+                            tabIndex={this.state.tabIndex}
+                            has_mentorship={this.state.has_mentorship}
+                            handleCertTypeUpdate={this.handleCertTypeUpdate}
                         />
                         {/* <Text>{this.state.tabIndex}</Text> */}
-                        <MainContent 
-                        handleTabIndexUpdate={this.handleTabIndexUpdate} 
-                        handleMenotshipUpdate={this.handleMenotshipUpdate} 
+                        <MainContent
+                            cert_type={this.state.cert_type}
+                            has_mentorship={this.state.has_mentorship}
+                            handleTabIndexUpdate={this.handleTabIndexUpdate}
+                            handleMentorshipUpdate={this.handleMentorshipUpdate}
                         />
                     </Flex>
                 )

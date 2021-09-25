@@ -25,9 +25,7 @@ class MainContent extends React.Component {
             fetching_st_data: false,
             fetching_state: [0, ''],
             stData: {},
-            has_mentorship: false,
             cert_level: 0,
-            cert_type: 'mentor',
             issue_date: {},
             tabIndex: 0
         };
@@ -35,6 +33,7 @@ class MainContent extends React.Component {
         this.rankUserStData = rankUserStData.bind(this);
         this.handleTabIndexUpdate = this.handleTabIndexUpdate.bind(this)
         this.getStraeegiaData = this.getStraeegiaData.bind(this)
+
     }
 
     handleTabIndexUpdate(tabIndex) {
@@ -191,27 +190,18 @@ class MainContent extends React.Component {
                 'number_of_conversation_points': 4,
                 'number_of_replies_from_user': 18,
                 'number_of_comment_replies_from_user': 25,
-                'number_of_mentorships': 3
+                'number_of_mentorships': 2
             }
         }, function () {
             this.setState({ fetching_st_data: false });
-            this.setState({ cert_level: this.rankUserStData({stData: this.state.stData}, {cert_type: this.state.cert_type}) },
+            this.setState({ cert_level: this.rankUserStData({ stData: this.state.stData }, { cert_type: this.props.cert_type }) },
                 function () {
-                    console.log('Nível de certificação:', this.state.cert_level)
-                    console.log('Tipo de certificação:', this.state.cert_type)
+                    if (this.state.stData.number_of_mentorships > 0) {
+                        this.props.handleMentorshipUpdate(true)
+                    }
                 }
             );
-            
-
-            if (this.state.stData.number_of_mentorships > 0) {
-                this.setState({ has_mentorship: true },
-                    function () {
-                        this.props.handleMenotshipUpdate(this.state.has_mentorship)
-                    })
-
-            }
         });
-
         // setTimeout(function () {
         //     this.setState({ fetching_st_data: false });
         // }.bind(this), 3000);
@@ -239,14 +229,6 @@ class MainContent extends React.Component {
         );
         this.getStData(UserSession.getToken())
         this.setState({ issue_date: this.getCurrentDate() });
-
-
-
-        // if (this.state.stData.number_of_mentorships > 0) {
-        //     this.setState({ has_mentorship: true }, console.log('peraeeee',this.state.has_mentorship));
-        //     this.props.handleMenotshipUpdate(this.state.has_mentorship)
-        // }
-
     }
 
     render() {
@@ -260,8 +242,8 @@ class MainContent extends React.Component {
             <>
                 <ContentTabs
                     cert_level={this.state.cert_level}
-                    cert_type={this.state.cert_type}
-                    has_mentorship={this.state.has_mentorship}
+                    cert_type={this.props.cert_type}
+                    has_mentorship={this.props.has_mentorship}
                     issue_date={this.state.issue_date}
                     number_of_projects={this.state.stData.number_of_projects}
                     number_of_missions={this.state.stData.number_of_missions}
@@ -272,6 +254,7 @@ class MainContent extends React.Component {
                     number_of_comment_replies_from_user={this.state.stData.number_of_comment_replies_from_user}
                     number_of_mentorships={this.state.stData.number_of_mentorships}
                     handleTabIndexUpdate={this.handleTabIndexUpdate}
+                // handleCertTypeUpdate={this.handleCertTypeUpdate}
                 />
             </>
         );

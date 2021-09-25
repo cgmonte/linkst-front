@@ -39,7 +39,7 @@ class ContentTabs extends React.Component {
         return (
             <>
                 <Flex width="65vw" height="39.6vw">
-                    <Tabs index={this.state.tabIndex} onChange={this.handleTabsChange} size="md" isFitted width="65vw" colorScheme="teal">
+                    <Tabs index={this.state.tabIndex} onChange={this.handleTabsChange} size="sm" isFitted width="65vw" colorScheme="teal">
                         <TabList>
                             <Tab>1. Certificado</Tab>
                             <Tab>2. Compartilhar no LinkedIn</Tab>
@@ -51,6 +51,7 @@ class ContentTabs extends React.Component {
                                     <Certificate
                                         cert_level={this.props.cert_level}
                                         issue_date={this.props.issue_date}
+                                        cert_type={this.props.cert_type}
                                     />
                                 </Box>
                             </TabPanel>
