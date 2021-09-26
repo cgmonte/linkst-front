@@ -19,17 +19,20 @@ import {
 
 } from '@chakra-ui/react';
 
-import { TiSocialLinkedin } from 'react-icons/ti';
+// import { TiSocialLinkedin } from 'react-icons/ti';
 
 import { IoMdImage } from 'react-icons/io';
 
 import { AiFillFileImage } from 'react-icons/ai';
 
+import { InAddModal } from "./InAddModal";
+
+import { InShareModal } from "./InShareModal";
 
 class SideBarCertificate extends React.Component {
     // constructor(props) {
     //     super(props)
-        
+
     // }
 
     saveCertPng() {
@@ -97,30 +100,10 @@ class SideBarCertificate extends React.Component {
                     </Heading>
                     {/* <Divider /> */}
 
-                    <Button
-                        colorScheme="teal"
-                        size="sm"
-                        mt={4}
-                        variant="ghost"
-                        onClick={this.saveCertPng}
-                        width="100%" justifyContent="flex-start"
-                        leftIcon={<TiSocialLinkedin />}
-                    >
-                        Adicionar ao perfil
-                    </Button>
+                    <InAddModal />
                     {/* <Divider /> */}
-                    <Button
-                        alignContent="start"
-                        colorScheme="teal"
-                        size="sm"
-                        mt={4}
-                        variant="ghost"
-                        onClick={this.saveCertPdf}
-                        width="100%" justifyContent="flex-start"
-                        leftIcon={<TiSocialLinkedin />}
-                    >
-                        Publicar no feed
-                    </Button>
+                    <InShareModal />
+                    
                     <Divider />
                     <Heading as="h6" size="xs" paddingY="1em">
                         Baixar certificado
