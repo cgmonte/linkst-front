@@ -19,11 +19,25 @@ class Home extends React.Component {
         this.state = {
             tabIndex: 0,
             has_mentorship: false,
-            cert_type: 'participante'
+            cert_type: 'participante',
+            cert_level: {},
+            issue_date: {}
         }
         this.handleTabIndexUpdate = this.handleTabIndexUpdate.bind(this)
         this.handleMentorshipUpdate = this.handleMentorshipUpdate.bind(this)
         this.handleCertTypeUpdate = this.handleCertTypeUpdate.bind(this)
+        this.handleCertLevelUpdate = this.handleCertLevelUpdate.bind(this)
+        this.getCurrentDate = this.getCurrentDate.bind(this)
+    }
+
+    getCurrentDate() {
+        const current_date = new Date().toISOString()
+        return {
+            date: current_date.split("T")[0],
+            year: current_date.substring(0, 4),
+            month: current_date.substring(6, 7),
+            day: current_date.substring(8, 10)
+        }
     }
 
     handleTabIndexUpdate(tabIndex) {
@@ -44,6 +58,15 @@ class Home extends React.Component {
         );
     }
 
+    handleCertLevelUpdate(cert_level) {
+
+        this.setState({ cert_level: cert_level },
+            // function () {
+            //     console.log('no home! hanglecertlevel', this.state.cert_level)
+            // }
+        );
+    }
+
     handleCertTypeUpdate() {
         if (this.state.cert_type === 'participante') {
             this.setState({ cert_type: 'mentor' }, function () {
@@ -53,6 +76,13 @@ class Home extends React.Component {
             this.setState({ cert_type: 'participante' }, function () {
             });
         }
+    }
+
+    componentDidMount() {
+        this.setState({ issue_date: this.getCurrentDate() },
+            function () {
+                // console.log('ssssuldasdasssssaula', this.state.issue_date)
+            });
     }
 
     render() {
@@ -77,6 +107,8 @@ class Home extends React.Component {
                             tabIndex={this.state.tabIndex}
                             cert_type={this.state.cert_type}
                             has_mentorship={this.state.has_mentorship}
+                            cert_level={this.state.cert_level}
+                            issue_date={this.state.issue_date}
                             handleCertTypeUpdate={this.handleCertTypeUpdate}
                         />
                         {/* <Text>{this.state.tabIndex}</Text> */}
@@ -85,6 +117,7 @@ class Home extends React.Component {
                             has_mentorship={this.state.has_mentorship}
                             handleTabIndexUpdate={this.handleTabIndexUpdate}
                             handleMentorshipUpdate={this.handleMentorshipUpdate}
+                            handleCertLevelUpdate={this.handleCertLevelUpdate}
                         />
                     </Flex>
                 )

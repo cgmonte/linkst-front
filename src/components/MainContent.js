@@ -184,21 +184,19 @@ class MainContent extends React.Component {
                 // 'number_of_replies_from_user': strateegiaData[0].userStReplies.length,
                 // 'number_of_comment_replies_from_user': strateegiaData[0].userCommentReplies.length,
                 // 'number_of_mentorships': strateegiaData[0].userMentorhips.length
-                'number_of_projects': 8,
-                'number_of_missions': 8,
-                'number_of_divergence_points': 20,
-                'number_of_convergence_points': 2,
-                'number_of_conversation_points': 4,
-                'number_of_replies_from_user': 18,
-                'number_of_comment_replies_from_user': 25,
-                'number_of_mentorships': 3
+                'number_of_projects': 4,
+                'number_of_missions': 4,
+                'number_of_divergence_points': 12,
+                'number_of_convergence_points': 1,
+                'number_of_conversation_points': 2,
+                'number_of_replies_from_user': 10,
+                'number_of_comment_replies_from_user': 15,
+                'number_of_mentorships': 1
             }
         }, function () {
             this.setState({ fetching_st_data: false });
 
             const cert_levels = this.rankUserStData({ stData: this.state.stData })
-
-            //console.log(cert_levels)
 
             this.setState({
                 cert_level_participante: cert_levels.achieved_levels_participante
@@ -210,7 +208,8 @@ class MainContent extends React.Component {
                     cert_level_mentor: cert_levels.achieved_levels_mentor
                 });
             }
-
+            
+            this.props.handleCertLevelUpdate({ 'cert_level_participante': cert_levels.achieved_levels_participante, 'cert_level_mentor': cert_levels.achieved_levels_mentor })
         });
         // setTimeout(function () {
         //     this.setState({ fetching_st_data: false });

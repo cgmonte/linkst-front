@@ -41,8 +41,11 @@ class SideBar extends React.Component {
                 {this.props.tabIndex === 4 && <SideBarLoader />}
 
                 {this.props.tabIndex === 0 && <SideBarCertificate
+                    cert_type={this.props.cert_type}
                     has_mentorship={this.props.has_mentorship}
                     handleCertTypeUpdate={this.props.handleCertTypeUpdate}
+                    cert_level={this.props.cert_level}
+                    issue_date={this.props.issue_date}
                 />}
 
                 {this.props.tabIndex === 1 && <SideBarLinkedIn />}
