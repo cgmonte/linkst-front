@@ -12,7 +12,7 @@ import {
 
 import Certificate from "./Certificate";
 
-import LinkedIn from "./LinkedIn";
+// import LinkedIn from "./LinkedIn";
 
 import Stats from "./Stats";
 
@@ -41,9 +41,8 @@ class ContentTabs extends React.Component {
                 <Flex width="65vw" height="39.6vw">
                     <Tabs index={this.state.tabIndex} onChange={this.handleTabsChange} size="sm" isFitted width="65vw" colorScheme="teal">
                         <TabList>
-                            <Tab>1. Certificado</Tab>
-                            <Tab>2. Compartilhar no LinkedIn</Tab>
-                            <Tab>3. Estatísticas</Tab>
+                            <Tab>Certificado</Tab>
+                            <Tab>Estatísticas</Tab>
                         </TabList>
                         <TabPanels>
                             <TabPanel>
@@ -55,9 +54,6 @@ class ContentTabs extends React.Component {
                                         cert_type={this.props.cert_type}
                                     />
                                 </Box>
-                            </TabPanel>
-                            <TabPanel>
-                                <LinkedIn issue_date={this.props.issue_date} />
                             </TabPanel>
                             <TabPanel>
                                 <Stats

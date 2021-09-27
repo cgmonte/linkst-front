@@ -94,21 +94,26 @@ class SideBarCertificate extends React.Component {
 
 
                 <VStack spacing={0} align="stretch">
-                    
+
                     <Divider />
 
                     <Heading as="h6" size="xs" paddingY="1em">
                         Compartilhar no LinkedIn
                     </Heading>
-                    
+
                     <InAddModal
                         cert_type={this.props.cert_type}
                         cert_level_participante={this.props.cert_level.cert_level_participante}
-                        cert_level_mentor={this.props.cert_level.cert_level_mentor} 
+                        cert_level_mentor={this.props.cert_level.cert_level_mentor}
                         issue_date={this.props.issue_date}
-                        />
+                    />
 
-                    <InShareModal />
+                    <InShareModal
+                        cert_type={this.props.cert_type}
+                        cert_level_participante={this.props.cert_level.cert_level_participante}
+                        cert_level_mentor={this.props.cert_level.cert_level_mentor}
+                        issue_date={this.props.issue_date}
+                    />
 
                     <Divider />
 
