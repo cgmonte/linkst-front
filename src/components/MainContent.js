@@ -177,25 +177,25 @@ class MainContent extends React.Component {
     };
 
     async getStData(access_token) {
-        // const strateegiaData = await this.getStraeegiaData({ token: access_token });
+        const strateegiaData = await this.getStraeegiaData({ token: access_token });
         this.setState({
             stData: {
-                // 'number_of_projects': strateegiaData[0].stProjects.length,
-                // 'number_of_missions': strateegiaData[0].stMissions.length,
-                // 'number_of_divergence_points': strateegiaData[0].stDivergencePoints.length,
-                // 'number_of_convergence_points': strateegiaData[0].stConvergencePoints.length,
-                // 'number_of_conversation_points': strateegiaData[0].stConversationPoints.length,
-                // 'number_of_replies_from_user': strateegiaData[0].userStReplies.length,
-                // 'number_of_comment_replies_from_user': strateegiaData[0].userCommentReplies.length,
-                // 'number_of_mentorships': strateegiaData[0].userMentorhips.length
-                'number_of_projects': 8,
-                'number_of_missions': 8,
-                'number_of_divergence_points': 20,
-                'number_of_convergence_points': 2,
-                'number_of_conversation_points': 4,
-                'number_of_replies_from_user': 18,
-                'number_of_comment_replies_from_user': 25,
-                'number_of_mentorships': 2
+                'number_of_projects': strateegiaData[0].stProjects.length,
+                'number_of_missions': strateegiaData[0].stMissions.length,
+                'number_of_divergence_points': strateegiaData[0].stDivergencePoints.length,
+                'number_of_convergence_points': strateegiaData[0].stConvergencePoints.length,
+                'number_of_conversation_points': strateegiaData[0].stConversationPoints.length,
+                'number_of_replies_from_user': strateegiaData[0].userStReplies.length,
+                'number_of_comment_replies_from_user': strateegiaData[0].userCommentReplies.length,
+                'number_of_mentorships': strateegiaData[0].userMentorhips.length
+                // 'number_of_projects': 8,
+                // 'number_of_missions': 8,
+                // 'number_of_divergence_points': 20,
+                // 'number_of_convergence_points': 2,
+                // 'number_of_conversation_points': 4,
+                // 'number_of_replies_from_user': 18,
+                // 'number_of_comment_replies_from_user': 25,
+                // 'number_of_mentorships': 2
             }
         }, function () {
             this.setState({ fetching_st_data: false },
