@@ -28,6 +28,8 @@ class SideBarStats extends React.Component {
 
                 {this.props.has_mentorship === true && <>
                     <FormControl display="flex" alignItems="center" marginBottom="1em">
+                    {this.props.cert_type === 'participante' ? 
+                        (
                         <Switch
                             id="modo-habilitador"
                             colorScheme="teal"
@@ -35,6 +37,17 @@ class SideBarStats extends React.Component {
                             onChange={(e) => this.props.handleCertTypeUpdate()}
 
                         />
+                        ):(
+                            <Switch
+                            defaultChecked
+                            id="modo-habilitador"
+                            colorScheme="teal"
+                            // onChange={console.log('eeeeeee isso ai')}
+                            onChange={(e) => this.props.handleCertTypeUpdate()}
+
+                        />  
+                        )
+                    }
                         <FormLabel htmlFor="modo-habilitador" mb="0" marginLeft="0.5em" fontSize="sm">
                             Certificado Habilitador
                         </FormLabel>

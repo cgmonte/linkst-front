@@ -54,7 +54,7 @@ class SideBar extends React.Component {
                 {(this.props.tabIndex === 1 && this.props.fetching_st_data === false) && <SideBarStats
                     cert_type={this.props.cert_type}
                     has_mentorship={this.props.has_mentorship}
-                    // handleCertTypeUpdate={this.props.handleCertTypeUpdate}
+                    handleCertTypeUpdate={this.props.handleCertTypeUpdate}
                     cert_level={this.props.cert_level}
                     issue_date={this.props.issue_date}
                 />}
@@ -64,7 +64,7 @@ class SideBar extends React.Component {
                     // colorScheme="teal"
                     // variant="outline"
                     size="sm"
-                    width="12em"
+                    width="16em"
                     mt={4}
                     onClick={this.handleClickSair}
                 >

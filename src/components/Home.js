@@ -118,9 +118,9 @@ class Home extends React.Component {
                     >
                         {/* <SideBar tabIdenx={this.props.tabIdenx}/> <MainContent/> */}
                         <SideBar
+                            cert_type={this.state.cert_type}
                             fetching_st_data={this.state.fetching_st_data}
                             tabIndex={this.state.tabIndex}
-                            cert_type={this.state.cert_type}
                             has_mentorship={this.state.has_mentorship}
                             cert_level={this.state.cert_level}
                             issue_date={this.state.issue_date}

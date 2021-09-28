@@ -38,13 +38,13 @@
         {
             "level": 1,
             "level_name": "Iniciante",
-            "number_of_projects": 1,
-            "number_of_missions": 1,
-            "number_of_divergence_points": 3,
+            "number_of_projects": 0,
+            "number_of_missions": 0,
+            "number_of_divergence_points": 0,
             "number_of_convergence_points": 0,
             "number_of_conversation_points": 0,
-            "number_of_replies_from_user": 3,
-            "number_of_comment_replies_from_user": 9,
+            "number_of_replies_from_user": 0,
+            "number_of_comment_replies_from_user": 0,
             "number_of_mentorships": 1
         },
         {
