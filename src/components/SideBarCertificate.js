@@ -115,7 +115,7 @@ class SideBarCertificate extends React.Component {
                         issue_date={this.props.issue_date}
                     /> */}
 
-                    <Divider />
+                    <Divider paddingTop="1em" />
 
                     <Heading as="h6" size="xs" paddingY="1em">
                         Baixar certificado

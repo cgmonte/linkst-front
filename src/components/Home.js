@@ -17,7 +17,8 @@ class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            tabIndex: 0,
+            tabIndex: 3,
+            fetching_st_data: true,
             has_mentorship: false,
             cert_type: 'participante',
             cert_level: {},
@@ -27,6 +28,7 @@ class Home extends React.Component {
         this.handleMentorshipUpdate = this.handleMentorshipUpdate.bind(this)
         this.handleCertTypeUpdate = this.handleCertTypeUpdate.bind(this)
         this.handleCertLevelUpdate = this.handleCertLevelUpdate.bind(this)
+        this.handleFetchingStDataUpdate = this.handleFetchingStDataUpdate.bind(this)
         this.getCurrentDate = this.getCurrentDate.bind(this)
     }
 
@@ -40,7 +42,18 @@ class Home extends React.Component {
         }
     }
 
+    handleFetchingStDataUpdate(fetching_st_data) {
+        // console.log(fetching_st_data)
+        this.setState({ fetching_st_data: fetching_st_data },
+            // function () {
+            //     // console.log('aaaaaeeee', this.state.tabIndex)
+            //     // this.props.handleTabIndexUpdate(this.state.tabIndex)
+            // }
+        );
+    }
+
     handleTabIndexUpdate(tabIndex) {
+        // console.log(tabIndex)
         this.setState({ tabIndex: tabIndex },
             // function () {
             //     // console.log('aaaaaeeee', this.state.tabIndex)
@@ -83,6 +96,7 @@ class Home extends React.Component {
             function () {
                 // console.log('ssssuldasdasssssaula', this.state.issue_date)
             });
+        this.setState({ tabIndex: 3 })
     }
 
     render() {
@@ -104,6 +118,7 @@ class Home extends React.Component {
                     >
                         {/* <SideBar tabIdenx={this.props.tabIdenx}/> <MainContent/> */}
                         <SideBar
+                            fetching_st_data={this.state.fetching_st_data}
                             tabIndex={this.state.tabIndex}
                             cert_type={this.state.cert_type}
                             has_mentorship={this.state.has_mentorship}
@@ -118,6 +133,7 @@ class Home extends React.Component {
                             handleTabIndexUpdate={this.handleTabIndexUpdate}
                             handleMentorshipUpdate={this.handleMentorshipUpdate}
                             handleCertLevelUpdate={this.handleCertLevelUpdate}
+                            handleFetchingStDataUpdate={this.handleFetchingStDataUpdate}
                         />
                     </Flex>
                 )

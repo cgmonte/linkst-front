@@ -39,9 +39,9 @@ class SideBar extends React.Component {
 
                 <Image src="st-icon.png" height="4em" />
 
-                {this.props.tabIndex === 4 && <SideBarLoader />}
+                {this.props.fetching_st_data === true && <SideBarLoader />}
 
-                {this.props.tabIndex === 0 && <SideBarCertificate
+                {(this.props.tabIndex === 0 && this.props.fetching_st_data === false) && <SideBarCertificate
                     cert_type={this.props.cert_type}
                     has_mentorship={this.props.has_mentorship}
                     handleCertTypeUpdate={this.props.handleCertTypeUpdate}
@@ -51,7 +51,7 @@ class SideBar extends React.Component {
 
                 {/* {this.props.tabIndex === 1 && <SideBarLinkedIn />} */}
 
-                {this.props.tabIndex === 1 && <SideBarStats
+                {(this.props.tabIndex === 1 && this.props.fetching_st_data === false) && <SideBarStats
                     cert_type={this.props.cert_type}
                     has_mentorship={this.props.has_mentorship}
                     // handleCertTypeUpdate={this.props.handleCertTypeUpdate}

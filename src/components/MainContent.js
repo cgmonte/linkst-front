@@ -200,7 +200,7 @@ class MainContent extends React.Component {
         }, function () {
             this.setState({ fetching_st_data: false },
                 function () {
-                    this.props.handleTabIndexUpdate(0)
+                    this.props.handleFetchingStDataUpdate(this.state.fetching_st_data)
                 });
 
             const cert_levels = this.rankUserStData({ stData: this.state.stData })
@@ -221,7 +221,7 @@ class MainContent extends React.Component {
         // setTimeout(function () {
         //     this.setState({ fetching_st_data: false },
         //         function () {
-        //             this.props.handleTabIndexUpdate(0)
+        //             this.props.handleFetchingStDataUpdate(this.state.fetching_st_data)
         //         }
         //     );
         // }.bind(this), 10000);
@@ -244,7 +244,7 @@ class MainContent extends React.Component {
     componentDidMount() {
         this.setState({ fetching_st_data: true },
             function () {
-                this.props.handleTabIndexUpdate(4)
+                this.props.handleFetchingStDataUpdate(this.state.fetching_st_data)
                 // console.log(this.state.fetching_st_data)
             }
         );
