@@ -4,7 +4,7 @@ import { rankUserStData } from './Calc'
 
 import ContentTabs from "./ContentTabs"
 
-import Loader from "./Loader";
+// import Loader from "./Loader";
 
 import UserSession from './UserSession';
 
@@ -194,7 +194,7 @@ class MainContent extends React.Component {
                 'number_of_mentorships': 2
             }
         }, function () {
-            this.setState({ fetching_st_data: false });
+            // this.setState({ fetching_st_data: false });
 
             const cert_levels = this.rankUserStData({ stData: this.state.stData })
 
@@ -208,12 +208,12 @@ class MainContent extends React.Component {
                     cert_level_mentor: cert_levels.achieved_levels_mentor
                 });
             }
-            
+
             this.props.handleCertLevelUpdate({ 'cert_level_participante': cert_levels.achieved_levels_participante, 'cert_level_mentor': cert_levels.achieved_levels_mentor })
         });
-        // setTimeout(function () {
-        //     this.setState({ fetching_st_data: false });
-        // }.bind(this), 3000);
+        setTimeout(function () {
+            this.setState({ fetching_st_data: false });
+        }.bind(this), 10000);
     }
 
     //updateTabIndex() {
@@ -241,15 +241,17 @@ class MainContent extends React.Component {
     }
 
     render() {
-        if (this.state.fetching_st_data) {
-            return (
-                <Loader fetching_state={this.state.fetching_state} />
-            );
-        }
+        // if (this.state.fetching_st_data) {
+        //     return (
+        //         <Loader fetching_state={this.state.fetching_state} />
+        //     );
+        // }
 
         return (
             <>
                 <ContentTabs
+                    fetching_st_data={this.state.fetching_st_data}
+                    fetching_state={this.state.fetching_state}
                     cert_level_participante={this.state.cert_level_participante}
                     cert_level_mentor={this.state.cert_level_mentor}
                     cert_type={this.props.cert_type}
@@ -263,7 +265,7 @@ class MainContent extends React.Component {
                     number_of_replies_from_user={this.state.stData.number_of_replies_from_user}
                     number_of_comment_replies_from_user={this.state.stData.number_of_comment_replies_from_user}
                     number_of_mentorships={this.state.stData.number_of_mentorships}
-                    handleTabIndexUpdate={this.handleTabIndexUpdate}
+                    handleTabIndexUpdate={this.handleTabIndexUpdate} // vai ser reaproveitado, precisa de ser refatorado para lidar com progress inicial
                 // handleCertTypeUpdate={this.handleCertTypeUpdate}
                 />
             </>

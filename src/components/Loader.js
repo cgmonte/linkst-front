@@ -26,7 +26,8 @@ class Loader extends React.Component {
                             marginY="2em"
                             padding="1em"
                         >
-                            <Progress size="sm" isAnimated hasStripe value={this.props.fetching_state[0]} colorScheme="teal"/>
+                            <Progress size="sm" isAnimated hasStripe isIndeterminate colorScheme="teal"/>
+                            {/* <Progress size="sm" isAnimated hasStripe value={this.props.fetching_state[0]} colorScheme="teal"/> */}
                         </Box>
                         <Flex flexDirection="column" alignItems="center">
                             <Text fontSize="md">
