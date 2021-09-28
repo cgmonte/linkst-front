@@ -40,8 +40,8 @@ class ContentTabs extends React.Component {
     render() {
         return (
             <>
-                <Flex width="65vw" height="39.6vw">
-                    <Tabs index={this.state.tabIndex} onChange={this.handleTabsChange} isFitted size="sm" width="65vw" colorScheme="teal">
+                <Flex height="fit-content">
+                    <Tabs index={this.state.tabIndex} onChange={this.handleTabsChange} isFitted size="sm" width="63.5vw" colorScheme="teal">
 
                         {this.props.fetching_st_data ?
                             (<>
@@ -65,9 +65,9 @@ class ContentTabs extends React.Component {
                                         <Tab>Certificado</Tab>
                                         <Tab>Estatísticas</Tab>
                                     </TabList>
-                                    <TabPanels>
+                                    <TabPanels paddingTop="1vh">
                                         <TabPanel>
-                                            <Box paddingTop="1vh">
+                                            <Box >
                                                 <Certificate
                                                     cert_level_participante={this.props.cert_level_participante}
                                                     cert_level_mentor={this.props.cert_level_mentor}

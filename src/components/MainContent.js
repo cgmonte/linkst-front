@@ -1,5 +1,9 @@
 import React from "react";
 
+import {
+    Box
+} from '@chakra-ui/react';
+
 import { rankUserStData } from './Calc'
 
 import ContentTabs from "./ContentTabs"
@@ -213,7 +217,7 @@ class MainContent extends React.Component {
         });
         setTimeout(function () {
             this.setState({ fetching_st_data: false });
-        }.bind(this), 10000);
+        }.bind(this), 1);
     }
 
     //updateTabIndex() {
@@ -248,7 +252,8 @@ class MainContent extends React.Component {
         // }
 
         return (
-            <>
+            
+            <Box height="fit-content">
                 <ContentTabs
                     fetching_st_data={this.state.fetching_st_data}
                     fetching_state={this.state.fetching_state}
@@ -268,7 +273,8 @@ class MainContent extends React.Component {
                     handleTabIndexUpdate={this.handleTabIndexUpdate} // vai ser reaproveitado, precisa de ser refatorado para lidar com progress inicial
                 // handleCertTypeUpdate={this.handleCertTypeUpdate}
                 />
-            </>
+                </Box>
+            
         );
     }
 }

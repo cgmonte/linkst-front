@@ -96,7 +96,7 @@ class Home extends React.Component {
                 ) : (
                     <Flex
                         width="full"
-                        height="100vh"
+                        height="fit-content"
                         alignContent="center"
                         // alignItems="top"
                         justifyContent="center"

@@ -6,6 +6,7 @@ import {
     Flex,
     Button,
     Image,
+    Box
 } from '@chakra-ui/react';
 
 import UserSession from './UserSession';
@@ -34,7 +35,7 @@ class SideBar extends React.Component {
 
     render() {
         return (
-            < Flex textAlign="left" flexDirection="column" alignItems="start" width="16em" height="calc(39.6vw)" paddingTop="0.5rem">
+            < Flex textAlign="left" flexDirection="column" alignItems="start" width="16em" height="auto" paddingBottom="0.9vh">
 
                 <Image src="st-icon.png" height="4em" />
 
@@ -52,7 +53,7 @@ class SideBar extends React.Component {
 
                 {this.props.tabIndex === 2 && <SideBarStats />}
 
-                {/* <Box flexGrow="1" /> */}
+                <Box flexGrow="1" />
                 <Button
                     // colorScheme="teal"
                     // variant="outline"

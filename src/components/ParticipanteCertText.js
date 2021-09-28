@@ -23,7 +23,7 @@ class ParticipanteCertText extends React.Component {
             <>
                 <Box
                     position="absolute"
-                    right="19vw"
+                    right="19.5vw"
                     top="16vw"
                     width="35vw"
                 >

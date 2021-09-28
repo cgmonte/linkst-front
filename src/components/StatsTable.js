@@ -62,14 +62,14 @@ class StatsTable extends React.Component {
                 <Box>
                     <Heading size="lg">{this.full_name}</Heading>
                     <Text textAlign="left" marginTop="1em" marginBottom="1em">Estatísticas do dia {this.props.issue_date.day}/{this.props.issue_date.month}/{this.props.issue_date.year}</Text>
-                    <Box overflow="auto" maxHeight="45vh">
+                    <Box overflow="auto" maxHeight="45vh" paddingTop="2vh">
                         <Table variant="striped" size="sm" width="52vw" colorScheme="teal">
                             <Thead>
                                 <Tr>
-                                    <Th>Atividade</Th>
-                                    <Th textAlign="right">Quantidade atual</Th>
-                                    <Th textAlign="right">% Completo</Th>
-                                    <Th textAlign="right">Próximo nível: {this.next_level_data[0].level}</Th>
+                                    <Th fontSize="x-small">Atividade</Th>
+                                    <Th fontSize="x-small" textAlign="right" >Quantidade atual</Th>
+                                    <Th fontSize="x-small" textAlign="right">% Completo</Th>
+                                    <Th fontSize="x-small" textAlign="right">Próximo nível: {this.next_level_data[0].level}</Th>
                                 </Tr>
                             </Thead>
                             <Tbody>
