@@ -28,7 +28,7 @@ class ContentTabs extends React.Component {
 
     handleTabsChange = (index) => {
         this.setState({ tabIndex: index }, function () {
-            // this.props.handleTabIndexUpdate(this.state.tabIndex)
+            this.props.handleTabIndexUpdate(this.state.tabIndex)
         });
     }
 

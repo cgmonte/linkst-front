@@ -13,7 +13,7 @@ import UserSession from './UserSession';
 
 import SideBarCertificate from './SideBarCertificate'
 
-import SideBarLinkedIn from './SideBarLinkedIn'
+// import SideBarLinkedIn from './SideBarLinkedIn'
 
 import SideBarStats from "./SideBarStats";
 
@@ -49,9 +49,15 @@ class SideBar extends React.Component {
                     issue_date={this.props.issue_date}
                 />}
 
-                {this.props.tabIndex === 1 && <SideBarLinkedIn />}
+                {/* {this.props.tabIndex === 1 && <SideBarLinkedIn />} */}
 
-                {this.props.tabIndex === 2 && <SideBarStats />}
+                {this.props.tabIndex === 1 && <SideBarStats
+                    cert_type={this.props.cert_type}
+                    has_mentorship={this.props.has_mentorship}
+                    // handleCertTypeUpdate={this.props.handleCertTypeUpdate}
+                    cert_level={this.props.cert_level}
+                    issue_date={this.props.issue_date}
+                />}
 
                 <Box flexGrow="1" />
                 <Button
