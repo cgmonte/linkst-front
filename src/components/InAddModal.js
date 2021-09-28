@@ -9,7 +9,8 @@ import {
     ModalBody,
     Button,
     useDisclosure,
-    Text
+    Text,
+    Image
 } from "@chakra-ui/react"
 
 import { TiSocialLinkedin } from 'react-icons/ti';
@@ -71,7 +72,7 @@ export function InAddModal(props) {
                 Adicionar ao perfil
             </Button>
 
-            <Modal isOpen={isOpen} onClose={onClose} >
+            <Modal isOpen={isOpen} onClose={onClose} size="xl">
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader></ModalHeader>
@@ -82,6 +83,7 @@ export function InAddModal(props) {
                             com uma página do LinkedIn para você adicionar
                             o certificado ao seu perfil profissional.
                         </Text>
+                        <Image marginY="2em" src="ilustra_add.jpeg"/>
                     </ModalBody>
 
                     <ModalFooter>

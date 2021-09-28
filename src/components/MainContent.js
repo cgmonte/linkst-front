@@ -177,28 +177,31 @@ class MainContent extends React.Component {
     };
 
     async getStData(access_token) {
-        // const strateegiaData = await this.getStraeegiaData({ token: access_token });
+        const strateegiaData = await this.getStraeegiaData({ token: access_token });
         this.setState({
             stData: {
-                // 'number_of_projects': strateegiaData[0].stProjects.length,
-                // 'number_of_missions': strateegiaData[0].stMissions.length,
-                // 'number_of_divergence_points': strateegiaData[0].stDivergencePoints.length,
-                // 'number_of_convergence_points': strateegiaData[0].stConvergencePoints.length,
-                // 'number_of_conversation_points': strateegiaData[0].stConversationPoints.length,
-                // 'number_of_replies_from_user': strateegiaData[0].userStReplies.length,
-                // 'number_of_comment_replies_from_user': strateegiaData[0].userCommentReplies.length,
-                // 'number_of_mentorships': strateegiaData[0].userMentorhips.length
-                'number_of_projects': 8,
-                'number_of_missions': 8,
-                'number_of_divergence_points': 20,
-                'number_of_convergence_points': 2,
-                'number_of_conversation_points': 4,
-                'number_of_replies_from_user': 18,
-                'number_of_comment_replies_from_user': 25,
-                'number_of_mentorships': 2
+                'number_of_projects': strateegiaData[0].stProjects.length,
+                'number_of_missions': strateegiaData[0].stMissions.length,
+                'number_of_divergence_points': strateegiaData[0].stDivergencePoints.length,
+                'number_of_convergence_points': strateegiaData[0].stConvergencePoints.length,
+                'number_of_conversation_points': strateegiaData[0].stConversationPoints.length,
+                'number_of_replies_from_user': strateegiaData[0].userStReplies.length,
+                'number_of_comment_replies_from_user': strateegiaData[0].userCommentReplies.length,
+                'number_of_mentorships': strateegiaData[0].userMentorhips.length
+                // 'number_of_projects': 8,
+                // 'number_of_missions': 8,
+                // 'number_of_divergence_points': 20,
+                // 'number_of_convergence_points': 2,
+                // 'number_of_conversation_points': 4,
+                // 'number_of_replies_from_user': 18,
+                // 'number_of_comment_replies_from_user': 25,
+                // 'number_of_mentorships': 2
             }
         }, function () {
-            // this.setState({ fetching_st_data: false });
+            this.setState({ fetching_st_data: false },
+                function () {
+                    this.props.handleTabIndexUpdate(0)
+                });
 
             const cert_levels = this.rankUserStData({ stData: this.state.stData })
 
@@ -215,9 +218,13 @@ class MainContent extends React.Component {
 
             this.props.handleCertLevelUpdate({ 'cert_level_participante': cert_levels.achieved_levels_participante, 'cert_level_mentor': cert_levels.achieved_levels_mentor })
         });
-        setTimeout(function () {
-            this.setState({ fetching_st_data: false });
-        }.bind(this), 1);
+        // setTimeout(function () {
+        //     this.setState({ fetching_st_data: false },
+        //         function () {
+        //             this.props.handleTabIndexUpdate(0)
+        //         }
+        //     );
+        // }.bind(this), 10000);
     }
 
     //updateTabIndex() {
@@ -236,9 +243,10 @@ class MainContent extends React.Component {
 
     componentDidMount() {
         this.setState({ fetching_st_data: true },
-            // function () {
-            //     console.log(this.state.fetching_st_data)
-            // }
+            function () {
+                this.props.handleTabIndexUpdate(4)
+                // console.log(this.state.fetching_st_data)
+            }
         );
         this.getStData(UserSession.getToken())
         this.setState({ issue_date: this.getCurrentDate() });
@@ -252,7 +260,7 @@ class MainContent extends React.Component {
         // }
 
         return (
-            
+
             <Box height="fit-content">
                 <ContentTabs
                     fetching_st_data={this.state.fetching_st_data}
@@ -270,11 +278,11 @@ class MainContent extends React.Component {
                     number_of_replies_from_user={this.state.stData.number_of_replies_from_user}
                     number_of_comment_replies_from_user={this.state.stData.number_of_comment_replies_from_user}
                     number_of_mentorships={this.state.stData.number_of_mentorships}
-                    handleTabIndexUpdate={this.handleTabIndexUpdate} // vai ser reaproveitado, precisa de ser refatorado para lidar com progress inicial
+                // handleTabIndexUpdate={this.handleTabIndexUpdate} // vai ser reaproveitado, precisa de ser refatorado para lidar com progress inicial
                 // handleCertTypeUpdate={this.handleCertTypeUpdate}
                 />
-                </Box>
-            
+            </Box>
+
         );
     }
 }

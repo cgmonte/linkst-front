@@ -74,13 +74,13 @@ class StatsTable extends React.Component {
                             </Thead>
                             <Tbody>
                                 <Tr>
-                                    <Td>Projetos</Td>
+                                    <Td>Jornadas</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_projects}</Td>
                                     <Td isNumeric>{Math.round((this.props.number_of_projects/this.next_level_data[0].number_of_projects)*100)}%</Td>
                                     <Td isNumeric fontWeight="bold">{this.next_level_data[0].number_of_projects}</Td>
                                 </Tr>
                                 <Tr>
-                                    <Td>Jornadas</Td>
+                                    <Td>Mapas</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_missions}</Td>
                                     <Td isNumeric>{Math.round((this.props.number_of_missions/this.next_level_data[0].number_of_missions)*100)}%</Td>
                                     <Td isNumeric fontWeight="bold">{this.next_level_data[0].number_of_missions}</Td>
@@ -110,7 +110,7 @@ class StatsTable extends React.Component {
                                     <Td isNumeric fontWeight="bold">{this.next_level_data[0].number_of_replies_from_user}</Td>
                                 </Tr>
                                 <Tr>
-                                    <Td>Comentários em respostas</Td>
+                                    <Td>Comentários</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_comment_replies_from_user}</Td>
                                     <Td isNumeric>{Math.round((this.props.number_of_comment_replies_from_user/this.next_level_data[0].number_of_comment_replies_from_user)*100)}%</Td>
                                     <Td isNumeric fontWeight="bold">{this.next_level_data[0].number_of_comment_replies_from_user}</Td>
@@ -118,7 +118,7 @@ class StatsTable extends React.Component {
 
                                 {this.props.cert_type === 'mentor' ? (
                                     <Tr>
-                                        <Td>Mentorias</Td>
+                                        <Td>Habilitações</Td>
                                         <Td isNumeric fontWeight="bold">{this.props.number_of_mentorships}</Td>
                                         <Td isNumeric>{Math.round((this.props.number_of_mentorships/this.getScoresFromCertTypes())*100)}%</Td>
                                         <Td isNumeric fontWeight="bold">{this.getScoresFromCertTypes()}</Td>
