@@ -184,14 +184,14 @@ class MainContent extends React.Component {
                 // 'number_of_replies_from_user': strateegiaData[0].userStReplies.length,
                 // 'number_of_comment_replies_from_user': strateegiaData[0].userCommentReplies.length,
                 // 'number_of_mentorships': strateegiaData[0].userMentorhips.length
-                'number_of_projects': 4,
-                'number_of_missions': 4,
-                'number_of_divergence_points': 12,
-                'number_of_convergence_points': 1,
-                'number_of_conversation_points': 2,
-                'number_of_replies_from_user': 10,
-                'number_of_comment_replies_from_user': 15,
-                'number_of_mentorships': 1
+                'number_of_projects': 8,
+                'number_of_missions': 8,
+                'number_of_divergence_points': 20,
+                'number_of_convergence_points': 2,
+                'number_of_conversation_points': 4,
+                'number_of_replies_from_user': 18,
+                'number_of_comment_replies_from_user': 25,
+                'number_of_mentorships': 2
             }
         }, function () {
             this.setState({ fetching_st_data: false });

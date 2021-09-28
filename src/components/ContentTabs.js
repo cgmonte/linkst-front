@@ -31,7 +31,7 @@ class ContentTabs extends React.Component {
     }
 
     componentDidMount() {
-        // console.log(this.props.number_of_menthorships)
+        // console.log(this.props.number_of_mentorships)
         this.handleTabsChange(0)
     }
 
@@ -39,7 +39,7 @@ class ContentTabs extends React.Component {
         return (
             <>
                 <Flex width="65vw" height="39.6vw">
-                    <Tabs index={this.state.tabIndex} onChange={this.handleTabsChange} size="sm" isFitted width="65vw" colorScheme="teal">
+                    <Tabs index={this.state.tabIndex} onChange={this.handleTabsChange} isFitted size="sm"  width="65vw" colorScheme="teal">
                         <TabList>
                             <Tab>Certificado</Tab>
                             <Tab>Estatísticas</Tab>
@@ -69,7 +69,7 @@ class ContentTabs extends React.Component {
                                     number_of_conversation_points={this.props.number_of_conversation_points}
                                     number_of_replies_from_user={this.props.number_of_replies_from_user}
                                     number_of_comment_replies_from_user={this.props.number_of_comment_replies_from_user}
-                                    number_of_menthorships={this.props.number_of_mentorships}
+                                    number_of_mentorships={this.props.number_of_mentorships}
                                 />
                             </TabPanel>
                         </TabPanels>

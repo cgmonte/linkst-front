@@ -38,7 +38,7 @@ class Stats extends React.Component {
                                 number_of_conversation_points={this.props.number_of_conversation_points}
                                 number_of_replies_from_user={this.props.number_of_replies_from_user}
                                 number_of_comment_replies_from_user={this.props.number_of_comment_replies_from_user}
-                                number_of_menthorships={this.props.number_of_menthorships}
+                                number_of_mentorships={this.props.number_of_mentorships}
                             />
                         </Flex>
                     </Flex>
