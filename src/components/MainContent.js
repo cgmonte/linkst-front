@@ -195,7 +195,7 @@ class MainContent extends React.Component {
                 // 'number_of_conversation_points': 4,
                 // 'number_of_replies_from_user': 18,
                 // 'number_of_comment_replies_from_user': 25,
-                // 'number_of_mentorships': 3
+                // 'number_of_mentorships': 4
             }
         }, function () {
             this.setState({ fetching_st_data: false },

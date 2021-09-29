@@ -7,6 +7,7 @@ import {
     Table,
     Thead,
     Tbody,
+    TableCaption,
     Tr,
     Th,
     Td,
@@ -21,15 +22,20 @@ class StatsTable extends React.Component {
 
     constructor(props) {
         super(props)
+        this.state = {
+            next_level_data: {}
+        };
         this.full_name = UserSession.getName()
-        this.next_level_data = [{}];
+        // this.next_level_data = [{}];
         this.getScoresFromCertTypes = this.getScoresFromCertTypes.bind(this)
     }
 
     getScoresFromCertTypes() {
 
+        let next_level_data = [{}]
+
         if (this.props.cert_type === 'participante') {
-            this.next_level_data = reference_scores.participante.filter(obj => {
+            next_level_data = reference_scores.participante.filter(obj => {
                 if (this.props.cert_level_participante < 3) {
                     return obj.level === this.props.cert_level_participante + 1
                 } else {
@@ -39,22 +45,24 @@ class StatsTable extends React.Component {
         }
 
         if (this.props.cert_type === 'mentor') {
-            this.next_level_data = reference_scores.mentor.filter(obj => {
+            next_level_data = reference_scores.mentor.filter(obj => {
                 if (this.props.cert_level_mentor < 3) {
                     return obj.level === this.props.cert_level_mentor + 1
                 } else {
                     return obj.level === this.props.cert_level_mentor
                 }
             })
-            return this.next_level_data[0].number_of_mentorships
         }
+        this.setState({ next_level_data: next_level_data[0] },
+            // function () {
+            //     console.log(this.state.next_level_data)
+            // }
+        )
     }
-
 
     componentDidMount() {
         this.getScoresFromCertTypes()
     }
-
 
     render() {
         return (
@@ -69,65 +77,66 @@ class StatsTable extends React.Component {
                                     <Th fontSize="x-small">Atividade</Th>
                                     <Th fontSize="x-small" textAlign="right" >Quantidade atual</Th>
                                     <Th fontSize="x-small" textAlign="right">% Completo</Th>
-                                    <Th fontSize="x-small" textAlign="right">Próximo nível: {this.next_level_data[0].level}</Th>
+                                    <Th fontSize="x-small" textAlign="right">Próximo nível: {this.state.next_level_data.level}</Th>
                                 </Tr>
                             </Thead>
                             <Tbody>
                                 <Tr>
                                     <Td>Jornadas</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_projects}</Td>
-                                    <Td isNumeric>{Math.round((this.props.number_of_projects/this.next_level_data[0].number_of_projects)*100)}%</Td>
-                                    <Td isNumeric fontWeight="bold">{this.next_level_data[0].number_of_projects}</Td>
+                                    <Td isNumeric>{Math.round((this.props.number_of_projects / this.state.next_level_data.number_of_projects) * 100)}%</Td>
+                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data.number_of_projects}</Td>
                                 </Tr>
                                 <Tr>
                                     <Td>Mapas</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_missions}</Td>
-                                    <Td isNumeric>{Math.round((this.props.number_of_missions/this.next_level_data[0].number_of_missions)*100)}%</Td>
-                                    <Td isNumeric fontWeight="bold">{this.next_level_data[0].number_of_missions}</Td>
+                                    <Td isNumeric>{Math.round((this.props.number_of_missions / this.state.next_level_data.number_of_missions) * 100)}%</Td>
+                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data.number_of_missions}</Td>
                                 </Tr>
                                 <Tr>
                                     <Td>Pontos de divergência</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_divergence_points}</Td>
-                                    <Td isNumeric>{Math.round((this.props.number_of_divergence_points/this.next_level_data[0].number_of_divergence_points)*100)}%</Td>
-                                    <Td isNumeric fontWeight="bold">{this.next_level_data[0].number_of_divergence_points}</Td>
+                                    <Td isNumeric>{Math.round((this.props.number_of_divergence_points / this.state.next_level_data.number_of_divergence_points) * 100)}%</Td>
+                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data.number_of_divergence_points}</Td>
                                 </Tr>
                                 <Tr>
                                     <Td>Pontos de convergência</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_convergence_points}</Td>
-                                    <Td isNumeric>{Math.round((this.props.number_of_convergence_points/this.next_level_data[0].number_of_convergence_points)*100)}%</Td>
-                                    <Td isNumeric fontWeight="bold">{this.next_level_data[0].number_of_convergence_points}</Td>
+                                    <Td isNumeric>{Math.round((this.props.number_of_convergence_points / this.state.next_level_data.number_of_convergence_points) * 100)}%</Td>
+                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data.number_of_convergence_points}</Td>
                                 </Tr>
                                 <Tr>
                                     <Td>Pontos de conversação</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_conversation_points}</Td>
-                                    <Td isNumeric>{Math.round((this.props.number_of_conversation_points/this.next_level_data[0].number_of_conversation_points)*100)}%</Td>
-                                    <Td isNumeric fontWeight="bold">{this.next_level_data[0].number_of_conversation_points}</Td>
+                                    <Td isNumeric>{Math.round((this.props.number_of_conversation_points / this.state.next_level_data.number_of_conversation_points) * 100)}%</Td>
+                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data.number_of_conversation_points}</Td>
                                 </Tr>
                                 <Tr>
                                     <Td>Respostas para questões essenciais</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_replies_from_user}</Td>
-                                    <Td isNumeric>{Math.round((this.props.number_of_replies_from_user/this.next_level_data[0].number_of_replies_from_user)*100)}%</Td>
-                                    <Td isNumeric fontWeight="bold">{this.next_level_data[0].number_of_replies_from_user}</Td>
+                                    <Td isNumeric>{Math.round((this.props.number_of_replies_from_user / this.state.next_level_data.number_of_replies_from_user) * 100)}%</Td>
+                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data.number_of_replies_from_user}</Td>
                                 </Tr>
                                 <Tr>
                                     <Td>Comentários</Td>
                                     <Td isNumeric fontWeight="bold">{this.props.number_of_comment_replies_from_user}</Td>
-                                    <Td isNumeric>{Math.round((this.props.number_of_comment_replies_from_user/this.next_level_data[0].number_of_comment_replies_from_user)*100)}%</Td>
-                                    <Td isNumeric fontWeight="bold">{this.next_level_data[0].number_of_comment_replies_from_user}</Td>
+                                    <Td isNumeric>{Math.round((this.props.number_of_comment_replies_from_user / this.state.next_level_data.number_of_comment_replies_from_user) * 100)}%</Td>
+                                    <Td isNumeric fontWeight="bold">{this.state.next_level_data.number_of_comment_replies_from_user}</Td>
                                 </Tr>
 
                                 {this.props.cert_type === 'mentor' ? (
                                     <Tr>
                                         <Td>Habilitações</Td>
                                         <Td isNumeric fontWeight="bold">{this.props.number_of_mentorships}</Td>
-                                        <Td isNumeric>{Math.round((this.props.number_of_mentorships/this.getScoresFromCertTypes())*100)}%</Td>
-                                        <Td isNumeric fontWeight="bold">{this.getScoresFromCertTypes()}</Td>
+                                        <Td isNumeric>{Math.round((this.props.number_of_mentorships / this.state.next_level_data.number_of_mentorships) * 100)}%</Td>
+                                        <Td isNumeric fontWeight="bold">{this.state.next_level_data.number_of_mentorships}</Td>
                                     </Tr>
                                 ) : (
                                     <Tr></Tr>
                                 )}
 
                             </Tbody>
+                            <TableCaption textAlign="right">Você precisa de pelo menos 100% completo em todos os critétios para atingir o próximo nível. Os níveis são: 1. Iniciante; 2. Intermediário; 3. Avançado.</TableCaption>
                         </Table>
                     </Box>
                 </Box>

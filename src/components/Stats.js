@@ -26,6 +26,7 @@ class Stats extends React.Component {
                     <Flex width="100%" height="100%" justifyContent="center">
                         <Flex width="100%" flexDirection="column" paddingX="2em" paddingTop="3em" backgroundColor="whitesmoke" alignItems="center" border="1px" borderColor="lightgrey" borderRadius="md" boxShadow="sm">
                             <StatsTable
+                                key={this.props.cert_type}
                                 cert_level_participante={this.props.cert_level_participante}
                                 cert_level_mentor={this.props.cert_level_mentor}
                                 cert_type={this.props.cert_type}
