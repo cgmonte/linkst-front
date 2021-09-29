@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import { Login } from './components/Login';
@@ -11,6 +11,9 @@ function App() {
     <ChakraProvider>
       <BrowserRouter>
         <Switch>
+          <Route exact path="/">
+            <Redirect to="/login" />
+          </Route>
           <Route path="/login">
             <Login />
           </Route>

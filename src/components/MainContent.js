@@ -177,61 +177,64 @@ class MainContent extends React.Component {
     };
 
     async getStData(access_token) {
-        const strateegiaData = await this.getStraeegiaData({ token: access_token });
-        this.setState({
-            stData: {
-                'number_of_projects': strateegiaData[0].stProjects.length,
-                'number_of_missions': strateegiaData[0].stMissions.length,
-                'number_of_divergence_points': strateegiaData[0].stDivergencePoints.length,
-                'number_of_convergence_points': strateegiaData[0].stConvergencePoints.length,
-                'number_of_conversation_points': strateegiaData[0].stConversationPoints.length,
-                'number_of_replies_from_user': strateegiaData[0].userStReplies.length,
-                'number_of_comment_replies_from_user': strateegiaData[0].userCommentReplies.length,
-                'number_of_mentorships': strateegiaData[0].userMentorhips.length
-                // 'number_of_projects': 8,
-                // 'number_of_missions': 8,
-                // 'number_of_divergence_points': 20,
-                // 'number_of_convergence_points': 2,
-                // 'number_of_conversation_points': 4,
-                // 'number_of_replies_from_user': 18,
-                // 'number_of_comment_replies_from_user': 25,
-                // 'number_of_mentorships': 4
-            }
-        }, function () {
-            this.setState({ fetching_st_data: false },
-                function () {
-                    this.props.handleFetchingStDataUpdate(this.state.fetching_st_data)
-                });
-
-            const cert_levels = this.rankUserStData({ stData: this.state.stData })
-
+        try {
+            const strateegiaData = await this.getStraeegiaData({ token: access_token });
             this.setState({
-                cert_level_participante: cert_levels.achieved_levels_participante
-            });
+                stData: {
+                    'number_of_projects': strateegiaData[0].stProjects.length,
+                    'number_of_missions': strateegiaData[0].stMissions.length,
+                    'number_of_divergence_points': strateegiaData[0].stDivergencePoints.length,
+                    'number_of_convergence_points': strateegiaData[0].stConvergencePoints.length,
+                    'number_of_conversation_points': strateegiaData[0].stConversationPoints.length,
+                    'number_of_replies_from_user': strateegiaData[0].userStReplies.length,
+                    'number_of_comment_replies_from_user': strateegiaData[0].userCommentReplies.length,
+                    'number_of_mentorships': strateegiaData[0].userMentorhips.length
+                    // 'number_of_projects': 8,
+                    // 'number_of_missions': 8,
+                    // 'number_of_divergence_points': 20,
+                    // 'number_of_convergence_points': 2,
+                    // 'number_of_conversation_points': 4,
+                    // 'number_of_replies_from_user': 18,
+                    // 'number_of_comment_replies_from_user': 25,
+                    // 'number_of_mentorships': 4
+                }
+            }, function () {
+                this.setState({ fetching_st_data: false },
+                    function () {
+                        this.props.handleFetchingStDataUpdate(this.state.fetching_st_data)
+                    });
 
-            if (this.state.stData.number_of_mentorships > 0) {
-                this.props.handleMentorshipUpdate(true)
+                const cert_levels = this.rankUserStData({ stData: this.state.stData })
+
                 this.setState({
-                    cert_level_mentor: cert_levels.achieved_levels_mentor
+                    cert_level_participante: cert_levels.achieved_levels_participante
                 });
-            } else {
-                this.props.handleMentorshipUpdate(false)
-            }
 
-            this.props.handleCertLevelUpdate({ 'cert_level_participante': cert_levels.achieved_levels_participante, 'cert_level_mentor': cert_levels.achieved_levels_mentor })
-        });
-        // setTimeout(function () {
-        //     this.setState({ fetching_st_data: false },
-        //         function () {
-        //             this.props.handleFetchingStDataUpdate(this.state.fetching_st_data)
-        //         }
-        //     );
-        // }.bind(this), 10000);
+                if (this.state.stData.number_of_mentorships > 0) {
+                    this.props.handleMentorshipUpdate(true)
+                    this.setState({
+                        cert_level_mentor: cert_levels.achieved_levels_mentor
+                    });
+                } else {
+                    this.props.handleMentorshipUpdate(false)
+                }
+
+                this.props.handleCertLevelUpdate({ 'cert_level_participante': cert_levels.achieved_levels_participante, 'cert_level_mentor': cert_levels.achieved_levels_mentor })
+            });
+            // setTimeout(function () {
+            //     this.setState({ fetching_st_data: false },
+            //         function () {
+            //             this.props.handleFetchingStDataUpdate(this.state.fetching_st_data)
+            //         }
+            //     );
+            // }.bind(this), 10000);
+        } catch (error) {
+            // console.log('Erro no getStData:', error)
+            this.setState({
+                fetching_state: [this.state.fetching_state[0], ('Erro em: "' + this.state.fetching_state[1] + '"')],
+            })
+        }
     }
-
-    //updateTabIndex() {
-
-    // }
 
     getCurrentDate() {
         const current_date = new Date().toISOString()
