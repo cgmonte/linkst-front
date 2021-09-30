@@ -16,12 +16,12 @@ export function Login() {
     return (
         <ChakraProvider>
             <Flex width="full" height="100vh" alignContent="center" alignItems="center" justifyContent="center" flexDirection="column" backgroundColor="whitesmoke">
-                <Text fontSize="2xl" textAlign="center" fontWeight="semibold">
+                <Text fontSize="lg" textAlign="center" fontWeight="semibold" paddingBottom="1em">
                     Gere um certificado de experiência  na plataforma <Link> strateegia.digital </Link> <br /> e adicione ao seu perfil do LinkedIn! :)
                 </Text>
 
-                <Flex width="fit-content" alignItems="center" flexDirection="column" boxShadow="md" margin="8em" padding="3em" backgroundColor="white">
-                    <Image src="linkest_logo.png" width="24em" marginTop="1em"/>
+                <Flex width="fit-content" alignItems="center" flexDirection="column" boxShadow="md" margin="2em" padding="2em" backgroundColor="white">
+                    <Image src="linkest_logo.png" width="22.2em" marginTop="1em"/>
                     <LoginForm />
                 </Flex>
 
