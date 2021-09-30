@@ -39,7 +39,7 @@ class ContentTabs extends React.Component {
         return (
             <>
                 <Flex width="65vw" height="39.6vw">
-                    <Tabs index={this.state.tabIndex} onChange={this.handleTabsChange} isFitted size="sm" width="65vw" colorScheme="teal">
+                    <Tabs index={this.state.tabIndex} onChange={this.handleTabsChange} isFitted size="sm" width="65vw" colorScheme="blue">
                         <TabList>
                             <Tab>Certificado</Tab>
                             <Tab>Estatísticas</Tab>

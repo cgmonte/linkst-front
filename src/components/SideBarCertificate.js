@@ -70,8 +70,8 @@ class SideBarCertificate extends React.Component {
 
     render() {
         return (
-            < Flex textAlign="left" flexDirection="column" alignItems="left" width="14.5em" paddingTop="1em">
-                <Text fontSize="sm">
+            < Flex textAlign="left" flexDirection="column" alignItems="left" width="13em" paddingTop="1em">
+                <Text fontSize="sm" marginBottom="1em">
                     Geramos o certificado baseado nas suas estatísticas de uso da plataforma strateegia.digital.
 
                 </Text>
@@ -83,7 +83,7 @@ class SideBarCertificate extends React.Component {
                         (
                         <Switch
                             id="modo-habilitador"
-                            colorScheme="teal"
+                            colorScheme="blue"
                             // onChange={console.log('eeeeeee isso ai')}
                             onChange={(e) => this.props.handleCertTypeUpdate()}
 
@@ -92,7 +92,7 @@ class SideBarCertificate extends React.Component {
                             <Switch
                             defaultChecked
                             id="modo-habilitador"
-                            colorScheme="teal"
+                            colorScheme="blue"
                             // onChange={console.log('eeeeeee isso ai')}
                             onChange={(e) => this.props.handleCertTypeUpdate()}
 
@@ -135,12 +135,13 @@ class SideBarCertificate extends React.Component {
                     </Heading>
 
                     <Button
-                        colorScheme="teal"
+                        colorScheme="blue"
                         size="sm"
                         mt={4}
                         variant="ghost"
                         onClick={this.saveCertPng}
-                        width="100%" justifyContent="flex-start"
+                        width="13em"
+                        justifyContent="flex-start"
                         leftIcon={<IoMdImage />}
                     >
                         Arquivo PNG
@@ -148,12 +149,13 @@ class SideBarCertificate extends React.Component {
 
                     <Button
                         alignContent="start"
-                        colorScheme="teal"
+                        colorScheme="blue"
                         size="sm"
                         mt={4}
                         variant="ghost"
                         onClick={this.saveCertPdf}
-                        width="100%" justifyContent="flex-start"
+                        width="13em" 
+                        justifyContent="flex-start"
                         leftIcon={<AiFillFileImage />}
                     >
                         Arquivo PDF

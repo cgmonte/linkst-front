@@ -41,7 +41,7 @@ class ContentTabs extends React.Component {
         return (
             <>
                 <Flex height="fit-content">
-                    <Tabs index={this.state.tabIndex} onChange={this.handleTabsChange} isFitted size="sm" width="63.5vw" colorScheme="teal">
+                    <Tabs index={this.state.tabIndex} onChange={this.handleTabsChange} isFitted size="sm" width="63.5vw" colorScheme="blue">
 
                         {this.props.fetching_st_data ?
                             (<>

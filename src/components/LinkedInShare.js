@@ -115,7 +115,7 @@ class LinkedInShare extends React.Component {
                                 marginY="2em"
                                 padding="1em"
                             >
-                                <Progress size="sm" isAnimated hasStripe isIndeterminate colorScheme="teal" />
+                                <Progress size="sm" isAnimated hasStripe isIndeterminate colorScheme="blue" />
                             </Box> </>
                     ) : (
                         <Text fontSize="xl">Postagem completa!</Text>

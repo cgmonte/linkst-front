@@ -71,7 +71,7 @@ class LinkedIn extends React.Component {
                             <p>Adicione o certificado ao perfil do LinkedIn</p>
                             <Box flexGrow="1" />
                             <Button
-                                colorScheme="teal"
+                                colorScheme="blue"
                                 isDisabled={false}
                                 size="md"
                                 width="16em"
@@ -88,7 +88,7 @@ class LinkedIn extends React.Component {
                             <p>Publicar o certificado no seu feed do LinkedIn</p>
                             <Box flexGrow="1" />
                             <Button
-                                colorScheme="teal"
+                                colorScheme="blue"
                                 isDisabled={false}
                                 size="md"
                                 width="16em"

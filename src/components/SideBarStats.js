@@ -19,10 +19,9 @@ class SideBarStats extends React.Component {
 
     render() {
         return (
-            < Flex textAlign="left" flexDirection="column" alignItems="left" width="14.5em" paddingTop="1em">
-                <Text fontSize="sm">
+            < Flex textAlign="left" flexDirection="column" alignItems="left" width="13em" paddingTop="1em">
+                <Text fontSize="sm" marginBottom="1em">
                     Geramos o certificado baseado nas suas estatísticas de uso da plataforma strateegia.digital.
-
                 </Text>
                 <br />
 
@@ -32,7 +31,7 @@ class SideBarStats extends React.Component {
                         (
                         <Switch
                             id="modo-habilitador"
-                            colorScheme="teal"
+                            colorScheme="blue"
                             // onChange={console.log('eeeeeee isso ai')}
                             onChange={(e) => this.props.handleCertTypeUpdate()}
 
@@ -41,7 +40,7 @@ class SideBarStats extends React.Component {
                             <Switch
                             defaultChecked
                             id="modo-habilitador"
-                            colorScheme="teal"
+                            colorScheme="blue"
                             // onChange={console.log('eeeeeee isso ai')}
                             onChange={(e) => this.props.handleCertTypeUpdate()}
 

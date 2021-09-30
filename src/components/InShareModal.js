@@ -87,7 +87,7 @@ export function InShareModal(props) {
     return (
         <>
             <Button
-                colorScheme="teal"
+                colorScheme="blue"
                 size="sm"
                 mt={4}
                 variant="ghost"
@@ -112,10 +112,10 @@ export function InShareModal(props) {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme="teal" mr={3} onClick={onClose}>
+                        <Button colorScheme="blue" mr={3} onClick={onClose}>
                             Voltar
                         </Button>
-                        <Button variant="ghost" colorScheme="teal" onClick={() => {
+                        <Button variant="ghost" colorScheme="blue" onClick={() => {
                             handleClickShare(
                                 {
                                     issue_date: props.issue_date,

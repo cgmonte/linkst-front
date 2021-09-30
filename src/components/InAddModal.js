@@ -61,12 +61,12 @@ export function InAddModal(props) {
     return (
         <>
             <Button
-                colorScheme="teal"
+                colorScheme="blue"
                 size="sm"
                 mt={4}
                 variant="ghost"
                 onClick={onOpen}
-                width="100%" justifyContent="flex-start"
+                width="13em" justifyContent="flex-start"
                 leftIcon={<TiSocialLinkedin />}
             >
                 Adicionar ao perfil
@@ -87,10 +87,10 @@ export function InAddModal(props) {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme="teal" mr={3} onClick={onClose}>
+                        <Button colorScheme="blue" mr={3} onClick={onClose}>
                             Voltar
                         </Button>
-                        <Button variant="ghost" colorScheme="teal" onClick={() => {
+                        <Button variant="ghost" colorScheme="blue" onClick={() => {
                             handleClickAdd(
                                 {
                                     issue_date: props.issue_date,

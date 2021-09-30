@@ -71,7 +71,7 @@ class StatsTable extends React.Component {
                     <Heading size="lg">{this.full_name}</Heading>
                     <Text textAlign="left" marginTop="1em" marginBottom="1em">Estatísticas do dia {this.props.issue_date.day}/{this.props.issue_date.month}/{this.props.issue_date.year}</Text>
                     <Box overflow="auto" maxHeight="45vh" paddingTop="2vh">
-                        <Table variant="striped" size="sm" width="52vw" colorScheme="teal">
+                        <Table variant="striped" size="sm" width="52vw" colorScheme="blue">
                             <Thead>
                                 <Tr>
                                     <Th fontSize="x-small">Atividade</Th>
