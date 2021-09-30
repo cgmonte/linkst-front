@@ -60,7 +60,7 @@ const handleClickShare = async () => {
 //             default:
 //                 break;
 //         }
-//         cert_name = 'Experiência em Jornadas de Transformação Digital na plataforma strateegia.digital - Nível ' + cert_level;
+//         cert_name = 'Experiência em Jornadas de Transformação Estratégica na plataforma strateegia.digital - Nível ' + cert_level;
 //     } else {
 //         switch (data.cert_level_mentor) {
 //             case 1:
@@ -75,7 +75,7 @@ const handleClickShare = async () => {
 //             default:
 //                 break;
 //         }
-//         cert_name = 'Experiência com habilitação de Jornadas de Transformação Digital na plataforma strateegia.digital - Nível ' + cert_level;
+//         cert_name = 'Experiência com habilitação de Jornadas de Transformação Estratégica na plataforma strateegia.digital - Nível ' + cert_level;
 //     }
 
 //     let url = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${cert_name}&organizationId=76088100&issueYear=${data.issue_date.year}&issueMonth=${data.issue_date.month}`

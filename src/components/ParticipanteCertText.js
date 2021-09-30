@@ -44,7 +44,7 @@ class ParticipanteCertText extends React.Component {
                                 color="black"
                                 textAlign="right"
                             >
-                                habilidades em <Text as="span" color="black" fontWeight="bold"> JORNADAS DE TRANSFORMAÇÃO DIGITAL </Text>
+                                habilidades em <Text as="span" color="black" fontWeight="bold"> JORNADAS DE TRANSFORMAÇÃO ESTRATÉGICA </Text>
                             </Text>
 
                             <Text
@@ -73,7 +73,7 @@ class ParticipanteCertText extends React.Component {
                                 color="white"
                                 textAlign="right"
                             >
-                                habilidades em <Text as="span" color="white" fontWeight="bold"> JORNADAS DE TRANSFORMAÇÃO DIGITAL </Text>
+                                habilidades em <Text as="span" color="white" fontWeight="bold"> JORNADAS DE TRANSFORMAÇÃO ESTRATÉGICA </Text>
                             </Text>
 
                             <Text

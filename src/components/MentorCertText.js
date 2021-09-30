@@ -40,7 +40,7 @@ class MentorCertText extends React.Component {
                                 color="black"
                                 textAlign="right"
                             >
-                                habilita <Text as="span" color="black" fontWeight="extrabold"> JORNADAS DE TRANSFORMAÇÃO DIGITAL </Text>
+                                habilita <Text as="span" color="black" fontWeight="extrabold"> JORNADAS DE TRANSFORMAÇÃO ESTRATÉGICA </Text>
                             </Text>
 
                             <Text
@@ -69,7 +69,7 @@ class MentorCertText extends React.Component {
                                 color="white"
                                 textAlign="right"
                             >
-                                habilita <Text as="span" color="white" fontWeight="bold"> JORNADAS DE TRANSFORMAÇÃO DIGITAL </Text>
+                                habilita <Text as="span" color="white" fontWeight="bold"> JORNADAS DE TRANSFORMAÇÃO ESTRATÉGICA </Text>
                             </Text>
 
                             <Text
