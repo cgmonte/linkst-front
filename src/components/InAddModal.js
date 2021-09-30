@@ -66,7 +66,7 @@ export function InAddModal(props) {
                 mt={4}
                 variant="ghost"
                 onClick={onOpen}
-                width="13em" justifyContent="flex-start"
+                width="12.3em" justifyContent="flex-start"
                 leftIcon={<TiSocialLinkedin />}
             >
                 Adicionar ao perfil

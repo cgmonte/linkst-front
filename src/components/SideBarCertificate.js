@@ -140,7 +140,7 @@ class SideBarCertificate extends React.Component {
                         mt={4}
                         variant="ghost"
                         onClick={this.saveCertPng}
-                        width="13em"
+                        width="12.3em"
                         justifyContent="flex-start"
                         leftIcon={<IoMdImage />}
                     >
@@ -154,7 +154,7 @@ class SideBarCertificate extends React.Component {
                         mt={4}
                         variant="ghost"
                         onClick={this.saveCertPdf}
-                        width="13em" 
+                        width="12.3em" 
                         justifyContent="flex-start"
                         leftIcon={<AiFillFileImage />}
                     >

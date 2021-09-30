@@ -66,90 +66,128 @@ class MainContent extends React.Component {
 
         try {
             this.setState({ fetching_state: [10, 'Carregando Jornadas'] })
-            const projects = await strateegiaProjects({ token: token });
-            projects.forEach(function (lab) {
-                lab.projects.forEach(function (project) {
-                    stProjects.push(project);
-                })
-            })
 
+            try {
+                const projects = await strateegiaProjects({ token: token });
+                projects.forEach(function (lab) {
+                    lab.projects.forEach(function (project) {
+                        stProjects.push(project);
+                    })
+                })
+            } catch (e) {
+                console.log('catch strateegiaProjects:', e);
+            }
+
+            this.setState({ fetching_state: [20, 'Carregando Mapas'] })
             for (const project of stProjects) {
-                this.setState({ fetching_state: [20, 'Carregando Mapas'] })
-                let missions = await strateegiaMissions({ token: token, project_id: project.id });
 
-                missions.users.forEach(function (user) {
-                    if (user.id === UserSession.getId() && user.project_roles.includes('MENTOR')) {
-                        userMentorhips.push({ 'project_id': project.id, 'project_title': project.title })
-                    }
-                })
+                try {
+                    let missions = await strateegiaMissions({ token: token, project_id: project.id });
+                    missions.users.forEach(function (user) {
+                        if (user.id === UserSession.getId() && user.project_roles.includes('MENTOR')) {
+                            userMentorhips.push({ 'project_id': project.id, 'project_title': project.title })
+                        }
+                    })
 
-                missions.missions.forEach(function (mission) {
-                    stMissions.push(mission);
-                })
-            }
-
-            for (const mission of stMissions) {
-                this.setState({ fetching_state: [30, 'Carregando Kits'] })
-                let map = await strateegiaMaps({ token: token, mission_id: mission.id });
-                stMaps.push(map);
-            }
-
-            stMaps.forEach(function (map) {
-                map.points.forEach(function (point) {
-                    // stPoints.push(point);
-                    switch (point.point_type) {
-                        case 'DIVERGENCE':
-                            stDivergencePoints.push(point);
-                            break;
-                        case 'CONVERGENCE':
-                            stConvergencePoints.push(point);
-                            break;
-                        case 'CONVERSATION':
-                            stConversationPoints.push(point);
-                            break;
-                        default:
-                            console.log('Tipo de ponto não mapeado')
-                    }
-                })
-            })
-
-            for (const point of stDivergencePoints) {
-                this.setState({ fetching_state: [50, 'Verificando contribuições'] })
-                let has_contributed = await strateegiaHasContribution({ token: token, content_id: point.id });
-                if (has_contributed.has_contributed === true) {
-                    let divergence_content = await strateegiaContents({ token: token, content_id: point.id });
-                    stDivergenceContents.push(divergence_content);
+                    missions.missions.forEach(function (mission) {
+                        stMissions.push(mission);
+                    })
+                } catch (e) {
+                    console.log('catch strateegiaMissions:', e);
                 }
             }
 
-            stDivergenceContents.forEach(function (content) {
-                content.kit.questions.forEach(function (question) {
-                    stKitQuestions.push(question);
-                })
-            })
+            this.setState({ fetching_state: [30, 'Carregando Mapas'] })
+            for (const mission of stMissions) {
+                try {
+                    let map = await strateegiaMaps({ token: token, mission_id: mission.id });
+                    stMaps.push(map);
+                } catch (e) {
+                    console.log('catch strateegiaMaps:', e);
+                }
+            }
 
+            try {
+                stMaps.forEach(function (map) {
+                    map.points.forEach(function (point) {
+                        // stPoints.push(point);
+                        switch (point.point_type) {
+                            case 'DIVERGENCE':
+                                stDivergencePoints.push(point);
+                                break;
+                            case 'CONVERGENCE':
+                                stConvergencePoints.push(point);
+                                break;
+                            case 'CONVERSATION':
+                                stConversationPoints.push(point);
+                                break;
+                            default:
+                                console.log('Tipo de ponto não mapeado')
+                        }
+                    })
+                })
+            } catch (e) {
+                console.log('catch stMaps forEach:', e);
+            }
+
+            this.setState({ fetching_state: [50, 'Verificando contribuições'] })
+            for (const point of stDivergencePoints) {
+                try {
+                    let has_contributed = await strateegiaHasContribution({ token: token, content_id: point.id });
+                    if (has_contributed.has_contributed === true) {
+                        try {
+                            let divergence_content = await strateegiaContents({ token: token, content_id: point.id });
+                            stDivergenceContents.push(divergence_content);
+                        } catch (e) {
+                            console.log('catch strateegiaContents:', e);
+                        }
+                    }
+                }
+                catch (e) {
+                    console.log('catch strateegiaHasContribution:', e);
+                }
+            }
+
+            try {
+                stDivergenceContents.forEach(function (content) {
+                    content.kit.questions.forEach(function (question) {
+                        stKitQuestions.push(question);
+                    })
+                })
+            } catch (e) {
+                console.log('catch stDivergenceContents.forEach:', e);
+            }
+
+            this.setState({ fetching_state: [60, 'Capturando respostas'] })
             for (const content of stDivergenceContents) {
                 for (const question of content.kit.questions) {
-                    this.setState({ fetching_state: [60, 'Capturando respostas'] })
-                    let parent_comments = await strateegiaParentComments({ token, content_id: content.id, question_id: question.id });
-                    stReplies.push(parent_comments);
-                    for (const reply of parent_comments.content) {
-                        if (reply.author.id === user_id) {
-                            userStReplies.push(reply);
+                    try {
+                        let parent_comments = await strateegiaParentComments({ token, content_id: content.id, question_id: question.id });
+                        stReplies.push(parent_comments);
+                        for (const reply of parent_comments.content) {
+                            if (reply.author.id === user_id) {
+                                userStReplies.push(reply);
+                            }
                         }
+                    } catch (e) {
+                        console.log('catch strateegiaParentComments:', e);
                     }
                 }
             }
 
+            this.setState({ fetching_state: [80, 'Capturando comentários'] })
             for (const reply of stReplies) {
                 for (const content of reply.content) {
-                    this.setState({ fetching_state: [80, 'Capturando comentários'] })
-                    let question_comment_replies = await strateegiaCommentReplies({ token, question_comment_id: content.id });
-                    for (const question_comment_reply of question_comment_replies.content) {
-                        if (question_comment_reply.author.id === user_id) {
+                    try {
+                        let question_comment_replies = await strateegiaCommentReplies({ token, question_comment_id: content.id });
+                        for (const question_comment_reply of question_comment_replies.content) {
+                            if (question_comment_reply.author.id === user_id) {
 
-                            userCommentReplies.push(question_comment_reply)
+                                userCommentReplies.push(question_comment_reply)
+                            }
                         }
+                    } catch (e) {
+                        console.log('catch strateegiaParentComments:', e);
                     }
                 }
             }

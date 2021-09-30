@@ -37,7 +37,7 @@ class SideBar extends React.Component {
         return (
             < Flex textAlign="left" flexDirection="column" alignItems="start" width="16em" height="auto" paddingBottom="0.9vh">
 
-                <Image src="linkest_logo.png" height="5em" marginLeft="-0.8em"/>
+                <Image src="linkest_logo.png" width="12em" marginLeft="-0.7em"/>
 
                 {this.props.fetching_st_data === true && <SideBarLoader />}
 
@@ -64,7 +64,7 @@ class SideBar extends React.Component {
                     // colorScheme="blue"
                     // variant="outline"
                     size="sm"
-                    width="13em"
+                    width="12.3em"
                     mt={4}
                     onClick={this.handleClickSair}
                 >

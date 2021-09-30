@@ -16,8 +16,10 @@ export const strateegiaProjects = async ({ token }) => {
     })
       .then((response) => {
         if (response.ok) {
+          // console.log('projects capturados com sucesso')
           resolve(response.json());
         } else {
+          console.log('projects NÂO capturados:', response)
           reject();
         }
       });
@@ -40,8 +42,10 @@ export const strateegiaMissions = async ({ token, project_id }) => {
     })
       .then((response) => {
         if (response.ok) {
+          // console.log('missions capturadas com sucesso')
           resolve(response.json());
         } else {
+          console.log('missions NÂO capturadas:', response)
           reject();
         }
       });
@@ -64,8 +68,10 @@ export const strateegiaParentComments = async ({ token, content_id, question_id 
     })
       .then((response) => {
         if (response.ok) {
+          // console.log('parent comments capturados com sucesso')
           resolve(response.json());
         } else {
+          console.log('parent comments NÂO capturados:', response)
           reject();
         }
       });
@@ -88,8 +94,10 @@ export const strateegiaHasContribution = async ({ token, content_id }) => {
     })
       .then((response) => {
         if (response.ok) {
+          // console.log('contributions capturadas com sucesso')
           resolve(response.json());
         } else {
+          console.log('contributions NÂO capturadas:', response)
           reject();
         }
       });
@@ -112,8 +120,10 @@ export const strateegiaCommentReplies = async ({ token, question_comment_id }) =
     })
       .then((response) => {
         if (response.ok) {
+          // console.log('replies capturadas com sucesso')
           resolve(response.json());
         } else {
+          console.log('replies NÂO capturadas:', response)
           reject();
         }
       });
@@ -136,8 +146,10 @@ export const strateegiaContents = async ({ token, content_id }) => {
     })
       .then((response) => {
         if (response.ok) {
+          // console.log('content capturado com sucesso')
           resolve(response.json());
         } else {
+          console.log('content NÂO capturado:', response)
           reject();
         }
       });
@@ -160,8 +172,10 @@ export const strateegiaConvergencePoints = async ({ token, mission_id }) => {
     })
       .then((response) => {
         if (response.ok) {
+          // console.log('convergence points da missão capturados com sucesso')
           resolve(response.json());
         } else {
+          console.log('convergence points da missão NÂO capturados:', response)
           reject();
         }
       });
@@ -184,8 +198,10 @@ export const strateegiaCheckPoints = async ({ token, mission_id }) => {
     })
       .then((response) => {
         if (response.ok) {
+          // console.log('checkpoints da missão capturados com sucesso')
           resolve(response.json());
         } else {
+          console.log('checkpoints da missão NÂO capturados:', response)
           reject();
         }
       });
@@ -208,8 +224,10 @@ export const strateegiaComments = async ({ token, content_id }) => {
     })
       .then((response) => {
         if (response.ok) {
+          // console.log('comentários do conteúdo capturados com sucesso')
           resolve(response.json());
         } else {
+          console.log('comentários do conteúdo NÂO capturados:', response)
           reject();
         }
       });
@@ -232,10 +250,10 @@ export const strateegiaMaps = async ({ token, mission_id }) => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('kit capturado com sucesso')
+          console.log('mapa capturado com sucesso')
           resolve(response.json());
         } else {
-          console.log('kit NÃO capturado com sucesso', response)
+          console.log('mapa NÃO capturado:', response)
           reject();
         }
       });
