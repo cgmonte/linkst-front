@@ -37,7 +37,7 @@ class SideBar extends React.Component {
         return (
             < Flex textAlign="left" flexDirection="column" alignItems="start" width="16em" height="auto" paddingBottom="0.9vh">
 
-                <Image src="st-icon.png" height="4em" />
+                <Image src="linkest_logo.png" height="4em" />
 
                 {this.props.fetching_st_data === true && <SideBarLoader />}
 
