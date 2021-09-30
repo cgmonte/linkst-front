@@ -232,8 +232,10 @@ export const strateegiaMaps = async ({ token, mission_id }) => {
     })
       .then((response) => {
         if (response.ok) {
+          console.log('kit capturado com sucesso')
           resolve(response.json());
         } else {
+          console.log('kit NÃO capturado com sucesso', response)
           reject();
         }
       });
