@@ -279,7 +279,7 @@ class MainContent extends React.Component {
         return {
             date: current_date.split("T")[0],
             year: current_date.substring(0, 4),
-            month: current_date.substring(6, 7),
+            month: current_date.substring(5, 7),
             day: current_date.substring(8, 10)
         }
     }
